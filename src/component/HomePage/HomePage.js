@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../../css/HomePage.css'
 import '../../css/HomePage1.css'
 import '../../css/HomePage2.css'
@@ -12,12 +12,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchItems } from '../../redux/hotelSlice'
 
 export default function HomePage() {
+    const [pagecr, setPage] = useState(1);
     const dispatch = useDispatch()
     const {items, status, errors, message, totalPage} = useSelector(state=>state.hotel)
     useEffect(()=>{
-        dispatch(fetchItems())
+        dispatch(fetchItems(pagecr))
     },[])
-    console.log(status)
     return (
         <div>
             <body
