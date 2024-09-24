@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import '../../css/HomePage.css'
 import '../../css/HomePage1.css'
 import '../../css/HomePage2.css'
@@ -8,9 +8,16 @@ import '../../css/HomePage5.css'
 import '../../css/HomePage6.css'
 import Form from '../Form/Form'
 import ScrollButton from '../ScrollButton/ScrollButton'
-import { BsFillStarFill } from "react-icons/bs";
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchItems } from '../../redux/hotelSlice'
 
 export default function HomePage() {
+    const dispatch = useDispatch()
+    const {items, status, errors, message, totalPage} = useSelector(state=>state.hotel)
+    useEffect(()=>{
+        dispatch(fetchItems())
+    },[])
+    console.log(status)
     return (
         <div>
             <body
@@ -50,18 +57,18 @@ export default function HomePage() {
                                                                 src="https://kinsley.bslthemes.com/wp-content/uploads/2021/08/img-banner-2-scaled-1-1920x1315.jpg"
                                                                 data-src="https://kinsley.bslthemes.com/wp-content/uploads/2021/08/img-banner-2-scaled-1-1920x1315.jpg"
                                                                 alt="Image" class="knsl-parallax lazyloaded"
-                                                                style={{ position: 'relative'}} /></div>
+                                                                style={{ position: 'relative' }} /></div>
                                                         <div class="knsl-overlay" style={{ opacity: '1' }}></div>
                                                         <div class="knsl-banner-content">
                                                             <div class="container">
                                                                 <div class="knsl-main-title">
                                                                     <div class="knsl-white">
                                                                         <ul class="knsl-stars">
-                                                                            <li><BsFillStarFill /></li>
-                                                                            <li><BsFillStarFill /></li>
-                                                                            <li><BsFillStarFill /></li>
-                                                                            <li><BsFillStarFill /></li>
-                                                                            <li><BsFillStarFill /></li>
+                                                                            <li><i class="fas fa-star"></i></li>
+                                                                            <li><i class="fas fa-star"></i></li>
+                                                                            <li><i class="fas fa-star"></i></li>
+                                                                            <li><i class="fas fa-star"></i></li>
+                                                                            <li><i class="fas fa-star"></i></li>
                                                                         </ul>
                                                                         <h1 class="knsl-center knsl-main-title--h knsl-mb-10">
                                                                             <span> Welcome to NewGem </span></h1>
@@ -1759,11 +1766,11 @@ export default function HomePage() {
                                                                                             Poland </span></div>
                                                                                         <blockquote>
                                                                                             <ul class="knsl-stars">
-                                                                                                <li><BsFillStarFill /></li>
-                                                                                                <li><BsFillStarFill /></li>
-                                                                                                <li><BsFillStarFill /></li>
-                                                                                                <li><BsFillStarFill /></li>
-                                                                                                <li><BsFillStarFill /></li>
+                                                                                                <li><i class="fas fa-star"></i></li>
+                                                                                                <li><i class="fas fa-star"></i></li>
+                                                                                                <li><i class="fas fa-star"></i></li>
+                                                                                                <li><i class="fas fa-star"></i></li>
+                                                                                                <li><i class="fas fa-star"></i></li>
                                                                                             </ul>
                                                                                             <div> Dequi folores dolor sit amet,
                                                                                                 consectetur adipisicing elit.
@@ -1796,11 +1803,11 @@ export default function HomePage() {
                                                                                             Poland </span></div>
                                                                                         <blockquote>
                                                                                             <ul class="knsl-stars">
-                                                                                                <li><BsFillStarFill /></li>
-                                                                                                <li><BsFillStarFill /></li>
-                                                                                                <li><BsFillStarFill /></li>
-                                                                                                <li><BsFillStarFill /></li>
-                                                                                                <li><BsFillStarFill /></li>
+                                                                                                <li><i class="fas fa-star"></i></li>
+                                                                                                <li><i class="fas fa-star"></i></li>
+                                                                                                <li><i class="fas fa-star"></i></li>
+                                                                                                <li><i class="fas fa-star"></i></li>
+                                                                                                <li><i class="fas fa-star"></i></li>
                                                                                             </ul>
                                                                                             <div> Dequi folores dolor sit amet,
                                                                                                 consectetur adipisicing elit.
@@ -1833,11 +1840,11 @@ export default function HomePage() {
                                                                                             Ukraine </span></div>
                                                                                         <blockquote>
                                                                                             <ul class="knsl-stars">
-                                                                                                <li><BsFillStarFill /></li>
-                                                                                                <li><BsFillStarFill /></li>
-                                                                                                <li><BsFillStarFill /></li>
-                                                                                                <li><BsFillStarFill /></li>
-                                                                                                <li><BsFillStarFill /></li>
+                                                                                                <li><i class="fas fa-star"></i></li>
+                                                                                                <li><i class="fas fa-star"></i></li>
+                                                                                                <li><i class="fas fa-star"></i></li>
+                                                                                                <li><i class="fas fa-star"></i></li>
+                                                                                                <li><i class="fas fa-star"></i></li>
                                                                                             </ul>
                                                                                             <div> Dequi folores dolor sit amet,
                                                                                                 consectetur adipisicing elit.
@@ -1870,11 +1877,11 @@ export default function HomePage() {
                                                                                             Spain </span></div>
                                                                                         <blockquote>
                                                                                             <ul class="knsl-stars">
-                                                                                                <li><BsFillStarFill /></li>
-                                                                                                <li><BsFillStarFill /></li>
-                                                                                                <li><BsFillStarFill /></li>
-                                                                                                <li><BsFillStarFill /></li>
-                                                                                                <li><BsFillStarFill /></li>
+                                                                                                <li><i class="fas fa-star"></i></li>
+                                                                                                <li><i class="fas fa-star"></i></li>
+                                                                                                <li><i class="fas fa-star"></i></li>
+                                                                                                <li><i class="fas fa-star"></i></li>
+                                                                                                <li><i class="fas fa-star"></i></li>
                                                                                             </ul>
                                                                                             <div> Dequi folores dolor sit amet,
                                                                                                 consectetur adipisicing elit.
