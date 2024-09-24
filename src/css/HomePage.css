@@ -37604,7 +37604,7 @@ body.rtl .e-con {
 }
 
 .elementor-element .elementor-widget-container {
-    transition: background .3s,border .3s,border-radius .3s,box-shadow .3s,transform var(--e-transform-transition-duration,.4s)
+    transition: border .3s,border-radius .3s,box-shadow .3s,transform var(--e-transform-transition-duration,.4s)
 }
 
 .elementor-heading-title {
