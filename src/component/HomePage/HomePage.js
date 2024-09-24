@@ -376,7 +376,7 @@ export default function HomePage() {
                                                                                         src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-5.jpg"
                                                                                         alt="East terrace" /></noscript><img
                                                                                         class="lazyload" decoding="async"
-                                                                                        src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E"
+                                                                                        src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3.jpg"
                                                                                         data-src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-5.jpg"
                                                                                         alt="East terrace" />
                                                                                     <div class="knsl-badge"> <span> East terrace
@@ -396,7 +396,7 @@ export default function HomePage() {
                                                                                         src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-6.jpg"
                                                                                         alt="West terrace" /></noscript><img
                                                                                         class="lazyload" decoding="async"
-                                                                                        src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E"
+                                                                                        src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3.jpg"
                                                                                         data-src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-6.jpg"
                                                                                         alt="West terrace" />
                                                                                     <div class="knsl-badge"> <span> West terrace
@@ -415,7 +415,7 @@ export default function HomePage() {
                                                                                             src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-7.jpg"
                                                                                             alt="View from the sea" /></noscript><img
                                                                                             class="lazyload" decoding="async"
-                                                                                            src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E"
+                                                                                            src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3.jpg"
                                                                                             data-src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-7.jpg"
                                                                                             alt="View from the sea" />
                                                                                         <div class="knsl-badge"> <span> View from
@@ -436,7 +436,7 @@ export default function HomePage() {
                                                                                             src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-8.jpg"
                                                                                             alt="East terrace" /></noscript><img
                                                                                             class="lazyload" decoding="async"
-                                                                                            src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E"
+                                                                                            src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3.jpg"
                                                                                             data-src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-8.jpg"
                                                                                             alt="East terrace" />
                                                                                         <div class="knsl-badge"> <span> East terrace
@@ -535,8 +535,8 @@ export default function HomePage() {
                                                                                 src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/service-6-950x1473.jpg"
                                                                                 alt="Gym" /></noscript><img class="lazyload"
                                                                                     decoding="async"
-                                                                                    src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E"
-                                                                                    data-src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/service-6-950x1473.jpg"
+                                                                                    src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3.jpg"
+                                                                                    data-src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3.jpg"
                                                                                     alt="Gym" /> </a>
                                                                             <div class="knsl-badge">
                                                                                 <p class="mphb-price-wrapper">
@@ -565,7 +565,7 @@ export default function HomePage() {
                                                                                 src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/service-2-950x1266.jpg"
                                                                                 alt="Pool" /></noscript><img class="lazyload"
                                                                                     decoding="async"
-                                                                                    src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E"
+                                                                                    src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3.jpg"
                                                                                     data-src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/service-2-950x1266.jpg"
                                                                                     alt="Pool" /> </a>
                                                                             <div class="knsl-badge">
@@ -597,7 +597,7 @@ export default function HomePage() {
                                                                                 src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/service-1-950x1425.jpg"
                                                                                 alt="Lounge bar" /></noscript><img
                                                                                 class="lazyload" decoding="async"
-                                                                                src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E"
+                                                                                src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3.jpg"
                                                                                 data-src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/service-1-950x1425.jpg"
                                                                                 alt="Lounge bar" /> </a>
                                                                             <div class="knsl-badge">
@@ -662,7 +662,7 @@ export default function HomePage() {
                                                         src="https://kinsley.bslthemes.com/wp-content/themes/kinsley/assets/img/palm.svg"
                                                         class="knsl-deco-right" alt="palm" /></noscript><img
                                                             decoding="async"
-                                                            src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E"
+                                                            src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3.jpg"
                                                             data-src="https://kinsley.bslthemes.com/wp-content/themes/kinsley/assets/img/palm.svg"
                                                             class="lazyload knsl-deco-right" alt="palm" />
                                                         <div class="container">
@@ -678,7 +678,7 @@ export default function HomePage() {
                                                                                     src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/blog-2-1-950x608.jpg"
                                                                                     alt="The Ultimate Guide to Traveling When You Have No Money" /></noscript><img
                                                                                     class="lazyload" decoding="async"
-                                                                                    src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E"
+                                                                                    src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3.jpg"
                                                                                     data-src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/blog-2-1-950x608.jpg"
                                                                                     alt="The Ultimate Guide to Traveling When You Have No Money" />
                                                                             </a>
@@ -693,7 +693,7 @@ export default function HomePage() {
                                                                                                 src="https://secure.gravatar.com/avatar/bfe80a8cfe3f34bf01b6448655880640?s=96&#038;d=mm&#038;r=g"
                                                                                                 alt="Hana Evans" /></noscript><img
                                                                                                 class="lazyload" decoding="async"
-                                                                                                src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E"
+                                                                                                src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3.jpg"
                                                                                                 data-src="https://secure.gravatar.com/avatar/bfe80a8cfe3f34bf01b6448655880640?s=96&amp;d=mm&amp;r=g"
                                                                                                 alt="Hana Evans" /></div> <span>Hana
                                                                                                     Evans</span>
@@ -734,7 +734,7 @@ export default function HomePage() {
                                                                                     src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/blog-3-950x634.jpg"
                                                                                     alt="The Best Travel Insurance Companies for Seniors" /></noscript><img
                                                                                     class="lazyload" decoding="async"
-                                                                                    src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E"
+                                                                                    src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3.jpg"
                                                                                     data-src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/blog-3-950x634.jpg"
                                                                                     alt="The Best Travel Insurance Companies for Seniors" />
                                                                             </a>
@@ -749,7 +749,7 @@ export default function HomePage() {
                                                                                                 src="https://secure.gravatar.com/avatar/bfe80a8cfe3f34bf01b6448655880640?s=96&#038;d=mm&#038;r=g"
                                                                                                 alt="Hana Evans" /></noscript><img
                                                                                                 class="lazyload" decoding="async"
-                                                                                                src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E"
+                                                                                                src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3.jpg"
                                                                                                 data-src="https://secure.gravatar.com/avatar/bfe80a8cfe3f34bf01b6448655880640?s=96&amp;d=mm&amp;r=g"
                                                                                                 alt="Hana Evans" /></div> <span>Hana
                                                                                                     Evans</span>
@@ -790,7 +790,7 @@ export default function HomePage() {
                                                                                     src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/blog-1-950x713.jpg"
                                                                                     alt="18 Easy Steps for Planning Your Next Trip" /></noscript><img
                                                                                     class="lazyload" decoding="async"
-                                                                                    src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E"
+                                                                                    src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3.jpg"
                                                                                     data-src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/blog-1-950x713.jpg"
                                                                                     alt="18 Easy Steps for Planning Your Next Trip" />
                                                                             </a>
@@ -805,7 +805,7 @@ export default function HomePage() {
                                                                                                 src="https://secure.gravatar.com/avatar/bfe80a8cfe3f34bf01b6448655880640?s=96&#038;d=mm&#038;r=g"
                                                                                                 alt="Hana Evans" /></noscript><img
                                                                                                 class="lazyload" decoding="async"
-                                                                                                src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E"
+                                                                                                src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3.jpg"
                                                                                                 data-src="https://secure.gravatar.com/avatar/bfe80a8cfe3f34bf01b6448655880640?s=96&amp;d=mm&amp;r=g"
                                                                                                 alt="Hana Evans" /></div> <span>Hana
                                                                                                     Evans</span>
