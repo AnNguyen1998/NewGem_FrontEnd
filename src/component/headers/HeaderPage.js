@@ -123,13 +123,13 @@ export default function HeaderPage() {
                                                                     <ul class="sub-menu">
                                                                         <li id="menu-item-1109"
                                                                             class=" menu-item menu-item-type-post_type menu-item-object-page">
-                                                                            <a href="#">Blog
-                                                                                List</a></li>
+                                                                            <Link to="/bloglist">Blog
+                                                                                List</Link></li>
                                                                         <li id="menu-item-1110"
                                                                             class=" menu-item menu-item-type-post_type menu-item-object-post">
-                                                                            <a
-                                                                                href="#">Blog
-                                                                                Single</a></li>
+                                                                            <Link
+                                                                                to="/readblog">Blog
+                                                                                Single</Link></li>
                                                                     </ul>
                                                                 </li>
                                                                 
