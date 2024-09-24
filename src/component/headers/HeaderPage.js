@@ -43,30 +43,7 @@ export default function HeaderPage() {
                                                                 </li>
                                                                 <li id="menu-item-781"
                                                                     class=" menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
-                                                                    <a href="#">About</a><i></i>
-                                                                    <ul class="sub-menu">
-                                                                        <li id="menu-item-1108"
-                                                                            class=" menu-item menu-item-type-post_type menu-item-object-page">
-                                                                            <a href="#">About
-                                                                                Us</a></li>
-                                                                        <li id="menu-item-790"
-                                                                            class=" menu-item menu-item-type-post_type menu-item-object-page">
-                                                                            <a href="#">FAQ</a>
-                                                                        </li>
-                                                                        <li id="menu-item-791"
-                                                                            class=" menu-item menu-item-type-post_type menu-item-object-page">
-                                                                            <a
-                                                                                href="#">Gallery</a>
-                                                                        </li>
-                                                                        <li id="menu-item-1841"
-                                                                            class=" menu-item menu-item-type-post_type menu-item-object-page">
-                                                                            <a
-                                                                                href="#">Services</a>
-                                                                        </li>
-                                                                        <li id="menu-item-2152"
-                                                                            class=" menu-item menu-item-type-custom menu-item-object-custom">
-                                                                            <a href="#">404</a></li>
-                                                                    </ul>
+                                                                    <a href="#">Hotel</a><i></i>
                                                                 </li>
                                                                 <li id="menu-item-1150"
                                                                     class=" menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
