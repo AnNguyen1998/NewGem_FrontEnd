@@ -18,7 +18,8 @@ export default function LoginPages() {
                 <div class="col-md-6 d-flex flex-column">
                   <div class="row g-0 my-auto">
                     <div class="col-11 col-sm-10 col-lg-9 mx-auto text-center">
-                      <div class="logo mt-5 mb-3"> <Link to='/home' title="Oxyy"><img src="" alt="Oxyy" /></Link> </div>
+                      <div class="logo mt-5 mb-3"> <Link to='/home' title="Oxyy"><img src=""
+                       alt="Oxyy" /></Link> </div>
                       <h1 class="text-5 fw-400 text-white mb-5">We are glad to see you again!</h1>
                     </div>
                   </div>
@@ -33,7 +34,7 @@ export default function LoginPages() {
                         <form id="loginForm" method="post">
                           <div class="mb-3">
                             <label class="form-label text-dark fw-600" for="emailAddress">Username or Email Address</label>
-                            <input type="email" class="form-control rounded-0" id="emailAddress" required placeholder="Enter Your Email" />
+                            <input autoComplete="off" autoFocus type="email" class="form-control rounded-0" id="emailAddress" required placeholder="Enter Your Email" />
                           </div>
                           <div class="mb-3">
                             <label class="form-label text-dark fw-600" for="loginPassword">Password</label>
