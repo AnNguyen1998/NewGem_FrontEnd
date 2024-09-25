@@ -20,6 +20,7 @@ function App() {
           <Route path='/register' element={<Register/>}></Route>
           <Route path='/forgetpassword' element={<ResetPassword/>}></Route>
           <Route path='/dashboard' element={<Dashboard/>}></Route>
+          <Route path='/dashboard' element={<Dashboard/>}></Route>
           <Route path='/bloglist' element={<PageBlogList/>}></Route>
           <Route path='/readblog' element={<BlogDetailPage/>}></Route>
         </Routes>

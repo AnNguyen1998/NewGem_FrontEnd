@@ -60,5 +60,5 @@ export const hotelSlice = createSlice({
         })
     }
 })
-export const { removeMessageError} = hotelSlice.actions
-export default hotelSlice.reducer 
+export const { removeMessageError} = studentSlice.actions
+export default studentSlice.reducer 
