@@ -253,6 +253,7 @@ export const fetchBlogs = createAsyncThunk("blog/fetchBlogs", async (page, thunk
                 size: 6
             }
         })
+        console.log(response);
         return response.data;
     } catch (error) {
         return thunkAPI.rejectWithValue(error.response.data)

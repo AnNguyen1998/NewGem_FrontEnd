@@ -130,12 +130,12 @@ export default function BlogList() {
                                                                                     <span>{item.createdAt.slice(0,10)}</span>
                                                                                 </div>
                                                                             </div>
-                                                                            <a href="https://kinsley.bslthemes.com/blog/2021/12/21/the-ultimate-guide-to-traveling-when-you-have-no-money-2/" class="knsl-title">
+                                                                            <Link to={"/readblog/" + item.id}>
                                                                                 <h4 class="knsl-mb-20">{item.title}</h4>
-                                                                            </a>
-                                                                            <div class="knsl-text-light knsl-text-sm">
-                                                                                <p>
-                                                                                    {item.content.slice(0,30)}&#8230;
+                                                                            </Link>
+                                                                            <div class="knsl-text-light knsl-text-sm" style={{whiteSpace: "pre-line"}}>
+                                                                                <p >
+                                                                                    {item.content.slice(0,40)}&#8230;
                                                                                     <span class="knsl-el-more">
                                                                                         <a href="https://kinsley.bslthemes.com/blog/2021/12/21/the-ultimate-guide-to-traveling-when-you-have-no-money-2/" class="knsl-btn">
                                                                                             Read more<span class="screen-reader-text">Read more &nbsp;The Ultimate Guide to Traveling When You Have No Money</span>

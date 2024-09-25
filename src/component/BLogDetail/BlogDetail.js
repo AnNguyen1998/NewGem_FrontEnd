@@ -37,7 +37,7 @@ export default function BlogDetail() {
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="knsl-center knsl-title-frame">
-                                    <h1 class="knsl-mb-20 knsl-h1-inner">The Ultimate Guide to Traveling When You Have No Money</h1>
+                                    <h1 class="knsl-mb-20 knsl-h1-inner">{items && items.title}</h1>
                                     <ul class="knsl-breadcrumbs">
                                         <li>
                                             <a href="https://kinsley.bslthemes.com" title="Kinsley - Hotel &amp; Resort WordPress Theme">Home</a>
