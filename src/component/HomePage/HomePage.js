@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../../css/HomePage.css'
 import '../../css/HomePage1.css'
 import '../../css/HomePage2.css'
@@ -12,29 +12,18 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchItems } from '../../redux/hotelSlice'
 
 export default function HomePage() {
+    const [pagecr, setPage] = useState(1);
     const dispatch = useDispatch()
     const {items, status, errors, message, totalPage} = useSelector(state=>state.hotel)
     useEffect(()=>{
-        dispatch(fetchItems())
+        dispatch(fetchItems(pagecr))
     },[])
-    console.log(status)
     return (
         <div>
             <body
                 class="home page-template page-template-template-layout-builder page-template-template-layout-builder-php page page-id-32 theme-kinsley woocommerce-js elementor-default elementor-kit-5762 elementor-page elementor-page-32 e--ua-blink e--ua-chrome e--ua-webkit"
                 data-elementor-device-mode="desktop">
                 <div class="knsl-app">
-                    <div class="knsl-preloader-frame knsl-hidden">
-                        <div class="knsl-preloader" style={{ opacity: '1' }}> <img
-                            src="https://kinsley.bslthemes.com/wp-content/uploads/2021/11/logo.png"
-                            alt="Kinsley – Hotel &amp; Resort WordPress Theme" />
-                            <div class="knsl-preloader-progress">
-                                <div class="knsl-preloader-bar" style={{ width: '100' }}></div>
-                            </div>
-                            <div class="knsl-preloader-number-wrap"><span class="knsl-preloader-number" data-count="101">100</span>%
-                            </div>
-                        </div>
-                    </div>
                     <div class="knsl-datepicker-place"></div>
                     <div id="post-32" class="post-32 page type-page status-publish hentry">
                         <div data-elementor-type="wp-page" data-elementor-id="32" class="elementor elementor-32">
@@ -63,13 +52,6 @@ export default function HomePage() {
                                                             <div class="container">
                                                                 <div class="knsl-main-title">
                                                                     <div class="knsl-white">
-                                                                        <ul class="knsl-stars">
-                                                                            <li><i class="fas fa-star"></i></li>
-                                                                            <li><i class="fas fa-star"></i></li>
-                                                                            <li><i class="fas fa-star"></i></li>
-                                                                            <li><i class="fas fa-star"></i></li>
-                                                                            <li><i class="fas fa-star"></i></li>
-                                                                        </ul>
                                                                         <h1 class="knsl-center knsl-main-title--h knsl-mb-10">
                                                                             <span> Welcome to NewGem </span></h1>
                                                                         <div class="knsl-main-title--d knsl-mb-30 knsl-center">
@@ -394,7 +376,7 @@ export default function HomePage() {
                                                                                         src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-5.jpg"
                                                                                         alt="East terrace" /></noscript><img
                                                                                         class="lazyload" decoding="async"
-                                                                                        src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E"
+                                                                                        src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3.jpg"
                                                                                         data-src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-5.jpg"
                                                                                         alt="East terrace" />
                                                                                     <div class="knsl-badge"> <span> East terrace
@@ -414,7 +396,7 @@ export default function HomePage() {
                                                                                         src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-6.jpg"
                                                                                         alt="West terrace" /></noscript><img
                                                                                         class="lazyload" decoding="async"
-                                                                                        src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E"
+                                                                                        src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3.jpg"
                                                                                         data-src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-6.jpg"
                                                                                         alt="West terrace" />
                                                                                     <div class="knsl-badge"> <span> West terrace
@@ -433,7 +415,7 @@ export default function HomePage() {
                                                                                             src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-7.jpg"
                                                                                             alt="View from the sea" /></noscript><img
                                                                                             class="lazyload" decoding="async"
-                                                                                            src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E"
+                                                                                            src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3.jpg"
                                                                                             data-src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-7.jpg"
                                                                                             alt="View from the sea" />
                                                                                         <div class="knsl-badge"> <span> View from
@@ -454,7 +436,7 @@ export default function HomePage() {
                                                                                             src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-8.jpg"
                                                                                             alt="East terrace" /></noscript><img
                                                                                             class="lazyload" decoding="async"
-                                                                                            src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E"
+                                                                                            src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3.jpg"
                                                                                             data-src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-8.jpg"
                                                                                             alt="East terrace" />
                                                                                         <div class="knsl-badge"> <span> East terrace
@@ -507,50 +489,7 @@ export default function HomePage() {
                                                 data-id="983b46e" data-element_type="widget"
                                                 data-widget_type="kinsley-numbers.default">
                                                 <div class="elementor-widget-container">
-                                                    <section class="knsl-transition-middle knsl-p-0-100"> <noscript><img
-                                                        decoding="async"
-                                                        src="https://kinsley.bslthemes.com/wp-content/themes/kinsley/assets/img/palm.svg"
-                                                        class="knsl-deco-right" alt="palm" /></noscript><img
-                                                            decoding="async"
-                                                            src="https://kinsley.bslthemes.com/wp-content/themes/kinsley/assets/img/palm.svg"
-                                                            data-src="https://kinsley.bslthemes.com/wp-content/themes/kinsley/assets/img/palm.svg"
-                                                            class="knsl-deco-right ls-is-cached lazyloaded" alt="palm" />
-                                                        <div class="container">
-                                                            <div
-                                                                class="knsl-features-card knsl-counters-card knsl-scroll-animation">
-                                                                <div class="row">
-                                                                    <div class="col-6 col-lg-3">
-                                                                        <div class="knsl-icon-box"> <span
-                                                                            class="knsl-counter-number knsl-mb-10"
-                                                                            data-count="4"></span>
-                                                                            <h5>Hotels</h5>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-6 col-lg-3">
-                                                                        <div class="knsl-icon-box"> <span
-                                                                            class="knsl-counter-number knsl-mb-10"
-                                                                            data-count="127"></span>
-                                                                            <h5>Rooms</h5>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-6 col-lg-3">
-                                                                        <div class="knsl-icon-box"> <span
-                                                                            class="knsl-counter-number knsl-mb-10"
-                                                                            data-count="6"></span>
-                                                                            <h5>Beaches</h5>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-6 col-lg-3">
-                                                                        <div class="knsl-icon-box"> <span
-                                                                            class="knsl-counter-number knsl-mb-10"
-                                                                            data-count="4586"></span>
-                                                                            <h5>Guests</h5>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </section>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
@@ -567,1010 +506,7 @@ export default function HomePage() {
                                             <div class="elementor-element elementor-element-97056e4 elementor-widget elementor-widget-kinsley-rooms-carousel"
                                                 data-id="97056e4" data-element_type="widget"
                                                 data-widget_type="kinsley-rooms-carousel.default">
-                                                <div class="elementor-widget-container">
-                                                    <section class="knsl-transition-bottom knsl-p-0-100"> <noscript><img
-                                                        decoding="async"
-                                                        src="https://kinsley.bslthemes.com/wp-content/themes/kinsley/assets/img/palm.svg"
-                                                        class="knsl-deco-left" alt="palm" /></noscript><img decoding="async"
-                                                            src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E"
-                                                            data-src="https://kinsley.bslthemes.com/wp-content/themes/kinsley/assets/img/palm.svg"
-                                                            class="lazyload knsl-deco-left" alt="palm" />
-                                                        <div class="container">
-                                                            <div class="row align-items-center">
-                                                                <div class="col-lg-12">
-                                                                    <div
-                                                                        class="knsl-center knsl-title-frame knsl-scroll-animation knsl-mb-100">
-                                                                        <h2 class="knsl-title--h knsl-mb-20"> <span> Our Best Rooms
-                                                                        </span></h2>
-                                                                        <div class="knsl-text knsl-mb-30">
-                                                                            <p> <span> Consectetur adipisicing elit. Nihil, illum
-                                                                                voluptate eveniet ex fugit ea delectus, sed
-                                                                                voluptatem. Laborum accusantium libero commodi
-                                                                                id officiis itaque esse adipisci, necessitatibus
-                                                                                asperiores, illo odio. </span></p>
-                                                                        </div> <a href="/accommodations/"
-                                                                            class="knsl-btn knsl-btn-md"> <span> All rooms </span>
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
-                                                                <div
-                                                                    class="col-lg-12 attr-details-amenity-false attr-details-category-false attr-details-attributes-false attr-details-view-false attr-details-bed-type-false attr-details-children-false">
-                                                                    <div
-                                                                        class="swiper-container knsl-uni-slider attr-details-amenity-false attr-details-category-false attr-details-attributes-false attr-details-view-false attr-details-bed-type-false attr-details-children-false swiper-initialized swiper-horizontal swiper-pointer-events swiper-autoheight swiper-watch-progress swiper-backface-hidden">
-                                                                        <div class="swiper-wrapper"
-                                                                            id="swiper-wrapper-5de2c2436ed0fb43" aria-live="polite"
-                                                                            style={{ height: '639px', transform: 'translate3d(0px, 0px, 0px)' }}>
-                                                                            <div class="swiper-slide swiper-slide-visible swiper-slide-active"
-                                                                                style={{ width: '460px', marginRight: '20px' }}
-                                                                                role="group" aria-label="1 / 8">
-                                                                                <div
-                                                                                    class="mphb_sc_room-wrapper knsl-scroll-animation">
-                                                                                    <div
-                                                                                        class="mphb-room-type post-17 mphb_room_type type-mphb_room_type status-publish has-post-thumbnail mphb_room_type_category-luxe mphb_room_type_tag-luxe mphb_room_type_facility-4-private-pools mphb_room_type_facility-air-conditioning mphb_room_type_facility-airport-transfer mphb_room_type_facility-all-inclusive mphb_room_type_facility-wifi mphb_room_type_facility-laundry mphb_room_type_facility-smart-tv mphb_room_type_facility-under-protection mphb-room-type-adults-4 mphb-room-type-children-0 ">
-                                                                                        <p
-                                                                                            class="post-thumbnail mphb-loop-room-thumbnail">
-                                                                                            <a
-                                                                                                href="https://kinsley.bslthemes.com/accommodation/deluxe-room/">
-                                                                                                <noscript><img decoding="async"
-                                                                                                    width="1000" height="666"
-                                                                                                    src="https://kinsley.bslthemes.com/wp-content/uploads/2021/08/room-1.jpg"
-                                                                                                    class="attachment-post-thumbnail size-post-thumbnail wp-post-image"
-                                                                                                    alt=""
-                                                                                                    srcset="https://kinsley.bslthemes.com/wp-content/uploads/2021/08/room-1.jpg 1000w, https://kinsley.bslthemes.com/wp-content/uploads/2021/08/room-1-300x200.jpg 300w, https://kinsley.bslthemes.com/wp-content/uploads/2021/08/room-1-768x511.jpg 768w, https://kinsley.bslthemes.com/wp-content/uploads/2021/08/room-1-950x633.jpg 950w, https://kinsley.bslthemes.com/wp-content/uploads/2021/08/room-1-800x533.jpg 800w"
-                                                                                                    sizes="(max-width: 1000px) 100vw, 1000px" /></noscript><img
-                                                                                                    decoding="async" width="1000"
-                                                                                                    height="666"
-                                                                                                    src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201000%20666%22%3E%3C/svg%3E"
-                                                                                                    data-src="https://kinsley.bslthemes.com/wp-content/uploads/2021/08/room-1.jpg"
-                                                                                                    class="lazyload attachment-post-thumbnail size-post-thumbnail wp-post-image"
-                                                                                                    alt=""
-                                                                                                    data-srcset="https://kinsley.bslthemes.com/wp-content/uploads/2021/08/room-1.jpg 1000w, https://kinsley.bslthemes.com/wp-content/uploads/2021/08/room-1-300x200.jpg 300w, https://kinsley.bslthemes.com/wp-content/uploads/2021/08/room-1-768x511.jpg 768w, https://kinsley.bslthemes.com/wp-content/uploads/2021/08/room-1-950x633.jpg 950w, https://kinsley.bslthemes.com/wp-content/uploads/2021/08/room-1-800x533.jpg 800w"
-                                                                                                    data-sizes="(max-width: 1000px) 100vw, 1000px" />
-                                                                                            </a></p>
-                                                                                        <h2
-                                                                                            class="mphb-room-type-title entry-title">
-                                                                                            <a class="mphb-room-type-title"
-                                                                                                href="https://kinsley.bslthemes.com/accommodation/deluxe-room/">Deluxe
-                                                                                                room</a></h2>
-                                                                                        <div
-                                                                                            class="knsl-text-light knsl-text-sm knsl-mb-20">
-                                                                                            <p>Image for cattle earth. May one Which
-                                                                                                life divide sea. Optio veniam
-                                                                                                quibusdam fugit aspernatur ratione
-                                                                                                rerum necessitatibus ipsa eligendi?
-                                                                                                Laudantium beatae aut earum ab
-                                                                                                doloribus tempore veritatis repellat
-                                                                                                natus illo, veniam quibusdam fugit
-                                                                                                aspernatur cumque harum quos esse
-                                                                                                libero nesciunt, molestiae saepe,
-                                                                                                possimus a suscipit.</p>
-                                                                                        </div>
-                                                                                        <h3 class="mphb-room-type-details-title">
-                                                                                            Details</h3>
-                                                                                        <ul class="mphb-loop-room-type-attributes">
-                                                                                            <li
-                                                                                                class="mphb-room-type-adults-capacity">
-                                                                                                <span
-                                                                                                    class="mphb-attribute-title mphb-adults-title">Adults:</span><span
-                                                                                                        class="mphb-attribute-value"> 4
-                                                                                                </span></li>
-                                                                                            <li class="mphb-room-type-facilities">
-                                                                                                <span
-                                                                                                    class="mphb-attribute-title mphb-facilities-title">Amenities:</span><span
-                                                                                                        class="mphb-attribute-value">
-                                                                                                    <span
-                                                                                                        class="facility-4-private-pools"><a
-                                                                                                            href="https://kinsley.bslthemes.com/accommodation-facility/4-private-pools/">4
-                                                                                                            private
-                                                                                                            pools</a></span>, <span
-                                                                                                                class="facility-air-conditioning"><a
-                                                                                                                    href="https://kinsley.bslthemes.com/accommodation-facility/air-conditioning/">Air-conditioned</a></span>,
-                                                                                                    <span
-                                                                                                        class="facility-airport-transfer"><a
-                                                                                                            href="https://kinsley.bslthemes.com/accommodation-facility/airport-transfer/">Airport
-                                                                                                            transfer</a></span>,
-                                                                                                    <span
-                                                                                                        class="facility-all-inclusive"><a
-                                                                                                            href="https://kinsley.bslthemes.com/accommodation-facility/all-inclusive/">All
-                                                                                                            inclusive</a></span>,
-                                                                                                    <span class="facility-wifi"><a
-                                                                                                        href="https://kinsley.bslthemes.com/accommodation-facility/wifi/">Free
-                                                                                                        wi-fi</a></span>, <span
-                                                                                                            class="facility-laundry"><a
-                                                                                                                href="https://kinsley.bslthemes.com/accommodation-facility/laundry/">Laundry</a></span>,
-                                                                                                    <span
-                                                                                                        class="facility-smart-tv"><a
-                                                                                                            href="https://kinsley.bslthemes.com/accommodation-facility/smart-tv/">Smart
-                                                                                                            TV</a></span>, <span
-                                                                                                                class="facility-under-protection"><a
-                                                                                                                    href="https://kinsley.bslthemes.com/accommodation-facility/under-protection/">Under
-                                                                                                            protection</a></span></span>
-                                                                                            </li>
-                                                                                            <li class="mphb-room-type-size"><span
-                                                                                                class="mphb-attribute-title mphb-size-title">Size:</span><span
-                                                                                                    class="mphb-attribute-value">
-                                                                                                    95ft² </span></li>
-                                                                                            <li class="mphb-room-type-categories">
-                                                                                                <span
-                                                                                                    class="mphb-attribute-title mphb-categories-title">Categories:</span><span
-                                                                                                        class="mphb-attribute-value">
-                                                                                                    <span class="category-luxe"><a
-                                                                                                        href="https://kinsley.bslthemes.com/accommodation-category/luxe/">Luxe</a></span></span>
-                                                                                            </li>
-                                                                                        </ul>
-                                                                                        <p class="mphb-regular-price"><strong>Prices
-                                                                                            start at:</strong> <span
-                                                                                                class="mphb-price"><span
-                                                                                                    class="mphb-currency">€</span>49</span>
-                                                                                            <span class="mphb-price-period"
-                                                                                                title="Choose dates to see relevant prices">per
-                                                                                                night</span></p>
-                                                                                        <div class="mphb-to-book-btn-wrapper">
-                                                                                            <form
-                                                                                                action="https://kinsley.bslthemes.com/accommodation/deluxe-room/#booking-form-17"
-                                                                                                method="get"><button type="submit"
-                                                                                                    class="button mphb-book-button">Book</button>
-                                                                                            </form>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="swiper-slide swiper-slide-visible swiper-slide-next"
-                                                                                style={{ width: '460px', marginRight: '20px' }}
-                                                                                role="group" aria-label="2 / 8">
-                                                                                <div
-                                                                                    class="mphb_sc_room-wrapper knsl-scroll-animation">
-                                                                                    <div
-                                                                                        class="mphb-room-type post-986 mphb_room_type type-mphb_room_type status-publish has-post-thumbnail mphb_room_type_category-economy mphb_room_type_tag-minimal mphb_room_type_facility-4-private-pools mphb_room_type_facility-air-conditioning mphb_room_type_facility-airport-transfer mphb_room_type_facility-all-inclusive mphb_room_type_facility-wifi mphb_room_type_facility-laundry mphb_room_type_facility-smart-tv mphb_room_type_facility-under-protection mphb-room-type-adults-2 mphb-room-type-children-2 ">
-                                                                                        <p
-                                                                                            class="post-thumbnail mphb-loop-room-thumbnail">
-                                                                                            <a
-                                                                                                href="https://kinsley.bslthemes.com/accommodation/standard-room/">
-                                                                                                <noscript><img decoding="async"
-                                                                                                    width="1000" height="667"
-                                                                                                    src="https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-2.jpg"
-                                                                                                    class="attachment-post-thumbnail size-post-thumbnail wp-post-image"
-                                                                                                    alt=""
-                                                                                                    srcset="https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-2.jpg 1000w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-2-300x200.jpg 300w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-2-768x512.jpg 768w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-2-950x634.jpg 950w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-2-800x534.jpg 800w"
-                                                                                                    sizes="(max-width: 1000px) 100vw, 1000px" /></noscript><img
-                                                                                                    decoding="async" width="1000"
-                                                                                                    height="667"
-                                                                                                    src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201000%20667%22%3E%3C/svg%3E"
-                                                                                                    data-src="https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-2.jpg"
-                                                                                                    class="lazyload attachment-post-thumbnail size-post-thumbnail wp-post-image"
-                                                                                                    alt=""
-                                                                                                    data-srcset="https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-2.jpg 1000w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-2-300x200.jpg 300w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-2-768x512.jpg 768w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-2-950x634.jpg 950w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-2-800x534.jpg 800w"
-                                                                                                    data-sizes="(max-width: 1000px) 100vw, 1000px" />
-                                                                                            </a></p>
-                                                                                        <h2
-                                                                                            class="mphb-room-type-title entry-title">
-                                                                                            <a class="mphb-room-type-title"
-                                                                                                href="https://kinsley.bslthemes.com/accommodation/standard-room/">Standard
-                                                                                                Room</a></h2>
-                                                                                        <div
-                                                                                            class="knsl-text-light knsl-text-sm knsl-mb-20">
-                                                                                            <p>Image for cattle earth. May one Which
-                                                                                                life divide sea. Optio veniam
-                                                                                                quibusdam fugit aspernatur ratione
-                                                                                                rerum necessitatibus ipsa eligendi?
-                                                                                                Laudantium beatae aut earum ab
-                                                                                                doloribus tempore veritatis repellat
-                                                                                                natus illo, veniam quibusdam fugit
-                                                                                                aspernatur cumque harum quos esse
-                                                                                                libero nesciunt, molestiae saepe,
-                                                                                                possimus a suscipit.</p>
-                                                                                        </div>
-                                                                                        <h3 class="mphb-room-type-details-title">
-                                                                                            Details</h3>
-                                                                                        <ul class="mphb-loop-room-type-attributes">
-                                                                                            <li
-                                                                                                class="mphb-room-type-adults-capacity">
-                                                                                                <span
-                                                                                                    class="mphb-attribute-title mphb-adults-title">Adults:</span><span
-                                                                                                        class="mphb-attribute-value"> 2
-                                                                                                </span></li>
-                                                                                            <li
-                                                                                                class="mphb-room-type-children-capacity">
-                                                                                                <span
-                                                                                                    class="mphb-attribute-title mphb-children-title">Children:</span><span
-                                                                                                        class="mphb-attribute-value"> 2
-                                                                                                </span></li>
-                                                                                            <li class="mphb-room-type-facilities">
-                                                                                                <span
-                                                                                                    class="mphb-attribute-title mphb-facilities-title">Amenities:</span><span
-                                                                                                        class="mphb-attribute-value">
-                                                                                                    <span
-                                                                                                        class="facility-4-private-pools"><a
-                                                                                                            href="https://kinsley.bslthemes.com/accommodation-facility/4-private-pools/">4
-                                                                                                            private
-                                                                                                            pools</a></span>, <span
-                                                                                                                class="facility-air-conditioning"><a
-                                                                                                                    href="https://kinsley.bslthemes.com/accommodation-facility/air-conditioning/">Air-conditioned</a></span>,
-                                                                                                    <span
-                                                                                                        class="facility-airport-transfer"><a
-                                                                                                            href="https://kinsley.bslthemes.com/accommodation-facility/airport-transfer/">Airport
-                                                                                                            transfer</a></span>,
-                                                                                                    <span
-                                                                                                        class="facility-all-inclusive"><a
-                                                                                                            href="https://kinsley.bslthemes.com/accommodation-facility/all-inclusive/">All
-                                                                                                            inclusive</a></span>,
-                                                                                                    <span class="facility-wifi"><a
-                                                                                                        href="https://kinsley.bslthemes.com/accommodation-facility/wifi/">Free
-                                                                                                        wi-fi</a></span>, <span
-                                                                                                            class="facility-laundry"><a
-                                                                                                                href="https://kinsley.bslthemes.com/accommodation-facility/laundry/">Laundry</a></span>,
-                                                                                                    <span
-                                                                                                        class="facility-smart-tv"><a
-                                                                                                            href="https://kinsley.bslthemes.com/accommodation-facility/smart-tv/">Smart
-                                                                                                            TV</a></span>, <span
-                                                                                                                class="facility-under-protection"><a
-                                                                                                                    href="https://kinsley.bslthemes.com/accommodation-facility/under-protection/">Under
-                                                                                                            protection</a></span></span>
-                                                                                            </li>
-                                                                                            <li class="mphb-room-type-size"><span
-                                                                                                class="mphb-attribute-title mphb-size-title">Size:</span><span
-                                                                                                    class="mphb-attribute-value">
-                                                                                                    50ft² </span></li>
-                                                                                            <li class="mphb-room-type-categories">
-                                                                                                <span
-                                                                                                    class="mphb-attribute-title mphb-categories-title">Categories:</span><span
-                                                                                                        class="mphb-attribute-value">
-                                                                                                    <span
-                                                                                                        class="category-economy"><a
-                                                                                                            href="https://kinsley.bslthemes.com/accommodation-category/economy/">Economy</a></span></span>
-                                                                                            </li>
-                                                                                        </ul>
-                                                                                        <p class="mphb-regular-price"><strong>Prices
-                                                                                            start at:</strong> <span
-                                                                                                class="mphb-price"><span
-                                                                                                    class="mphb-currency">€</span>29</span>
-                                                                                            <span class="mphb-price-period"
-                                                                                                title="Choose dates to see relevant prices">per
-                                                                                                night</span></p>
-                                                                                        <div class="mphb-to-book-btn-wrapper">
-                                                                                            <form
-                                                                                                action="https://kinsley.bslthemes.com/accommodation/standard-room/#booking-form-986"
-                                                                                                method="get"><button type="submit"
-                                                                                                    class="button mphb-book-button">Book</button>
-                                                                                            </form>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="swiper-slide"
-                                                                                style={{ width: '460px', marginRight: '20px' }}
-                                                                                role="group" aria-label="3 / 8">
-                                                                                <div
-                                                                                    class="mphb_sc_room-wrapper knsl-scroll-animation">
-                                                                                    <div
-                                                                                        class="mphb-room-type post-1006 mphb_room_type type-mphb_room_type status-publish has-post-thumbnail mphb_room_type_category-economy mphb_room_type_tag-double mphb_room_type_facility-4-private-pools mphb_room_type_facility-air-conditioning mphb_room_type_facility-airport-transfer mphb_room_type_facility-all-inclusive mphb_room_type_facility-wifi mphb_room_type_facility-laundry mphb_room_type_facility-smart-tv mphb_room_type_facility-under-protection mphb-room-type-adults-2 mphb-room-type-children-0 ">
-                                                                                        <p
-                                                                                            class="post-thumbnail mphb-loop-room-thumbnail">
-                                                                                            <a
-                                                                                                href="https://kinsley.bslthemes.com/accommodation/double-room/">
-                                                                                                <noscript><img loading="lazy"
-                                                                                                    decoding="async"
-                                                                                                    width="1000" height="667"
-                                                                                                    src="https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-3.jpg"
-                                                                                                    class="attachment-post-thumbnail size-post-thumbnail wp-post-image"
-                                                                                                    alt=""
-                                                                                                    srcset="https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-3.jpg 1000w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-3-300x200.jpg 300w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-3-768x512.jpg 768w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-3-950x634.jpg 950w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-3-800x534.jpg 800w"
-                                                                                                    sizes="(max-width: 1000px) 100vw, 1000px" /></noscript><img
-                                                                                                    loading="lazy" decoding="async"
-                                                                                                    width="1000" height="667"
-                                                                                                    src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201000%20667%22%3E%3C/svg%3E"
-                                                                                                    data-src="https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-3.jpg"
-                                                                                                    class="lazyload attachment-post-thumbnail size-post-thumbnail wp-post-image"
-                                                                                                    alt=""
-                                                                                                    data-srcset="https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-3.jpg 1000w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-3-300x200.jpg 300w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-3-768x512.jpg 768w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-3-950x634.jpg 950w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-3-800x534.jpg 800w"
-                                                                                                    data-sizes="(max-width: 1000px) 100vw, 1000px" />
-                                                                                            </a></p>
-                                                                                        <h2
-                                                                                            class="mphb-room-type-title entry-title">
-                                                                                            <a class="mphb-room-type-title"
-                                                                                                href="https://kinsley.bslthemes.com/accommodation/double-room/">Double
-                                                                                                Room</a></h2>
-                                                                                        <div
-                                                                                            class="knsl-text-light knsl-text-sm knsl-mb-20">
-                                                                                            <p>Image for cattle earth. May one Which
-                                                                                                life divide sea. Optio veniam
-                                                                                                quibusdam fugit aspernatur ratione
-                                                                                                rerum necessitatibus ipsa eligendi?
-                                                                                                Laudantium beatae aut earum ab
-                                                                                                doloribus tempore veritatis repellat
-                                                                                                natus illo, veniam quibusdam fugit
-                                                                                                aspernatur cumque harum quos esse
-                                                                                                libero nesciunt, molestiae saepe,
-                                                                                                possimus a suscipit.</p>
-                                                                                        </div>
-                                                                                        <h3 class="mphb-room-type-details-title">
-                                                                                            Details</h3>
-                                                                                        <ul class="mphb-loop-room-type-attributes">
-                                                                                            <li
-                                                                                                class="mphb-room-type-adults-capacity">
-                                                                                                <span
-                                                                                                    class="mphb-attribute-title mphb-adults-title">Adults:</span><span
-                                                                                                        class="mphb-attribute-value"> 2
-                                                                                                </span></li>
-                                                                                            <li class="mphb-room-type-facilities">
-                                                                                                <span
-                                                                                                    class="mphb-attribute-title mphb-facilities-title">Amenities:</span><span
-                                                                                                        class="mphb-attribute-value">
-                                                                                                    <span
-                                                                                                        class="facility-4-private-pools"><a
-                                                                                                            href="https://kinsley.bslthemes.com/accommodation-facility/4-private-pools/">4
-                                                                                                            private
-                                                                                                            pools</a></span>, <span
-                                                                                                                class="facility-air-conditioning"><a
-                                                                                                                    href="https://kinsley.bslthemes.com/accommodation-facility/air-conditioning/">Air-conditioned</a></span>,
-                                                                                                    <span
-                                                                                                        class="facility-airport-transfer"><a
-                                                                                                            href="https://kinsley.bslthemes.com/accommodation-facility/airport-transfer/">Airport
-                                                                                                            transfer</a></span>,
-                                                                                                    <span
-                                                                                                        class="facility-all-inclusive"><a
-                                                                                                            href="https://kinsley.bslthemes.com/accommodation-facility/all-inclusive/">All
-                                                                                                            inclusive</a></span>,
-                                                                                                    <span class="facility-wifi"><a
-                                                                                                        href="https://kinsley.bslthemes.com/accommodation-facility/wifi/">Free
-                                                                                                        wi-fi</a></span>, <span
-                                                                                                            class="facility-laundry"><a
-                                                                                                                href="https://kinsley.bslthemes.com/accommodation-facility/laundry/">Laundry</a></span>,
-                                                                                                    <span
-                                                                                                        class="facility-smart-tv"><a
-                                                                                                            href="https://kinsley.bslthemes.com/accommodation-facility/smart-tv/">Smart
-                                                                                                            TV</a></span>, <span
-                                                                                                                class="facility-under-protection"><a
-                                                                                                                    href="https://kinsley.bslthemes.com/accommodation-facility/under-protection/">Under
-                                                                                                            protection</a></span></span>
-                                                                                            </li>
-                                                                                            <li class="mphb-room-type-size"><span
-                                                                                                class="mphb-attribute-title mphb-size-title">Size:</span><span
-                                                                                                    class="mphb-attribute-value">
-                                                                                                    35ft² </span></li>
-                                                                                            <li class="mphb-room-type-categories">
-                                                                                                <span
-                                                                                                    class="mphb-attribute-title mphb-categories-title">Categories:</span><span
-                                                                                                        class="mphb-attribute-value">
-                                                                                                    <span
-                                                                                                        class="category-economy"><a
-                                                                                                            href="https://kinsley.bslthemes.com/accommodation-category/economy/">Economy</a></span></span>
-                                                                                            </li>
-                                                                                        </ul>
-                                                                                        <p class="mphb-regular-price"><strong>Prices
-                                                                                            start at:</strong> <span
-                                                                                                class="mphb-price"><span
-                                                                                                    class="mphb-currency">€</span>39</span>
-                                                                                            <span class="mphb-price-period"
-                                                                                                title="Choose dates to see relevant prices">per
-                                                                                                night</span></p>
-                                                                                        <div class="mphb-to-book-btn-wrapper">
-                                                                                            <form
-                                                                                                action="https://kinsley.bslthemes.com/accommodation/double-room/#booking-form-1006"
-                                                                                                method="get"><button type="submit"
-                                                                                                    class="button mphb-book-button">Book</button>
-                                                                                            </form>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="swiper-slide"
-                                                                                style={{ width: '460px', marginRight: '20px' }}
-                                                                                role="group" aria-label="4 / 8">
-                                                                                <div
-                                                                                    class="mphb_sc_room-wrapper knsl-scroll-animation">
-                                                                                    <div
-                                                                                        class="mphb-room-type post-1015 mphb_room_type type-mphb_room_type status-publish has-post-thumbnail mphb_room_type_category-standard mphb_room_type_tag-classic mphb_room_type_facility-4-private-pools mphb_room_type_facility-air-conditioning mphb_room_type_facility-airport-transfer mphb_room_type_facility-all-inclusive mphb_room_type_facility-wifi mphb_room_type_facility-laundry mphb_room_type_facility-smart-tv mphb_room_type_facility-under-protection mphb-room-type-adults-3 mphb-room-type-children-0 ">
-                                                                                        <p
-                                                                                            class="post-thumbnail mphb-loop-room-thumbnail">
-                                                                                            <a
-                                                                                                href="https://kinsley.bslthemes.com/accommodation/classic-room/">
-                                                                                                <noscript><img loading="lazy"
-                                                                                                    decoding="async"
-                                                                                                    width="1000" height="664"
-                                                                                                    src="https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-4.jpg"
-                                                                                                    class="attachment-post-thumbnail size-post-thumbnail wp-post-image"
-                                                                                                    alt=""
-                                                                                                    srcset="https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-4.jpg 1000w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-4-300x199.jpg 300w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-4-768x510.jpg 768w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-4-950x631.jpg 950w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-4-800x531.jpg 800w"
-                                                                                                    sizes="(max-width: 1000px) 100vw, 1000px" /></noscript><img
-                                                                                                    loading="lazy" decoding="async"
-                                                                                                    width="1000" height="664"
-                                                                                                    src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201000%20664%22%3E%3C/svg%3E"
-                                                                                                    data-src="https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-4.jpg"
-                                                                                                    class="lazyload attachment-post-thumbnail size-post-thumbnail wp-post-image"
-                                                                                                    alt=""
-                                                                                                    data-srcset="https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-4.jpg 1000w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-4-300x199.jpg 300w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-4-768x510.jpg 768w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-4-950x631.jpg 950w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-4-800x531.jpg 800w"
-                                                                                                    data-sizes="(max-width: 1000px) 100vw, 1000px" />
-                                                                                            </a></p>
-                                                                                        <h2
-                                                                                            class="mphb-room-type-title entry-title">
-                                                                                            <a class="mphb-room-type-title"
-                                                                                                href="https://kinsley.bslthemes.com/accommodation/classic-room/">Classic
-                                                                                                Room</a></h2>
-                                                                                        <div
-                                                                                            class="knsl-text-light knsl-text-sm knsl-mb-20">
-                                                                                            <p>Image for cattle earth. May one Which
-                                                                                                life divide sea. Optio veniam
-                                                                                                quibusdam fugit aspernatur ratione
-                                                                                                rerum necessitatibus ipsa eligendi?
-                                                                                                Laudantium beatae aut earum ab
-                                                                                                doloribus tempore veritatis repellat
-                                                                                                natus illo, veniam quibusdam fugit
-                                                                                                aspernatur cumque harum quos esse
-                                                                                                libero nesciunt, molestiae saepe,
-                                                                                                possimus a suscipit.</p>
-                                                                                        </div>
-                                                                                        <h3 class="mphb-room-type-details-title">
-                                                                                            Details</h3>
-                                                                                        <ul class="mphb-loop-room-type-attributes">
-                                                                                            <li
-                                                                                                class="mphb-room-type-adults-capacity">
-                                                                                                <span
-                                                                                                    class="mphb-attribute-title mphb-adults-title">Adults:</span><span
-                                                                                                        class="mphb-attribute-value"> 3
-                                                                                                </span></li>
-                                                                                            <li class="mphb-room-type-facilities">
-                                                                                                <span
-                                                                                                    class="mphb-attribute-title mphb-facilities-title">Amenities:</span><span
-                                                                                                        class="mphb-attribute-value">
-                                                                                                    <span
-                                                                                                        class="facility-4-private-pools"><a
-                                                                                                            href="https://kinsley.bslthemes.com/accommodation-facility/4-private-pools/">4
-                                                                                                            private
-                                                                                                            pools</a></span>, <span
-                                                                                                                class="facility-air-conditioning"><a
-                                                                                                                    href="https://kinsley.bslthemes.com/accommodation-facility/air-conditioning/">Air-conditioned</a></span>,
-                                                                                                    <span
-                                                                                                        class="facility-airport-transfer"><a
-                                                                                                            href="https://kinsley.bslthemes.com/accommodation-facility/airport-transfer/">Airport
-                                                                                                            transfer</a></span>,
-                                                                                                    <span
-                                                                                                        class="facility-all-inclusive"><a
-                                                                                                            href="https://kinsley.bslthemes.com/accommodation-facility/all-inclusive/">All
-                                                                                                            inclusive</a></span>,
-                                                                                                    <span class="facility-wifi"><a
-                                                                                                        href="https://kinsley.bslthemes.com/accommodation-facility/wifi/">Free
-                                                                                                        wi-fi</a></span>, <span
-                                                                                                            class="facility-laundry"><a
-                                                                                                                href="https://kinsley.bslthemes.com/accommodation-facility/laundry/">Laundry</a></span>,
-                                                                                                    <span
-                                                                                                        class="facility-smart-tv"><a
-                                                                                                            href="https://kinsley.bslthemes.com/accommodation-facility/smart-tv/">Smart
-                                                                                                            TV</a></span>, <span
-                                                                                                                class="facility-under-protection"><a
-                                                                                                                    href="https://kinsley.bslthemes.com/accommodation-facility/under-protection/">Under
-                                                                                                            protection</a></span></span>
-                                                                                            </li>
-                                                                                            <li class="mphb-room-type-size"><span
-                                                                                                class="mphb-attribute-title mphb-size-title">Size:</span><span
-                                                                                                    class="mphb-attribute-value">
-                                                                                                    42ft² </span></li>
-                                                                                            <li class="mphb-room-type-categories">
-                                                                                                <span
-                                                                                                    class="mphb-attribute-title mphb-categories-title">Categories:</span><span
-                                                                                                        class="mphb-attribute-value">
-                                                                                                    <span
-                                                                                                        class="category-standard"><a
-                                                                                                            href="https://kinsley.bslthemes.com/accommodation-category/standard/">Standard</a></span></span>
-                                                                                            </li>
-                                                                                        </ul>
-                                                                                        <p class="mphb-regular-price"><strong>Prices
-                                                                                            start at:</strong> <span
-                                                                                                class="mphb-price"><span
-                                                                                                    class="mphb-currency">€</span>35</span>
-                                                                                            <span class="mphb-price-period"
-                                                                                                title="Choose dates to see relevant prices">per
-                                                                                                night</span></p>
-                                                                                        <div class="mphb-to-book-btn-wrapper">
-                                                                                            <form
-                                                                                                action="https://kinsley.bslthemes.com/accommodation/classic-room/#booking-form-1015"
-                                                                                                method="get"><button type="submit"
-                                                                                                    class="button mphb-book-button">Book</button>
-                                                                                            </form>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="swiper-slide"
-                                                                                style={{ width: '460px', marginRight: '20px' }}
-                                                                                role="group" aria-label="5 / 8">
-                                                                                <div
-                                                                                    class="mphb_sc_room-wrapper knsl-scroll-animation">
-                                                                                    <div
-                                                                                        class="mphb-room-type post-1189 mphb_room_type type-mphb_room_type status-publish has-post-thumbnail mphb_room_type_category-standard mphb_room_type_tag-classic mphb_room_type_facility-4-private-pools mphb_room_type_facility-air-conditioning mphb_room_type_facility-airport-transfer mphb_room_type_facility-all-inclusive mphb_room_type_facility-wifi mphb_room_type_facility-laundry mphb_room_type_facility-smart-tv mphb_room_type_facility-under-protection mphb-room-type-adults-3 mphb-room-type-children-2 ">
-                                                                                        <p
-                                                                                            class="post-thumbnail mphb-loop-room-thumbnail">
-                                                                                            <a
-                                                                                                href="https://kinsley.bslthemes.com/accommodation/triple-classic-room/">
-                                                                                                <noscript><img loading="lazy"
-                                                                                                    decoding="async"
-                                                                                                    width="1000" height="563"
-                                                                                                    src="https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-7.jpg"
-                                                                                                    class="attachment-post-thumbnail size-post-thumbnail wp-post-image"
-                                                                                                    alt=""
-                                                                                                    srcset="https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-7.jpg 1000w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-7-300x169.jpg 300w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-7-768x432.jpg 768w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-7-950x535.jpg 950w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-7-800x450.jpg 800w"
-                                                                                                    sizes="(max-width: 1000px) 100vw, 1000px" /></noscript><img
-                                                                                                    loading="lazy" decoding="async"
-                                                                                                    width="1000" height="563"
-                                                                                                    src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201000%20563%22%3E%3C/svg%3E"
-                                                                                                    data-src="https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-7.jpg"
-                                                                                                    class="lazyload attachment-post-thumbnail size-post-thumbnail wp-post-image"
-                                                                                                    alt=""
-                                                                                                    data-srcset="https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-7.jpg 1000w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-7-300x169.jpg 300w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-7-768x432.jpg 768w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-7-950x535.jpg 950w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-7-800x450.jpg 800w"
-                                                                                                    data-sizes="(max-width: 1000px) 100vw, 1000px" />
-                                                                                            </a></p>
-                                                                                        <h2
-                                                                                            class="mphb-room-type-title entry-title">
-                                                                                            <a class="mphb-room-type-title"
-                                                                                                href="https://kinsley.bslthemes.com/accommodation/triple-classic-room/">Triple
-                                                                                                Classic Room</a></h2>
-                                                                                        <div
-                                                                                            class="knsl-text-light knsl-text-sm knsl-mb-20">
-                                                                                            <p>Image for cattle earth. May one Which
-                                                                                                life divide sea. Optio veniam
-                                                                                                quibusdam fugit aspernatur ratione
-                                                                                                rerum necessitatibus ipsa eligendi?
-                                                                                                Laudantium beatae aut earum ab
-                                                                                                doloribus tempore veritatis repellat
-                                                                                                natus illo, veniam quibusdam fugit
-                                                                                                aspernatur cumque harum quos esse
-                                                                                                libero nesciunt, molestiae saepe,
-                                                                                                possimus a suscipit.</p>
-                                                                                        </div>
-                                                                                        <h3 class="mphb-room-type-details-title">
-                                                                                            Details</h3>
-                                                                                        <ul class="mphb-loop-room-type-attributes">
-                                                                                            <li
-                                                                                                class="mphb-room-type-adults-capacity">
-                                                                                                <span
-                                                                                                    class="mphb-attribute-title mphb-adults-title">Adults:</span><span
-                                                                                                        class="mphb-attribute-value"> 3
-                                                                                                </span></li>
-                                                                                            <li
-                                                                                                class="mphb-room-type-children-capacity">
-                                                                                                <span
-                                                                                                    class="mphb-attribute-title mphb-children-title">Children:</span><span
-                                                                                                        class="mphb-attribute-value"> 2
-                                                                                                </span></li>
-                                                                                            <li class="mphb-room-type-facilities">
-                                                                                                <span
-                                                                                                    class="mphb-attribute-title mphb-facilities-title">Amenities:</span><span
-                                                                                                        class="mphb-attribute-value">
-                                                                                                    <span
-                                                                                                        class="facility-4-private-pools"><a
-                                                                                                            href="https://kinsley.bslthemes.com/accommodation-facility/4-private-pools/">4
-                                                                                                            private
-                                                                                                            pools</a></span>, <span
-                                                                                                                class="facility-air-conditioning"><a
-                                                                                                                    href="https://kinsley.bslthemes.com/accommodation-facility/air-conditioning/">Air-conditioned</a></span>,
-                                                                                                    <span
-                                                                                                        class="facility-airport-transfer"><a
-                                                                                                            href="https://kinsley.bslthemes.com/accommodation-facility/airport-transfer/">Airport
-                                                                                                            transfer</a></span>,
-                                                                                                    <span
-                                                                                                        class="facility-all-inclusive"><a
-                                                                                                            href="https://kinsley.bslthemes.com/accommodation-facility/all-inclusive/">All
-                                                                                                            inclusive</a></span>,
-                                                                                                    <span class="facility-wifi"><a
-                                                                                                        href="https://kinsley.bslthemes.com/accommodation-facility/wifi/">Free
-                                                                                                        wi-fi</a></span>, <span
-                                                                                                            class="facility-laundry"><a
-                                                                                                                href="https://kinsley.bslthemes.com/accommodation-facility/laundry/">Laundry</a></span>,
-                                                                                                    <span
-                                                                                                        class="facility-smart-tv"><a
-                                                                                                            href="https://kinsley.bslthemes.com/accommodation-facility/smart-tv/">Smart
-                                                                                                            TV</a></span>, <span
-                                                                                                                class="facility-under-protection"><a
-                                                                                                                    href="https://kinsley.bslthemes.com/accommodation-facility/under-protection/">Under
-                                                                                                            protection</a></span></span>
-                                                                                            </li>
-                                                                                            <li class="mphb-room-type-size"><span
-                                                                                                class="mphb-attribute-title mphb-size-title">Size:</span><span
-                                                                                                    class="mphb-attribute-value">
-                                                                                                    42ft² </span></li>
-                                                                                            <li class="mphb-room-type-categories">
-                                                                                                <span
-                                                                                                    class="mphb-attribute-title mphb-categories-title">Categories:</span><span
-                                                                                                        class="mphb-attribute-value">
-                                                                                                    <span
-                                                                                                        class="category-standard"><a
-                                                                                                            href="https://kinsley.bslthemes.com/accommodation-category/standard/">Standard</a></span></span>
-                                                                                            </li>
-                                                                                        </ul>
-                                                                                        <p class="mphb-regular-price"><strong>Prices
-                                                                                            start at:</strong> <span
-                                                                                                class="mphb-price"><span
-                                                                                                    class="mphb-currency">€</span>79</span>
-                                                                                            <span class="mphb-price-period"
-                                                                                                title="Choose dates to see relevant prices">per
-                                                                                                night</span></p>
-                                                                                        <div class="mphb-to-book-btn-wrapper">
-                                                                                            <form
-                                                                                                action="https://kinsley.bslthemes.com/accommodation/triple-classic-room/#booking-form-1189"
-                                                                                                method="get"><button type="submit"
-                                                                                                    class="button mphb-book-button">Book</button>
-                                                                                            </form>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="swiper-slide"
-                                                                                style={{ width: '460px', marginRight: '20px' }}
-                                                                                role="group" aria-label="6 / 8">
-                                                                                <div
-                                                                                    class="mphb_sc_room-wrapper knsl-scroll-animation">
-                                                                                    <div
-                                                                                        class="mphb-room-type post-1190 mphb_room_type type-mphb_room_type status-publish has-post-thumbnail mphb_room_type_category-luxe mphb_room_type_tag-double mphb_room_type_facility-4-private-pools mphb_room_type_facility-air-conditioning mphb_room_type_facility-airport-transfer mphb_room_type_facility-all-inclusive mphb_room_type_facility-wifi mphb_room_type_facility-laundry mphb_room_type_facility-smart-tv mphb_room_type_facility-under-protection mphb-room-type-adults-2 mphb-room-type-children-0 ">
-                                                                                        <p
-                                                                                            class="post-thumbnail mphb-loop-room-thumbnail">
-                                                                                            <a
-                                                                                                href="https://kinsley.bslthemes.com/accommodation/business-class-room/">
-                                                                                                <noscript><img loading="lazy"
-                                                                                                    decoding="async"
-                                                                                                    width="1000" height="668"
-                                                                                                    src="https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-8.jpg"
-                                                                                                    class="attachment-post-thumbnail size-post-thumbnail wp-post-image"
-                                                                                                    alt=""
-                                                                                                    srcset="https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-8.jpg 1000w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-8-300x200.jpg 300w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-8-768x513.jpg 768w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-8-950x635.jpg 950w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-8-800x534.jpg 800w"
-                                                                                                    sizes="(max-width: 1000px) 100vw, 1000px" /></noscript><img
-                                                                                                    loading="lazy" decoding="async"
-                                                                                                    width="1000" height="668"
-                                                                                                    src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201000%20668%22%3E%3C/svg%3E"
-                                                                                                    data-src="https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-8.jpg"
-                                                                                                    class="lazyload attachment-post-thumbnail size-post-thumbnail wp-post-image"
-                                                                                                    alt=""
-                                                                                                    data-srcset="https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-8.jpg 1000w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-8-300x200.jpg 300w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-8-768x513.jpg 768w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-8-950x635.jpg 950w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-8-800x534.jpg 800w"
-                                                                                                    data-sizes="(max-width: 1000px) 100vw, 1000px" />
-                                                                                            </a></p>
-                                                                                        <h2
-                                                                                            class="mphb-room-type-title entry-title">
-                                                                                            <a class="mphb-room-type-title"
-                                                                                                href="https://kinsley.bslthemes.com/accommodation/business-class-room/">Business
-                                                                                                Class Room</a></h2>
-                                                                                        <div
-                                                                                            class="knsl-text-light knsl-text-sm knsl-mb-20">
-                                                                                            <p>Image for cattle earth. May one Which
-                                                                                                life divide sea. Optio veniam
-                                                                                                quibusdam fugit aspernatur ratione
-                                                                                                rerum necessitatibus ipsa eligendi?
-                                                                                                Laudantium beatae aut earum ab
-                                                                                                doloribus tempore veritatis repellat
-                                                                                                natus illo, veniam quibusdam fugit
-                                                                                                aspernatur cumque harum quos esse
-                                                                                                libero nesciunt, molestiae saepe,
-                                                                                                possimus a suscipit.</p>
-                                                                                        </div>
-                                                                                        <h3 class="mphb-room-type-details-title">
-                                                                                            Details</h3>
-                                                                                        <ul class="mphb-loop-room-type-attributes">
-                                                                                            <li
-                                                                                                class="mphb-room-type-adults-capacity">
-                                                                                                <span
-                                                                                                    class="mphb-attribute-title mphb-adults-title">Adults:</span><span
-                                                                                                        class="mphb-attribute-value"> 2
-                                                                                                </span></li>
-                                                                                            <li class="mphb-room-type-facilities">
-                                                                                                <span
-                                                                                                    class="mphb-attribute-title mphb-facilities-title">Amenities:</span><span
-                                                                                                        class="mphb-attribute-value">
-                                                                                                    <span
-                                                                                                        class="facility-4-private-pools"><a
-                                                                                                            href="https://kinsley.bslthemes.com/accommodation-facility/4-private-pools/">4
-                                                                                                            private
-                                                                                                            pools</a></span>, <span
-                                                                                                                class="facility-air-conditioning"><a
-                                                                                                                    href="https://kinsley.bslthemes.com/accommodation-facility/air-conditioning/">Air-conditioned</a></span>,
-                                                                                                    <span
-                                                                                                        class="facility-airport-transfer"><a
-                                                                                                            href="https://kinsley.bslthemes.com/accommodation-facility/airport-transfer/">Airport
-                                                                                                            transfer</a></span>,
-                                                                                                    <span
-                                                                                                        class="facility-all-inclusive"><a
-                                                                                                            href="https://kinsley.bslthemes.com/accommodation-facility/all-inclusive/">All
-                                                                                                            inclusive</a></span>,
-                                                                                                    <span class="facility-wifi"><a
-                                                                                                        href="https://kinsley.bslthemes.com/accommodation-facility/wifi/">Free
-                                                                                                        wi-fi</a></span>, <span
-                                                                                                            class="facility-laundry"><a
-                                                                                                                href="https://kinsley.bslthemes.com/accommodation-facility/laundry/">Laundry</a></span>,
-                                                                                                    <span
-                                                                                                        class="facility-smart-tv"><a
-                                                                                                            href="https://kinsley.bslthemes.com/accommodation-facility/smart-tv/">Smart
-                                                                                                            TV</a></span>, <span
-                                                                                                                class="facility-under-protection"><a
-                                                                                                                    href="https://kinsley.bslthemes.com/accommodation-facility/under-protection/">Under
-                                                                                                            protection</a></span></span>
-                                                                                            </li>
-                                                                                            <li class="mphb-room-type-size"><span
-                                                                                                class="mphb-attribute-title mphb-size-title">Size:</span><span
-                                                                                                    class="mphb-attribute-value">
-                                                                                                    35ft² </span></li>
-                                                                                            <li class="mphb-room-type-categories">
-                                                                                                <span
-                                                                                                    class="mphb-attribute-title mphb-categories-title">Categories:</span><span
-                                                                                                        class="mphb-attribute-value">
-                                                                                                    <span class="category-luxe"><a
-                                                                                                        href="https://kinsley.bslthemes.com/accommodation-category/luxe/">Luxe</a></span></span>
-                                                                                            </li>
-                                                                                        </ul>
-                                                                                        <p class="mphb-regular-price"><strong>Prices
-                                                                                            start at:</strong> <span
-                                                                                                class="mphb-price"><span
-                                                                                                    class="mphb-currency">€</span>59</span>
-                                                                                            <span class="mphb-price-period"
-                                                                                                title="Choose dates to see relevant prices">per
-                                                                                                night</span></p>
-                                                                                        <div class="mphb-to-book-btn-wrapper">
-                                                                                            <form
-                                                                                                action="https://kinsley.bslthemes.com/accommodation/business-class-room/#booking-form-1190"
-                                                                                                method="get"><button type="submit"
-                                                                                                    class="button mphb-book-button">Book</button>
-                                                                                            </form>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="swiper-slide"
-                                                                                style={{ width: '460px', marginRight: '20px' }}
-                                                                                role="group" aria-label="7 / 8">
-                                                                                <div
-                                                                                    class="mphb_sc_room-wrapper knsl-scroll-animation">
-                                                                                    <div
-                                                                                        class="mphb-room-type post-1191 mphb_room_type type-mphb_room_type status-publish has-post-thumbnail mphb_room_type_category-luxe mphb_room_type_tag-minimal mphb_room_type_facility-4-private-pools mphb_room_type_facility-air-conditioning mphb_room_type_facility-airport-transfer mphb_room_type_facility-all-inclusive mphb_room_type_facility-wifi mphb_room_type_facility-laundry mphb_room_type_facility-smart-tv mphb_room_type_facility-under-protection mphb-room-type-adults-2 mphb-room-type-children-0 ">
-                                                                                        <p
-                                                                                            class="post-thumbnail mphb-loop-room-thumbnail">
-                                                                                            <a
-                                                                                                href="https://kinsley.bslthemes.com/accommodation/royal-class-room/">
-                                                                                                <noscript><img loading="lazy"
-                                                                                                    decoding="async"
-                                                                                                    width="1000" height="667"
-                                                                                                    src="https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-6.jpg"
-                                                                                                    class="attachment-post-thumbnail size-post-thumbnail wp-post-image"
-                                                                                                    alt=""
-                                                                                                    srcset="https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-6.jpg 1000w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-6-300x200.jpg 300w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-6-768x512.jpg 768w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-6-950x634.jpg 950w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-6-800x534.jpg 800w"
-                                                                                                    sizes="(max-width: 1000px) 100vw, 1000px" /></noscript><img
-                                                                                                    loading="lazy" decoding="async"
-                                                                                                    width="1000" height="667"
-                                                                                                    src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201000%20667%22%3E%3C/svg%3E"
-                                                                                                    data-src="https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-6.jpg"
-                                                                                                    class="lazyload attachment-post-thumbnail size-post-thumbnail wp-post-image"
-                                                                                                    alt=""
-                                                                                                    data-srcset="https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-6.jpg 1000w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-6-300x200.jpg 300w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-6-768x512.jpg 768w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-6-950x634.jpg 950w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-6-800x534.jpg 800w"
-                                                                                                    data-sizes="(max-width: 1000px) 100vw, 1000px" />
-                                                                                            </a></p>
-                                                                                        <h2
-                                                                                            class="mphb-room-type-title entry-title">
-                                                                                            <a class="mphb-room-type-title"
-                                                                                                href="https://kinsley.bslthemes.com/accommodation/royal-class-room/">Royal
-                                                                                                Class Room</a></h2>
-                                                                                        <div
-                                                                                            class="knsl-text-light knsl-text-sm knsl-mb-20">
-                                                                                            <p>Image for cattle earth. May one Which
-                                                                                                life divide sea. Optio veniam
-                                                                                                quibusdam fugit aspernatur ratione
-                                                                                                rerum necessitatibus ipsa eligendi?
-                                                                                                Laudantium beatae aut earum ab
-                                                                                                doloribus tempore veritatis repellat
-                                                                                                natus illo, veniam quibusdam fugit
-                                                                                                aspernatur cumque harum quos esse
-                                                                                                libero nesciunt, molestiae saepe,
-                                                                                                possimus a suscipit.</p>
-                                                                                        </div>
-                                                                                        <h3 class="mphb-room-type-details-title">
-                                                                                            Details</h3>
-                                                                                        <ul class="mphb-loop-room-type-attributes">
-                                                                                            <li
-                                                                                                class="mphb-room-type-adults-capacity">
-                                                                                                <span
-                                                                                                    class="mphb-attribute-title mphb-adults-title">Adults:</span><span
-                                                                                                        class="mphb-attribute-value"> 2
-                                                                                                </span></li>
-                                                                                            <li class="mphb-room-type-facilities">
-                                                                                                <span
-                                                                                                    class="mphb-attribute-title mphb-facilities-title">Amenities:</span><span
-                                                                                                        class="mphb-attribute-value">
-                                                                                                    <span
-                                                                                                        class="facility-4-private-pools"><a
-                                                                                                            href="https://kinsley.bslthemes.com/accommodation-facility/4-private-pools/">4
-                                                                                                            private
-                                                                                                            pools</a></span>, <span
-                                                                                                                class="facility-air-conditioning"><a
-                                                                                                                    href="https://kinsley.bslthemes.com/accommodation-facility/air-conditioning/">Air-conditioned</a></span>,
-                                                                                                    <span
-                                                                                                        class="facility-airport-transfer"><a
-                                                                                                            href="https://kinsley.bslthemes.com/accommodation-facility/airport-transfer/">Airport
-                                                                                                            transfer</a></span>,
-                                                                                                    <span
-                                                                                                        class="facility-all-inclusive"><a
-                                                                                                            href="https://kinsley.bslthemes.com/accommodation-facility/all-inclusive/">All
-                                                                                                            inclusive</a></span>,
-                                                                                                    <span class="facility-wifi"><a
-                                                                                                        href="https://kinsley.bslthemes.com/accommodation-facility/wifi/">Free
-                                                                                                        wi-fi</a></span>, <span
-                                                                                                            class="facility-laundry"><a
-                                                                                                                href="https://kinsley.bslthemes.com/accommodation-facility/laundry/">Laundry</a></span>,
-                                                                                                    <span
-                                                                                                        class="facility-smart-tv"><a
-                                                                                                            href="https://kinsley.bslthemes.com/accommodation-facility/smart-tv/">Smart
-                                                                                                            TV</a></span>, <span
-                                                                                                                class="facility-under-protection"><a
-                                                                                                                    href="https://kinsley.bslthemes.com/accommodation-facility/under-protection/">Under
-                                                                                                            protection</a></span></span>
-                                                                                            </li>
-                                                                                            <li class="mphb-room-type-size"><span
-                                                                                                class="mphb-attribute-title mphb-size-title">Size:</span><span
-                                                                                                    class="mphb-attribute-value">
-                                                                                                    50ft² </span></li>
-                                                                                            <li class="mphb-room-type-categories">
-                                                                                                <span
-                                                                                                    class="mphb-attribute-title mphb-categories-title">Categories:</span><span
-                                                                                                        class="mphb-attribute-value">
-                                                                                                    <span class="category-luxe"><a
-                                                                                                        href="https://kinsley.bslthemes.com/accommodation-category/luxe/">Luxe</a></span></span>
-                                                                                            </li>
-                                                                                        </ul>
-                                                                                        <p class="mphb-regular-price"><strong>Prices
-                                                                                            start at:</strong> <span
-                                                                                                class="mphb-price"><span
-                                                                                                    class="mphb-currency">€</span>119</span>
-                                                                                            <span class="mphb-price-period"
-                                                                                                title="Choose dates to see relevant prices">per
-                                                                                                night</span></p>
-                                                                                        <div class="mphb-to-book-btn-wrapper">
-                                                                                            <form
-                                                                                                action="https://kinsley.bslthemes.com/accommodation/royal-class-room/#booking-form-1191"
-                                                                                                method="get"><button type="submit"
-                                                                                                    class="button mphb-book-button">Book</button>
-                                                                                            </form>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="swiper-slide" role="group"
-                                                                                aria-label="8 / 8"
-                                                                                style={{ width: '460px', marginRight: '20px' }}>
-                                                                                <div
-                                                                                    class="mphb_sc_room-wrapper knsl-scroll-animation">
-                                                                                    <div
-                                                                                        class="mphb-room-type post-1192 mphb_room_type type-mphb_room_type status-publish has-post-thumbnail mphb_room_type_category-standard mphb_room_type_tag-luxe mphb_room_type_facility-4-private-pools mphb_room_type_facility-air-conditioning mphb_room_type_facility-airport-transfer mphb_room_type_facility-all-inclusive mphb_room_type_facility-wifi mphb_room_type_facility-laundry mphb_room_type_facility-smart-tv mphb_room_type_facility-under-protection mphb-room-type-adults-4 mphb-room-type-children-0 ">
-                                                                                        <p
-                                                                                            class="post-thumbnail mphb-loop-room-thumbnail">
-                                                                                            <a
-                                                                                                href="https://kinsley.bslthemes.com/accommodation/superior-ocean-room/">
-                                                                                                <noscript><img loading="lazy"
-                                                                                                    decoding="async"
-                                                                                                    width="1000" height="667"
-                                                                                                    src="https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-5.jpg"
-                                                                                                    class="attachment-post-thumbnail size-post-thumbnail wp-post-image"
-                                                                                                    alt=""
-                                                                                                    srcset="https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-5.jpg 1000w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-5-300x200.jpg 300w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-5-768x512.jpg 768w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-5-950x634.jpg 950w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-5-800x534.jpg 800w"
-                                                                                                    sizes="(max-width: 1000px) 100vw, 1000px" /></noscript><img
-                                                                                                    loading="lazy" decoding="async"
-                                                                                                    width="1000" height="667"
-                                                                                                    src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201000%20667%22%3E%3C/svg%3E"
-                                                                                                    data-src="https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-5.jpg"
-                                                                                                    class="lazyload attachment-post-thumbnail size-post-thumbnail wp-post-image"
-                                                                                                    alt=""
-                                                                                                    data-srcset="https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-5.jpg 1000w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-5-300x200.jpg 300w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-5-768x512.jpg 768w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-5-950x634.jpg 950w, https://kinsley.bslthemes.com/wp-content/uploads/2021/12/room-5-800x534.jpg 800w"
-                                                                                                    data-sizes="(max-width: 1000px) 100vw, 1000px" />
-                                                                                            </a></p>
-                                                                                        <h2
-                                                                                            class="mphb-room-type-title entry-title">
-                                                                                            <a class="mphb-room-type-title"
-                                                                                                href="https://kinsley.bslthemes.com/accommodation/superior-ocean-room/">Superior
-                                                                                                Ocean Room</a></h2>
-                                                                                        <div
-                                                                                            class="knsl-text-light knsl-text-sm knsl-mb-20">
-                                                                                            <p>Image for cattle earth. May one Which
-                                                                                                life divide sea. Optio veniam
-                                                                                                quibusdam fugit aspernatur ratione
-                                                                                                rerum necessitatibus ipsa eligendi?
-                                                                                                Laudantium beatae aut earum ab
-                                                                                                doloribus tempore veritatis repellat
-                                                                                                natus illo, veniam quibusdam fugit
-                                                                                                aspernatur cumque harum quos esse
-                                                                                                libero nesciunt, molestiae saepe,
-                                                                                                possimus a suscipit.</p>
-                                                                                        </div>
-                                                                                        <h3 class="mphb-room-type-details-title">
-                                                                                            Details</h3>
-                                                                                        <ul class="mphb-loop-room-type-attributes">
-                                                                                            <li
-                                                                                                class="mphb-room-type-adults-capacity">
-                                                                                                <span
-                                                                                                    class="mphb-attribute-title mphb-adults-title">Adults:</span><span
-                                                                                                        class="mphb-attribute-value"> 4
-                                                                                                </span></li>
-                                                                                            <li class="mphb-room-type-facilities">
-                                                                                                <span
-                                                                                                    class="mphb-attribute-title mphb-facilities-title">Amenities:</span><span
-                                                                                                        class="mphb-attribute-value">
-                                                                                                    <span
-                                                                                                        class="facility-4-private-pools"><a
-                                                                                                            href="https://kinsley.bslthemes.com/accommodation-facility/4-private-pools/">4
-                                                                                                            private
-                                                                                                            pools</a></span>, <span
-                                                                                                                class="facility-air-conditioning"><a
-                                                                                                                    href="https://kinsley.bslthemes.com/accommodation-facility/air-conditioning/">Air-conditioned</a></span>,
-                                                                                                    <span
-                                                                                                        class="facility-airport-transfer"><a
-                                                                                                            href="https://kinsley.bslthemes.com/accommodation-facility/airport-transfer/">Airport
-                                                                                                            transfer</a></span>,
-                                                                                                    <span
-                                                                                                        class="facility-all-inclusive"><a
-                                                                                                            href="https://kinsley.bslthemes.com/accommodation-facility/all-inclusive/">All
-                                                                                                            inclusive</a></span>,
-                                                                                                    <span class="facility-wifi"><a
-                                                                                                        href="https://kinsley.bslthemes.com/accommodation-facility/wifi/">Free
-                                                                                                        wi-fi</a></span>, <span
-                                                                                                            class="facility-laundry"><a
-                                                                                                                href="https://kinsley.bslthemes.com/accommodation-facility/laundry/">Laundry</a></span>,
-                                                                                                    <span
-                                                                                                        class="facility-smart-tv"><a
-                                                                                                            href="https://kinsley.bslthemes.com/accommodation-facility/smart-tv/">Smart
-                                                                                                            TV</a></span>, <span
-                                                                                                                class="facility-under-protection"><a
-                                                                                                                    href="https://kinsley.bslthemes.com/accommodation-facility/under-protection/">Under
-                                                                                                            protection</a></span></span>
-                                                                                            </li>
-                                                                                            <li class="mphb-room-type-size"><span
-                                                                                                class="mphb-attribute-title mphb-size-title">Size:</span><span
-                                                                                                    class="mphb-attribute-value">
-                                                                                                    95ft² </span></li>
-                                                                                            <li class="mphb-room-type-categories">
-                                                                                                <span
-                                                                                                    class="mphb-attribute-title mphb-categories-title">Categories:</span><span
-                                                                                                        class="mphb-attribute-value">
-                                                                                                    <span
-                                                                                                        class="category-standard"><a
-                                                                                                            href="https://kinsley.bslthemes.com/accommodation-category/standard/">Standard</a></span></span>
-                                                                                            </li>
-                                                                                        </ul>
-                                                                                        <p class="mphb-regular-price"><strong>Prices
-                                                                                            start at:</strong> <span
-                                                                                                class="mphb-price"><span
-                                                                                                    class="mphb-currency">€</span>19</span>
-                                                                                            <span class="mphb-price-period"
-                                                                                                title="Choose dates to see relevant prices">per
-                                                                                                night</span></p>
-                                                                                        <div class="mphb-to-book-btn-wrapper">
-                                                                                            <form
-                                                                                                action="https://kinsley.bslthemes.com/accommodation/superior-ocean-room/#booking-form-1192"
-                                                                                                method="get"><button type="submit"
-                                                                                                    class="button mphb-book-button">Book</button>
-                                                                                            </form>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="knsl-uni-slider-nav-panel">
-                                                                            <div
-                                                                                class="knsl-uni-slider-pagination swiper-pagination-fraction swiper-pagination-horizontal">
-                                                                                <span class="swiper-pagination-current">1</span> /
-                                                                                <span class="swiper-pagination-total">7</span></div>
-                                                                            <div class="knsl-uni-nav">
-                                                                                <div class="knsl-uni-slider-prev swiper-button-disabled"
-                                                                                    tabindex="-1" role="button"
-                                                                                    aria-label="Previous slide"
-                                                                                    aria-controls="swiper-wrapper-5de2c2436ed0fb43"
-                                                                                    aria-disabled="true"><i
-                                                                                        class="fas fa-arrow-left"></i></div>
-                                                                                <div class="knsl-uni-slider-next" tabindex="0"
-                                                                                    role="button" aria-label="Next slide"
-                                                                                    aria-controls="swiper-wrapper-5de2c2436ed0fb43"
-                                                                                    aria-disabled="false"><i
-                                                                                        class="fas fa-arrow-right"></i></div>
-                                                                            </div>
-                                                                        </div> <span
-                                                                            class="swiper-notification" aria-live="assertive"
-                                                                            aria-atomic="true"></span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </section>
-                                                </div>
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -1590,21 +526,7 @@ export default function HomePage() {
                                                     <section class="knsl-p-0-80">
                                                         <div class="container">
                                                             <div class="row ">
-                                                                <div class="col-lg-12">
-                                                                    <div
-                                                                        class="knsl-center knsl-title-frame knsl-scroll-animation knsl-mb-100">
-                                                                        <h2 class="knsl-title--h knsl-mb-20"> <span> Around The
-                                                                            Hotel </span></h2>
-                                                                        <div class="knsl-text knsl-mb-30">
-                                                                            <p> <span> Consectetur adipisicing elit. Nihil, illum
-                                                                                voluptate eveniet ex fugit ea delectus, sed
-                                                                                voluptatem. Laborum accusantium libero commodi
-                                                                                id officiis itaque esse adipisci, necessitatibus
-                                                                                asperiores, illo odio. </span></p>
-                                                                        </div> <a href="/services/" class="knsl-btn knsl-btn-md">
-                                                                            <span> Services </span> </a>
-                                                                    </div>
-                                                                </div>
+                                                                
                                                                 <div class="col-md-6 col-lg-4">
                                                                     <div class="knsl-ath-card ">
                                                                         <div class="knsl-cover-frame"> <a
@@ -1613,8 +535,8 @@ export default function HomePage() {
                                                                                 src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/service-6-950x1473.jpg"
                                                                                 alt="Gym" /></noscript><img class="lazyload"
                                                                                     decoding="async"
-                                                                                    src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E"
-                                                                                    data-src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/service-6-950x1473.jpg"
+                                                                                    src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3.jpg"
+                                                                                    data-src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3.jpg"
                                                                                     alt="Gym" /> </a>
                                                                             <div class="knsl-badge">
                                                                                 <p class="mphb-price-wrapper">
@@ -1643,7 +565,7 @@ export default function HomePage() {
                                                                                 src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/service-2-950x1266.jpg"
                                                                                 alt="Pool" /></noscript><img class="lazyload"
                                                                                     decoding="async"
-                                                                                    src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E"
+                                                                                    src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3.jpg"
                                                                                     data-src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/service-2-950x1266.jpg"
                                                                                     alt="Pool" /> </a>
                                                                             <div class="knsl-badge">
@@ -1675,7 +597,7 @@ export default function HomePage() {
                                                                                 src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/service-1-950x1425.jpg"
                                                                                 alt="Lounge bar" /></noscript><img
                                                                                 class="lazyload" decoding="async"
-                                                                                src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E"
+                                                                                src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3.jpg"
                                                                                 data-src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/service-1-950x1425.jpg"
                                                                                 alt="Lounge bar" /> </a>
                                                                             <div class="knsl-badge">
@@ -1717,204 +639,7 @@ export default function HomePage() {
                                                 data-id="741770e" data-element_type="widget"
                                                 data-widget_type="kinsley-testimonials.default">
                                                 <div class="elementor-widget-container">
-                                                    <section class="knsl-transition-none knsl-p-0-80"> <noscript><img
-                                                        decoding="async"
-                                                        src="https://kinsley.bslthemes.com/wp-content/themes/kinsley/assets/img/palm.svg"
-                                                        class="knsl-deco-left" alt="palm" /></noscript><img decoding="async"
-                                                            src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E"
-                                                            data-src="https://kinsley.bslthemes.com/wp-content/themes/kinsley/assets/img/palm.svg"
-                                                            class="lazyload knsl-deco-left" alt="palm" />
-                                                        <div class="container">
-                                                            <div class="row justify-content-center">
-                                                                <div class="col-lg-12">
-                                                                    <div
-                                                                        class="knsl-center knsl-title-frame knsl-scroll-animation knsl-mb-80">
-                                                                        <h2 class="knsl-title--h knsl-mb-20"> <span> Feedback from
-                                                                            our Guests </span></h2>
-                                                                        <div class="knsl-text">
-                                                                            <p> <span> Consectetur adipisicing elit. Nihil, illum
-                                                                                voluptate eveniet ex fugit ea delectus, sed
-                                                                                voluptatem. Laborum accusantium libero commodi
-                                                                                id officiis itaque esse adipisci, necessitatibus
-                                                                                asperiores, illo odio. </span></p>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-lg-6">
-                                                                    <div
-                                                                        class="swiper-slider knsl-testimonials-slider knsl-scroll-animation swiper-initialized swiper-horizontal swiper-pointer-events swiper-autoheight swiper-watch-progress swiper-backface-hidden">
-                                                                        <div class="swiper-wrapper"
-                                                                            style={{ height: '403px', transform: 'translate3d(-480px, 0px, 0px)', transitionDuration: '0ms' }}
-                                                                            id="swiper-wrapper-ff9b73611d1091c1e"
-                                                                            aria-live="polite">
-                                                                            <div class="swiper-slide swiper-slide-prev"
-                                                                                style={{ width: '460px', marginRight: '20px' }}
-                                                                                role="group" aria-label="1 / 4">
-                                                                                <div class="knsl-testimonial-card">
-                                                                                    <div class="knsl-avatar-frame"> <noscript><img
-                                                                                        decoding="async"
-                                                                                        src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/faces-1-140x140.jpg"
-                                                                                        alt="Oscar Newman" /></noscript><img
-                                                                                            class="lazyload" decoding="async"
-                                                                                            src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E"
-                                                                                            data-src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/faces-1-140x140.jpg"
-                                                                                            alt="Oscar Newman" /></div>
-                                                                                    <div class="knsl-name-and-text">
-                                                                                        <h3 class="knsl-mb-10"> <span> Oscar Newman
-                                                                                        </span></h3>
-                                                                                        <div class="knsl-subtitle--h"> <span> From
-                                                                                            Poland </span></div>
-                                                                                        <blockquote>
-                                                                                            <ul class="knsl-stars">
-                                                                                                <li><i class="fas fa-star"></i></li>
-                                                                                                <li><i class="fas fa-star"></i></li>
-                                                                                                <li><i class="fas fa-star"></i></li>
-                                                                                                <li><i class="fas fa-star"></i></li>
-                                                                                                <li><i class="fas fa-star"></i></li>
-                                                                                            </ul>
-                                                                                            <div> Dequi folores dolor sit amet,
-                                                                                                consectetur adipisicing elit.
-                                                                                                Nesciunt illo, delectus totam!
-                                                                                                Delectus illo magnam voluptatem a
-                                                                                                tempora id vitae dolor, quis natus
-                                                                                                iusto molestiae ab nam error vero
-                                                                                                possimus ullam facilis porro
-                                                                                                veritatis?</div>
-                                                                                        </blockquote>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="swiper-slide swiper-slide-visible swiper-slide-active"
-                                                                                style={{ width: '460px', marginRight: '20px' }}
-                                                                                role="group" aria-label="2 / 4">
-                                                                                <div class="knsl-testimonial-card">
-                                                                                    <div class="knsl-avatar-frame"> <noscript><img
-                                                                                        decoding="async"
-                                                                                        src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/faces-2-140x140.jpg"
-                                                                                        alt="Emma Trueman" /></noscript><img
-                                                                                            class="lazyload" decoding="async"
-                                                                                            src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E"
-                                                                                            data-src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/faces-2-140x140.jpg"
-                                                                                            alt="Emma Trueman" /></div>
-                                                                                    <div class="knsl-name-and-text">
-                                                                                        <h3 class="knsl-mb-10"> <span> Emma Trueman
-                                                                                        </span></h3>
-                                                                                        <div class="knsl-subtitle--h"> <span> From
-                                                                                            Poland </span></div>
-                                                                                        <blockquote>
-                                                                                            <ul class="knsl-stars">
-                                                                                                <li><i class="fas fa-star"></i></li>
-                                                                                                <li><i class="fas fa-star"></i></li>
-                                                                                                <li><i class="fas fa-star"></i></li>
-                                                                                                <li><i class="fas fa-star"></i></li>
-                                                                                                <li><i class="fas fa-star"></i></li>
-                                                                                            </ul>
-                                                                                            <div> Dequi folores dolor sit amet,
-                                                                                                consectetur adipisicing elit.
-                                                                                                Nesciunt illo, delectus totam!
-                                                                                                Delectus illo magnam voluptatem a
-                                                                                                tempora id vitae dolor, quis natus
-                                                                                                iusto molestiae ab nam error vero
-                                                                                                possimus ullam facilis porro
-                                                                                                veritatis?</div>
-                                                                                        </blockquote>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="swiper-slide swiper-slide-next"
-                                                                                style={{ width: '460px', marginRight: '20px' }}
-                                                                                role="group" aria-label="3 / 4">
-                                                                                <div class="knsl-testimonial-card">
-                                                                                    <div class="knsl-avatar-frame"> <noscript><img
-                                                                                        decoding="async"
-                                                                                        src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/faces-3-scaled-1-140x140.jpg"
-                                                                                        alt="Viktoria Freeman" /></noscript><img
-                                                                                            class="lazyload" decoding="async"
-                                                                                            src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E"
-                                                                                            data-src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/faces-3-scaled-1-140x140.jpg"
-                                                                                            alt="Viktoria Freeman" /></div>
-                                                                                    <div class="knsl-name-and-text">
-                                                                                        <h3 class="knsl-mb-10"> <span> Viktoria
-                                                                                            Freeman </span></h3>
-                                                                                        <div class="knsl-subtitle--h"> <span> From
-                                                                                            Ukraine </span></div>
-                                                                                        <blockquote>
-                                                                                            <ul class="knsl-stars">
-                                                                                                <li><i class="fas fa-star"></i></li>
-                                                                                                <li><i class="fas fa-star"></i></li>
-                                                                                                <li><i class="fas fa-star"></i></li>
-                                                                                                <li><i class="fas fa-star"></i></li>
-                                                                                                <li><i class="fas fa-star"></i></li>
-                                                                                            </ul>
-                                                                                            <div> Dequi folores dolor sit amet,
-                                                                                                consectetur adipisicing elit.
-                                                                                                Nesciunt illo, delectus totam!
-                                                                                                Delectus illo magnam voluptatem a
-                                                                                                tempora id vitae dolor, quis natus
-                                                                                                iusto molestiae ab nam error vero
-                                                                                                possimus ullam facilis porro
-                                                                                                veritatis?</div>
-                                                                                        </blockquote>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="swiper-slide" role="group"
-                                                                                aria-label="4 / 4"
-                                                                                style={{ width: '460px', marginRight: '20px' }}>
-                                                                                <div class="knsl-testimonial-card">
-                                                                                    <div class="knsl-avatar-frame"> <noscript><img
-                                                                                        decoding="async"
-                                                                                        src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/faces-4-140x140.jpg"
-                                                                                        alt="Paul Oldman" /></noscript><img
-                                                                                            class="lazyload" decoding="async"
-                                                                                            src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E"
-                                                                                            data-src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/faces-4-140x140.jpg"
-                                                                                            alt="Paul Oldman" /></div>
-                                                                                    <div class="knsl-name-and-text">
-                                                                                        <h3 class="knsl-mb-10"> <span> Paul Oldman
-                                                                                        </span></h3>
-                                                                                        <div class="knsl-subtitle--h"> <span> From
-                                                                                            Spain </span></div>
-                                                                                        <blockquote>
-                                                                                            <ul class="knsl-stars">
-                                                                                                <li><i class="fas fa-star"></i></li>
-                                                                                                <li><i class="fas fa-star"></i></li>
-                                                                                                <li><i class="fas fa-star"></i></li>
-                                                                                                <li><i class="fas fa-star"></i></li>
-                                                                                                <li><i class="fas fa-star"></i></li>
-                                                                                            </ul>
-                                                                                            <div> Dequi folores dolor sit amet,
-                                                                                                consectetur adipisicing elit.
-                                                                                                Nesciunt illo, delectus totam!
-                                                                                                Delectus illo magnam voluptatem a
-                                                                                                tempora id vitae dolor, quis natus
-                                                                                                iusto molestiae ab nam error vero
-                                                                                                possimus ullam facilis porro
-                                                                                                veritatis?</div>
-                                                                                        </blockquote>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="knsl-testimonials-nav">
-                                                                            <div class="knsl-testimonials-slider-1-prev"
-                                                                                tabindex="0" role="button"
-                                                                                aria-label="Previous slide"
-                                                                                aria-controls="swiper-wrapper-ff9b73611d1091c1e"
-                                                                                aria-disabled="false"><i
-                                                                                    class="fas fa-arrow-left"></i></div>
-                                                                            <div class="knsl-testimonials-slider-1-next"
-                                                                                tabindex="0" role="button" aria-label="Next slide"
-                                                                                aria-controls="swiper-wrapper-ff9b73611d1091c1e"
-                                                                                aria-disabled="false"><i
-                                                                                    class="fas fa-arrow-right"></i></div>
-                                                                        </div><span class="swiper-notification"
-                                                                            aria-live="assertive" aria-atomic="true"></span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </section>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
@@ -1937,26 +662,12 @@ export default function HomePage() {
                                                         src="https://kinsley.bslthemes.com/wp-content/themes/kinsley/assets/img/palm.svg"
                                                         class="knsl-deco-right" alt="palm" /></noscript><img
                                                             decoding="async"
-                                                            src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E"
+                                                            src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3.jpg"
                                                             data-src="https://kinsley.bslthemes.com/wp-content/themes/kinsley/assets/img/palm.svg"
                                                             class="lazyload knsl-deco-right" alt="palm" />
                                                         <div class="container">
                                                             <div class="row  attr-categories-false attr-readmore-false">
-                                                                <div class="col-lg-12">
-                                                                    <div
-                                                                        class="knsl-center knsl-title-frame knsl-scroll-animation knsl-mb-100">
-                                                                        <h2 class="knsl-title--h knsl-mb-20"> <span> Our Newsletter
-                                                                        </span></h2>
-                                                                        <p class="knsl-text knsl-mb-30"> <span> Consectetur
-                                                                            adipisicing elit. Nihil, illum voluptate eveniet ex
-                                                                            fugit ea delectus, sed voluptatem. Laborum
-                                                                            accusantium libero commodi id officiis itaque esse
-                                                                            adipisci, necessitatibus asperiores, illo odio.
-                                                                        </span></p> <a href="/blog/"
-                                                                            class="knsl-btn knsl-btn-md"> <span> All Publications
-                                                                            </span> </a>
-                                                                    </div>
-                                                                </div>
+                                                              
                                                                 <div class="col-md-6 col-lg-4">
                                                                     <div class="knsl-blog-card">
                                                                         <div id="post-1181"
@@ -1967,7 +678,7 @@ export default function HomePage() {
                                                                                     src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/blog-2-1-950x608.jpg"
                                                                                     alt="The Ultimate Guide to Traveling When You Have No Money" /></noscript><img
                                                                                     class="lazyload" decoding="async"
-                                                                                    src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E"
+                                                                                    src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3.jpg"
                                                                                     data-src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/blog-2-1-950x608.jpg"
                                                                                     alt="The Ultimate Guide to Traveling When You Have No Money" />
                                                                             </a>
@@ -1982,7 +693,7 @@ export default function HomePage() {
                                                                                                 src="https://secure.gravatar.com/avatar/bfe80a8cfe3f34bf01b6448655880640?s=96&#038;d=mm&#038;r=g"
                                                                                                 alt="Hana Evans" /></noscript><img
                                                                                                 class="lazyload" decoding="async"
-                                                                                                src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E"
+                                                                                                src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3.jpg"
                                                                                                 data-src="https://secure.gravatar.com/avatar/bfe80a8cfe3f34bf01b6448655880640?s=96&amp;d=mm&amp;r=g"
                                                                                                 alt="Hana Evans" /></div> <span>Hana
                                                                                                     Evans</span>
@@ -2023,7 +734,7 @@ export default function HomePage() {
                                                                                     src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/blog-3-950x634.jpg"
                                                                                     alt="The Best Travel Insurance Companies for Seniors" /></noscript><img
                                                                                     class="lazyload" decoding="async"
-                                                                                    src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E"
+                                                                                    src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3.jpg"
                                                                                     data-src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/blog-3-950x634.jpg"
                                                                                     alt="The Best Travel Insurance Companies for Seniors" />
                                                                             </a>
@@ -2038,7 +749,7 @@ export default function HomePage() {
                                                                                                 src="https://secure.gravatar.com/avatar/bfe80a8cfe3f34bf01b6448655880640?s=96&#038;d=mm&#038;r=g"
                                                                                                 alt="Hana Evans" /></noscript><img
                                                                                                 class="lazyload" decoding="async"
-                                                                                                src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E"
+                                                                                                src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3.jpg"
                                                                                                 data-src="https://secure.gravatar.com/avatar/bfe80a8cfe3f34bf01b6448655880640?s=96&amp;d=mm&amp;r=g"
                                                                                                 alt="Hana Evans" /></div> <span>Hana
                                                                                                     Evans</span>
@@ -2079,7 +790,7 @@ export default function HomePage() {
                                                                                     src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/blog-1-950x713.jpg"
                                                                                     alt="18 Easy Steps for Planning Your Next Trip" /></noscript><img
                                                                                     class="lazyload" decoding="async"
-                                                                                    src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E"
+                                                                                    src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3.jpg"
                                                                                     data-src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/blog-1-950x713.jpg"
                                                                                     alt="18 Easy Steps for Planning Your Next Trip" />
                                                                             </a>
@@ -2094,7 +805,7 @@ export default function HomePage() {
                                                                                                 src="https://secure.gravatar.com/avatar/bfe80a8cfe3f34bf01b6448655880640?s=96&#038;d=mm&#038;r=g"
                                                                                                 alt="Hana Evans" /></noscript><img
                                                                                                 class="lazyload" decoding="async"
-                                                                                                src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E"
+                                                                                                src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3.jpg"
                                                                                                 data-src="https://secure.gravatar.com/avatar/bfe80a8cfe3f34bf01b6448655880640?s=96&amp;d=mm&amp;r=g"
                                                                                                 alt="Hana Evans" /></div> <span>Hana
                                                                                                     Evans</span>

@@ -16,7 +16,7 @@ export const fetchItems = createAsyncThunk("hotel/fetchItems", async (page, thun
         const response = await axios.get(url + "/allHotel", {
             params: {
                 page: page,
-                size: 4
+                size: 5
             }
         })
         return response.data;
@@ -25,8 +25,7 @@ export const fetchItems = createAsyncThunk("hotel/fetchItems", async (page, thun
     }
 })
 
-
-export const studentSlice = createSlice({
+export const hotelSlice = createSlice({
     name: 'hotel',
     initialState,
     reducers: {
@@ -39,11 +38,14 @@ export const studentSlice = createSlice({
     extraReducers: (builder) => {
         builder
         .addCase(fetchItems.fulfilled,(state, action)=>{
-            state.items = action.payload
+            state.items = action.payload.data.hotel
+            state.totalPage = action.payload.data.total_page
+            state.status = action.payload.status
         })
         .addCase(fetchItems.rejected, (state, action)=>{
+            
         })
     }
 })
-export const { removeMessageError} = studentSlice.actions
-export default studentSlice.reducer 
+export const { removeMessageError} = hotelSlice.actions
+export default hotelSlice.reducer 
