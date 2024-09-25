@@ -1,9 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './LoginStyle.css'
 import bgr from "../../images/login-bg-3.jpg"
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { signin } from '../../redux/authSlice'
 
 export default function LoginPages() {
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const dispatch = useDispatch()
+  const { status, error } = useSelector((state) => state.auth)
+  const navigate = useNavigate()
+  const handleLogin = (event) => {
+    event.preventDefault()
+    dispatch(signin({ username: username, password }))
+    navigate('/home')
+  }
   return (
     <div>
       <div id="main-wrapper" class="oxyy-login-register">
@@ -31,14 +43,26 @@ export default function LoginPages() {
                       <div class="col-11 col-lg-10 mx-auto">
                         <h3 class="text-9 fw-600 text-center my-3">Sign In</h3>
                         <p class="text-center mb-4">New to Oxyy? <Link to="/register"><u>Create an Account</u></Link></p>
-                        <form id="loginForm" method="post">
+                        <form id="loginForm"
+                          onSubmit={(event) => {
+                            handleLogin(event)
+                          }}
+                        method="post">
                           <div class="mb-3">
-                            <label class="form-label text-dark fw-600" for="emailAddress">Username or Email Address</label>
-                            <input autoComplete="off" autoFocus type="email" class="form-control rounded-0" id="emailAddress" required placeholder="Enter Your Email" />
+                            <label class="form-label text-dark fw-600" for="username">Username or Email Address</label>
+                            <input autoComplete="off" autoFocus type="text" class="form-control rounded-0" id="username"
+                            onChange={(e) => setUsername(e.target.value)}
+                            required placeholder="Enter Your Username"
+                            value={username}
+                            />
                           </div>
                           <div class="mb-3">
-                            <label class="form-label text-dark fw-600" for="loginPassword">Password</label>
-                            <input type="password" class="form-control rounded-0" id="loginPassword" required placeholder="Enter Password" />
+                            <label class="form-label text-dark fw-600" for="password">Password</label>
+                            <input type="password" class="form-control rounded-0" id="password" 
+                            onChange={(e) => setPassword(e.target.value)}
+                            required placeholder="Enter Password"
+                            value={password}
+                            />
                           </div>
                           <div class="row mt-4">
                             <div class="col">

@@ -5,7 +5,7 @@ import LoginPage from './pages/loginPage/LoginPage';
 import PageHome from './pages/HomePage/PageHome';
 import Register from './component/LoginPages/Register';
 import ResetPassword from './component/LoginPages/ResetPassword';
-import Dashborad from './component/Dashboard/Dashborad';
+import Dashboard from './component/Dashboard/Dashboard';
 import PageBlogList from './pages/BloglistPage/PageBlogList';
 import BlogDetailPage from './pages/BlogDetailPage/BlogDetailPage';
 
@@ -19,7 +19,7 @@ function App() {
           <Route path='/login' element={<LoginPage/>}></Route>
           <Route path='/register' element={<Register/>}></Route>
           <Route path='/forgetpassword' element={<ResetPassword/>}></Route>
-          <Route path='/dashboard' element={<Dashborad/>}></Route>
+          <Route path='/dashboard' element={<Dashboard/>}></Route>
           <Route path='/bloglist' element={<PageBlogList/>}></Route>
           <Route path='/readblog' element={<BlogDetailPage/>}></Route>
         </Routes>
