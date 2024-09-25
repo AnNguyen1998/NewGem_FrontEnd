@@ -16,7 +16,7 @@ export const fetchItems = createAsyncThunk("hotel/fetchItems", async (page, thun
         const response = await axios.get(url + "/allHotel", {
             params: {
                 page: page,
-                size: 3
+                size: 5
             }
         })
         return response.data;
@@ -38,7 +38,8 @@ export const hotelSlice = createSlice({
     extraReducers: (builder) => {
         builder
         .addCase(fetchItems.fulfilled,(state, action)=>{
-            state.items = action.payload.data
+            state.items = action.payload.data.hotel
+            state.totalPage = action.payload.data.total_page
             state.status = action.payload.status
         })
         .addCase(fetchItems.rejected, (state, action)=>{
