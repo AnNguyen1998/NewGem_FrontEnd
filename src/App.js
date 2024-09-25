@@ -21,7 +21,8 @@ function App() {
           <Route path='/forgetpassword' element={<ResetPassword/>}></Route>
           <Route path='/dashboard' element={<Dashborad/>}></Route>
           <Route path='/bloglist' element={<PageBlogList/>}></Route>
-          <Route path='/readblog' element={<BlogDetailPage/>}></Route>
+          <Route path='/readblog/:id' element={<BlogDetailPage/>}></Route>
+          
         </Routes>
       </BrowserRouter>
     </div>

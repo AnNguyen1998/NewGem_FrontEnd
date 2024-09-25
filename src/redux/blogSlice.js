@@ -237,7 +237,7 @@ import axios from 'axios'
 import axiosInstance from "../utils/axiosInstance";
 
 const initialState = {
-    items: [],
+    items: null,
     totalPage: 0,
     status: "start",
     errors: null,
@@ -245,12 +245,12 @@ const initialState = {
 }
 const url = "http://localhost:8080/blog"
 
-export const fetchItems = createAsyncThunk("blog/fetchItems", async (page, thunkAPI) => {
+export const fetchBlogs = createAsyncThunk("blog/fetchBlogs", async (page, thunkAPI) => {
     try {
-        const response = await axios.get(url + "", {
+        const response = await axios.get(url, {
             params: {
                 page: page,
-                size: 4
+                size: 6
             }
         })
         return response.data;
@@ -260,6 +260,14 @@ export const fetchItems = createAsyncThunk("blog/fetchItems", async (page, thunk
 })
 
 
+export const fetchBlogDetail = createAsyncThunk("blog/fetchBlogDetail", async (id, thunkAPI) => {
+  try {
+      const response = await axios.get(url + "/" + id)
+      return response.data;
+  } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data)
+  }
+})
 export const blogSlice = createSlice({
     name: 'blog',
     initialState,
@@ -272,12 +280,30 @@ export const blogSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-        .addCase(fetchItems.fulfilled,(state, action)=>{
-            state.items = action.payload
+        .addCase(fetchBlogDetail.pending, (state)=>{
+          state.status = "loading"
         })
-        .addCase(fetchItems.rejected, (state, action)=>{
+        .addCase(fetchBlogs.pending, (state)=>{
+          state.status = "loading"
         })
+        .addCase(fetchBlogs.fulfilled,(state, action)=>{
+          console.log(action)
+            state.items = action.payload.data.blogList
+            state.totalPage = action.payload.data.total_page
+            state.status = action.payload.status
+        })
+        .addCase(fetchBlogs.rejected, (state, action)=>{
+          console.log(action)
+        })
+        .addCase(fetchBlogDetail.fulfilled,(state, action) =>{
+          state.items = action.payload.data
+          console.log(action)
+        })
+        .addCase(fetchBlogDetail.rejected,(state, action)=>{
+          console.log(action)
+        })
+
     }
 })
-export const { removeMessageError} = studentSlice.actions
-export default studentSlice.reducer 
+export const { removeMessageError} = blogSlice.actions
+export default blogSlice.reducer 
