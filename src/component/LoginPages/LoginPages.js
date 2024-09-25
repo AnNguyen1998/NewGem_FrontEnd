@@ -49,7 +49,7 @@ export default function LoginPages() {
                           }}
                         method="post">
                           <div class="mb-3">
-                            <label class="form-label text-dark fw-600" for="username">Username or Email Address</label>
+                            <label class="form-label text-dark fw-600" for="username">Username</label>
                             <input autoComplete="off" autoFocus type="text" class="form-control rounded-0" id="username"
                             onChange={(e) => setUsername(e.target.value)}
                             required placeholder="Enter Your Username"
