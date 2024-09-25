@@ -25,7 +25,8 @@ export const fetchItems = createAsyncThunk("hotel/fetchItems", async (page, thun
     }
 })
 
-export const hotelSlice = createSlice({
+
+export const studentSlice = createSlice({
     name: 'hotel',
     initialState,
     reducers: {
@@ -43,9 +44,8 @@ export const hotelSlice = createSlice({
             state.status = action.payload.status
         })
         .addCase(fetchItems.rejected, (state, action)=>{
-            
         })
     }
 })
-export const { removeMessageError} = hotelSlice.actions
-export default hotelSlice.reducer 
+export const { removeMessageError} = studentSlice.actions
+export default studentSlice.reducer 
