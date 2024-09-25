@@ -46,8 +46,9 @@ const getFromLocalStorage = (key, defaultValue) => {
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    user: getFromLocalStorage('user', null),
-    token: null,
+    // user: getFromLocalStorage('user', null),
+    userId: getFromLocalStorage('userId', null),
+    accessToken: null,
     refreshToken: null,
     status: 'idle',
     error: null,
@@ -64,13 +65,15 @@ const authSlice = createSlice({
       })
       .addCase(signin.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.token = action.payload.token;
-        state.refreshToken=action.payload.refresh_token
-        state.user = action.payload.username;
+        state.token = action.payload.accessToken;
+        state.refreshToken=action.payload.refreshToken
+        state.userId = action.payload.userId;
+        // state.user = action.payload.username;
         // Lưu token vào localStorage
-        localStorage.setItem('accessToken', action.payload.token);
-        localStorage.setItem('refreshToken', action.payload.refresh_token);
-        localStorage.setItem('user', JSON.stringify(action.payload.username));
+        localStorage.setItem('accessToken', action.payload.accessToken);
+        localStorage.setItem('refreshToken', action.payload.refreshToken);
+        localStorage.setItem('userId', action.payload.userId);
+        // localStorage.setItem('user', JSON.stringify(action.payload.username));
       })
       .addCase(signin.rejected, (state, action) => {
         state.status = 'failed';
