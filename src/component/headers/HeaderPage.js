@@ -127,8 +127,8 @@ export default function HeaderPage() {
                                             <div class="elementor-element elementor-element-374bc3e elementor-widget elementor-widget-kinsley-header-buttons"
                                                 data-id="374bc3e" data-element_type="widget"
                                                 data-widget_type="kinsley-header-buttons.default">
-                                                <div class="elementor-widget-container"> <a href="#booknow"
-                                                    class="knsl-btn">  <span> Book now </span> </a>
+                                                <div class="elementor-widget-container"> <Link to="/login"
+                                                    class="knsl-btn">  <span> Login </span> </Link>
 
                                                     <div class="knsl-minicart">
                                                         <div class="knsl-cart">
