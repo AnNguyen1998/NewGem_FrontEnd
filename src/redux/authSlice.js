@@ -54,9 +54,12 @@ const authSlice = createSlice({
     error: null,
   },
   reducers: {
-    setUser(state, action) {
-      state.user = action.payload;
-    },
+    setUserId(state, action) {
+        state.userId = action.payload;
+        },
+    // setUser(state, action) {
+    //   state.user = action.payload;
+    // },
   },
   extraReducers: (builder) => {
     builder
@@ -65,7 +68,7 @@ const authSlice = createSlice({
       })
       .addCase(signin.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.token = action.payload.accessToken;
+        state.accessToken = action.payload.accessToken;
         state.refreshToken=action.payload.refreshToken
         state.userId = action.payload.userId;
         // state.user = action.payload.username;
@@ -82,11 +85,13 @@ const authSlice = createSlice({
       .addCase(logout.fulfilled, (state) => {
         state.status = 'idle';
         state.refreshToken = null;
-        state.token = null;
-        state.user = null;
+        state.accessToken = null;
+        state.userId = null;
+        // state.user = null;
         localStorage.removeItem('accessToken');
         localStorage.removeItem('refreshToken');
-        localStorage.removeItem('user');
+        localStorage.removeItem('userId');
+        // localStorage.removeItem('user');
       })
       .addCase(logout.rejected, (state, action) => {
         state.status = 'failed';
