@@ -6,8 +6,10 @@ import { useDispatch } from 'react-redux';
 import { register } from '../../redux/userSlice';
 
 export default function Register() {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  const [information, setInformation] = useState({
+    username: '',
+    password: ''
+  })
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const handleRegister = (event) => {
@@ -51,13 +53,15 @@ export default function Register() {
                           <div class="mb-3">
                             <label class="form-label text-dark fw-600" for="username">Username</label>
                             <input autoComplete='off' autoFocus type="text" class="form-control rounded-0" id="username" required placeholder="Enter Your Username"
-                            onChange={(e) => setUsername(e.target.value)} value={username}
+                            onChange={(e) => setInformation({ ...information, username: e.target.value })}
+                            value={information.username}
                             />
                           </div>
                           <div class="mb-3">
                             <label class="form-label text-dark fw-600" for="password">Password</label>
                             <input type="password" class="form-control rounded-0" id="password" required placeholder="Enter Password"
-                            onChange={(e) => setPassword(e.target.value)} value={password}
+                            onChange={(e) => setInformation({ ...information, password: e.target.value })}
+                            value={information.password}
                             />
                           </div>
                           <div class="row mt-4">
