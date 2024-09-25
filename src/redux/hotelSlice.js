@@ -3,7 +3,7 @@ import axios from 'axios'
 import axiosInstance from "../utils/axiosInstance";
 
 const initialState = {
-    items: [],
+    items: null,
     totalPage: 0,
     status: "start",
     errors: null,

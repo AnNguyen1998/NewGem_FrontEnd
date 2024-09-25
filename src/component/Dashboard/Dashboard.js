@@ -7,8 +7,10 @@ import "./scss/material-dashboard.scss"
 import { fetchItems } from '../../redux/hotelSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import ReactPaginate from 'react-paginate'
+import { Link } from 'react-router-dom'
+import { Button } from 'reactstrap'
 
-export default function Dashborad() {
+export default function Dashboard() {
   const [currentPage, setCurrentPage] = useState(0)
   const dispatch = useDispatch()
   const handlePageClick = (event) => {
@@ -40,12 +42,12 @@ export default function Dashborad() {
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-white " href="../pages/tables.html">
+              <Link class="nav-link text-white " to="/addhotel">
                 <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                   <i class="material-icons opacity-10">table_view</i>
                 </div>
                 <span class="nav-link-text ms-1">Add Hotel</span>
-              </a>
+              </Link>
             </li>
             <li class="nav-item">
               <a class="nav-link text-white " href="../pages/billing.html">
@@ -235,8 +237,8 @@ export default function Dashborad() {
                     <i class="material-icons opacity-10">weekend</i>
                   </div>
                   <div class="text-end pt-1">
-                    <p class="text-sm mb-0 text-capitalize">Today's Money</p>
-                    <h4 class="mb-0">$53k</h4>
+                    <p class="text-sm mb-0 text-capitalize">Total Hotel</p>
+                    <h4 class="mb-0">{items.length}</h4>
                   </div>
                 </div>
                 <hr class="dark horizontal my-0" />
@@ -252,7 +254,7 @@ export default function Dashborad() {
                     <i class="material-icons opacity-10">person</i>
                   </div>
                   <div class="text-end pt-1">
-                    <p class="text-sm mb-0 text-capitalize">Today's Users</p>
+                    <p class="text-sm mb-0 text-capitalize">Total Users</p>
                     <h4 class="mb-0">2,300</h4>
                   </div>
                 </div>
@@ -269,7 +271,7 @@ export default function Dashborad() {
                     <i class="material-icons opacity-10">person</i>
                   </div>
                   <div class="text-end pt-1">
-                    <p class="text-sm mb-0 text-capitalize">New Clients</p>
+                    <p class="text-sm mb-0 text-capitalize">Total Blog</p>
                     <h4 class="mb-0">3,462</h4>
                   </div>
                 </div>
@@ -360,8 +362,8 @@ export default function Dashborad() {
                                 <span class="text-xs font-weight-bold"> {item.rating} </span>
                               </td>
                               <td class="align-middle text-center text-sm" >
-                                <button style={{padding:'5px', borderRadius:'10px', marginRight:'5px', backgroundColor:'#d63031', border:'none'}}>Delete</button>
-                                <button style={{padding:'5px', borderRadius:'10px', marginRight:'5px', backgroundColor:'#fab1a0', border:'none'}}>Update</button>
+                                <Button color='danger' style={{marginRight:'5px'}}>Delete</Button>
+                                <Button color='warning'>Update</Button>
                               </td>
                             </tr>
                           ))
