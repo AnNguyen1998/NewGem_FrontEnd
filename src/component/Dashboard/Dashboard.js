@@ -8,7 +8,7 @@ import { fetchItems } from '../../redux/hotelSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import ReactPaginate from 'react-paginate'
 import { Link } from 'react-router-dom'
-import { Button } from 'reactstrap'
+import { Button, Col, Form, FormGroup, Input, Label, Row } from 'reactstrap'
 
 export default function Dashboard() {
   const [currentPage, setCurrentPage] = useState(0)
@@ -40,14 +40,6 @@ export default function Dashboard() {
                 </div>
                 <span class="nav-link-text ms-1">Dashboard</span>
               </a>
-            </li>
-            <li class="nav-item">
-              <Link class="nav-link text-white " to="/addhotel">
-                <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                  <i class="material-icons opacity-10">table_view</i>
-                </div>
-                <span class="nav-link-text ms-1">Add Hotel</span>
-              </Link>
             </li>
             <li class="nav-item">
               <a class="nav-link text-white " href="../pages/billing.html">
@@ -238,7 +230,7 @@ export default function Dashboard() {
                   </div>
                   <div class="text-end pt-1">
                     <p class="text-sm mb-0 text-capitalize">Total Hotel</p>
-                    <h4 class="mb-0">{items.length}</h4>
+                    <h4 class="mb-0">{items && items.length}</h4>
                   </div>
                 </div>
                 <hr class="dark horizontal my-0" />
@@ -362,35 +354,213 @@ export default function Dashboard() {
                                 <span class="text-xs font-weight-bold"> {item.rating} </span>
                               </td>
                               <td class="align-middle text-center text-sm" >
-                                <Button color='danger' style={{marginRight:'5px'}}>Delete</Button>
-                                <Button color='warning'>Update</Button>
+                                <Button color='danger' style={{ marginRight: '5px' }}>Delete</Button>
+                                <a href='#update'><Button color='warning'>Update</Button></a>
                               </td>
                             </tr>
                           ))
                         }
                       </tbody>
-                      <div style={{textAlign:'center', justifyContent:'center'}}>
-                      <ReactPaginate
-                        previousLabel={'<<'}
-                        nextLabel={'>>'}
-                        breakLabel={'...'}
-                        pageCount={Math.ceil(totalPage)}
-                        marginPagesDisplayed={1}
-                        pageRangeDisplayed={5}
-                        onPageChange={handlePageClick}
-                        containerClassName={'pagination'}
-                        pageClassName={'page-item'}
-                        pageLinkClassName={'page-link'}
-                        previousClassName={'page-item'}
-                        nextClassName={'page-item'}
-                        previousLinkClassName={'page-link'}
-                        nextLinkClassName={'page-link'}
-                        breakClassName={'page-item'}
-                        breakLinkClassName={'page-link'}
-                        activeClassName={'active'}
-                      />
+                      <div style={{ textAlign: 'center', justifyContent: 'center' }}>
+                        <ReactPaginate
+                          previousLabel={'<<'}
+                          nextLabel={'>>'}
+                          breakLabel={'...'}
+                          pageCount={Math.ceil(totalPage)}
+                          marginPagesDisplayed={1}
+                          pageRangeDisplayed={5}
+                          onPageChange={handlePageClick}
+                          containerClassName={'pagination'}
+                          pageClassName={'page-item'}
+                          pageLinkClassName={'page-link'}
+                          previousClassName={'page-item'}
+                          nextClassName={'page-item'}
+                          previousLinkClassName={'page-link'}
+                          nextLinkClassName={'page-link'}
+                          breakClassName={'page-item'}
+                          breakLinkClassName={'page-link'}
+                          activeClassName={'active'}
+                        />
                       </div>
                     </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-4">
+            <div class="col-lg-6 col-md-6 mb-md-0 mb-4">
+              <div class="card">
+                <div class="card-header pb-0">
+                  <div class="row">
+                    <div class="col-lg-6 col-7">
+                      <h3>Add Hotel</h3>
+                    </div>
+                    <div class="col-lg-6 col-5 my-auto text-end">
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body px-0 pb-2">
+                  <div class="table-responsive">
+                    <div class=" align-items-center mb-0" style={{ padding: '10px' }}>
+                      <Form>
+                        <FormGroup>
+                          <Label for="nameHotel">
+                            Name Hotel
+                          </Label>
+                          <Input
+                            id="nameHotel"
+                            name="name"
+                            placeholder="Please enter Hotel'name here !"
+                            type="text"
+                          />
+                        </FormGroup>
+                        <FormGroup>
+                          <Label for="locationHotel">
+                            Location Hotel
+                          </Label>
+                          <Input
+                            id="locationHotel"
+                            name="location"
+                            placeholder="Please enter location here !"
+                            type="text"
+                          />
+                        </FormGroup>
+                        <FormGroup>
+                          <Label for="exampleSelect">
+                            City
+                          </Label>
+                          <Input
+                            id="exampleSelect"
+                            name="select"
+                            type="select"
+                          >
+                            <option>
+                              HCM
+                            </option>
+                            <option>
+                              HANOI
+                            </option>
+                          </Input>
+                        </FormGroup>
+                        <FormGroup>
+                          <Label for="exampleFile">
+                            File
+                          </Label>
+                          <Input
+                            id="exampleFile"
+                            name="file"
+                            type="file"
+                          />
+                        </FormGroup>
+                        <Button>
+                          Submit
+                        </Button>
+                      </Form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 mb-md-0 mb-4">
+              <div class="card" id='update'>
+                <div class="card-header pb-0">
+                  <div class="row">
+                    <div class="col-lg-6 col-7">
+                      <h3>Update Hotel</h3>
+                    </div>
+                    <div class="col-lg-6 col-5 my-auto text-end">
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body px-0 pb-2">
+                  <div>
+                    <div class=" align-items-center mb-0" style={{ padding: '10px' }}>
+                      <form>
+                        <FormGroup>
+                          <Label for="nameHotel">
+                            Name Hotel
+                          </Label>
+                          <Input
+                            id="nameHotel"
+                            name="name"
+                            placeholder="Please enter Hotel'name here !"
+                            type="text"
+                          />
+                        </FormGroup>
+                        <FormGroup>
+                          <Label for="locationHotel">
+                            Location Hotel
+                          </Label>
+                          <Input
+                            id="locationHotel"
+                            name="location"
+                            placeholder="Please enter location here !"
+                            type="text"
+                          />
+                        </FormGroup>
+                        <FormGroup>
+                          <Label for="exampleSelect">
+                            City
+                          </Label>
+                          <Input
+                            id="exampleSelect"
+                            name="select"
+                            type="select"
+                          >
+                            <option>
+                              HCM
+                            </option>
+                            <option>
+                              HANOI
+                            </option>
+                          </Input>
+                        </FormGroup>
+                        <Row>
+                          <Col>
+                            <FormGroup>
+                              <Label for="roomHotel">
+                                No.Room
+                              </Label>
+                              <Input
+                                id="roomHotel"
+                                name="room"
+                                placeholder="Please enter no.Room here !"
+                                type="number"
+                              />
+                            </FormGroup>
+                          </Col>
+                          <Col>
+                            <FormGroup>
+                              <Label for="priceHotel">
+                                Price
+                              </Label>
+                              <Row>
+                              <Col>
+                              <Input
+                                id="priceHotel"
+                                name="minprice"
+                                placeholder="Please enter min price here !"
+                                type="text"
+                              />
+                              </Col>
+                              <Col>
+                              <Input
+                                id="priceHotel"
+                                name="maxprice"
+                                placeholder="Please enter max price here !"
+                                type="text"
+                              />
+                              </Col>
+                              </Row>
+                            </FormGroup>
+                          </Col>
+                        </Row>
+                        <Button>
+                          Submit
+                        </Button>
+                      </form>
+                    </div>
                   </div>
                 </div>
               </div>
