@@ -106,14 +106,12 @@ export const roomSlice = createSlice({
                 state.totalPage = action.payload.data.totalPage;
                 state.status = action.payload.status
                 state.message = action.payload.message
-                console.log(action.payload.message)
             })
             .addCase(getAllRoomsByHotelId.rejected, (state, action) => {
                 state.errors = action.payload.message;
                 state.status = action.payload.status;
             })
             .addCase(createRoom.fulfilled, (state,action) => {
-                state.items = action.payload.data;
                 state.message = action.payload.message;
                 state.status = action.payload.status
             })
@@ -122,7 +120,6 @@ export const roomSlice = createSlice({
                 state.status = action.payload.status;
             })
             .addCase(updateRoom.fulfilled, (state, action) => {
-                state.items = action.payload.data;
                 state.message = action.payload.message;
                 state.status = action.payload.status
             })
