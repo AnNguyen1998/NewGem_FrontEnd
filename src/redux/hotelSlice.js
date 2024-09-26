@@ -10,8 +10,47 @@ const initialState = {
     errors: null,
     message: null,
 }
+const baseURL = process.env.REACT_APP_API_URL;
+
+export const createHotel = createAsyncThunk(
+    "hotel/createHotel",
+    async (hotelData, thunkAPI) => {
+        try {
+            const response = await axiosInstance.post('/hotel/createHotel', hotelData);
+            return response.data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data);
+        }
+    }
+);
+
+export const updateHotel = createAsyncThunk(
+    "hotel/updateHotel",
+    async (hotelData, thunkAPI) => {
+        try {
+            const response = await axiosInstance.put(`/hotel/updateHotel/${hotelData.id}`, hotelData);
+            return response.data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data);
+        }
+    }
+);
+
+export const changeHotelStatus = createAsyncThunk(
+    "hotel/changeHotelStatus",
+    async (hotelId, thunkAPI) => {
+        try {
+            const response = await axiosInstance.patch('/hotel/disable/'+ hotelId);
+            return response.data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data);
+        }
+    }
+);
+
+
 const url = "http://localhost:8080/hotel"
-console.log(axiosInstance)
+
 export const fetchItems = createAsyncThunk("hotel/fetchItems", async (page, thunkAPI) => {
     try {
         const response = await axios.get(url + "/allHotel", {
@@ -59,6 +98,26 @@ export const hotelSlice = createSlice({
             state.items = action.payload.items
             state.hotel = action.payload.data
             state.status = action.payload.status
+        })
+        .addCase(createHotel.fulfilled, (state,action) => {
+            state.hotel = action.payload.data;
+            state.message = action.payload.message;
+            state.status = action.payload.status
+        })
+        .addCase(createHotel.rejected, (state,action) => {
+            state.errors = action.payload.message;
+            state.status = action.payload.status;
+        })
+        .addCase(updateHotel.fulfilled, (state, action) => {
+            state.hotel = action.payload.data;
+            state.message = action.payload.message;
+            state.status = action.payload.status
+            console.log(action)
+        })
+        .addCase(updateHotel.rejected, (state,action) => {
+            state.errors = action.payload.message;
+            state.status = action.payload.status;
+            console.log(action)
         })
     }
 })
