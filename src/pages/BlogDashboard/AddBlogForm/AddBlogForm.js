@@ -15,7 +15,7 @@ function AddBlogForm({ title }) {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setNewRoom((prev) => ({ ...prev, hotelId: hotelId, [name]: value }));
+        // setNewRoom((prev) => ({ ...prev, hotelId: hotelId, [name]: value }));
     };
 
     const handleSubmit = (e) => {

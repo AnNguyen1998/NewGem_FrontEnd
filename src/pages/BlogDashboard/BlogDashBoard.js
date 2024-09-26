@@ -407,7 +407,7 @@ export default function Dashboard() {
             </div>
             <div class="col-lg-6 col-md-6 mb-md-0 mb-4">
               <div class="card" id='update'>
-                <UpdateBlogForm hotelId={id1} updateItem={items}/>
+                {/* <UpdateBlogForm hotelId={id1} updateItem={items}/> */}
               </div>
             </div>
           </div>
