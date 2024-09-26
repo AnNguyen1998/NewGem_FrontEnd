@@ -56,6 +56,7 @@ export const hotelSlice = createSlice({
             
         })
         .addCase(fetchItemById.fulfilled,(state, action)=>{
+            state.items = action.payload.items
             state.hotel = action.payload.data
             state.status = action.payload.status
         })
