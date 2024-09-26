@@ -106,7 +106,6 @@ export const roomSlice = createSlice({
                 state.totalPage = action.payload.data.totalPage;
                 state.status = action.payload.status
                 state.message = action.payload.message
-                console.log(action.payload.message)
             })
             .addCase(getAllRoomsByHotelId.rejected, (state, action) => {
                 state.errors = action.payload.message;

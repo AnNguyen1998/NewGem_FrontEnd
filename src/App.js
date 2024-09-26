@@ -10,6 +10,8 @@ import BlogDashboard from './pages/BlogDashboard/BlogDashBoard';
 import PageBlogList from './pages/BloglistPage/PageBlogList';
 import BlogDetailPage from './pages/BlogDetailPage/BlogDetailPage';
 import RommDashboard from './pages/RoomDashboard/RoomDashboard';
+import Rooms from './pages/Rooms/Rooms';
+import Hotels from './pages/Hotels/Hotels';
 import RoomPageDetail from './pages/RoomDetailPage/RoomPageDetail';
 import ScrollButton from './component/ScrollButton/ScrollButton';
 import HotelDetailPage from './pages/HotelDetailPage/HotelDetailPage';
@@ -29,6 +31,8 @@ function App() {
           <Route path='/readblog/:id' element={<BlogDetailPage/>}></Route>
           <Route path='/blogdashboard' element={<BlogDashboard/>}></Route>
           <Route path='/room' element={<RommDashboard/>}></Route>
+          <Route path='/rooms' element={<Rooms/>}></Route>
+          <Route path='/hotels' element={<Hotels/>}></Route>
           <Route path='/bloglist' element={<PageBlogList/>}></Route>
           <Route path='/readblog' element={<BlogDetailPage/>}></Route>
           <Route path='/roomdetail/:id' element={<RoomPageDetail/>}></Route>
