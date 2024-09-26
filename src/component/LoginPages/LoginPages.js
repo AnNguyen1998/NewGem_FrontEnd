@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './LoginStyle.css'
 import bgr from "../../images/login-bg-3.jpg"
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { signin } from '../../redux/authSlice'
+import { removeMessageError, signin } from '../../redux/authSlice'
 
 export default function LoginPages() {
   const [username, setUsername] = useState('')
@@ -13,17 +13,23 @@ export default function LoginPages() {
   const navigate = useNavigate()
   const handleLogin = (event) => {
     event.preventDefault()
-    dispatch(signin({ username: username, password }))
-    navigate('/home')
-    window.location.reload()
+    dispatch(signin({ username: username, password: password }))
+    //navigate('/home')
+    //window.location.reload()
   }
+  useEffect(() => {
+    if (status === "succeeded") {
+      navigate('/home')
+      dispatch(removeMessageError())
+    }
+  }, [status])
   return (
     <div>
       <div id="main-wrapper" class="oxyy-login-register">
         <div class="hero-wrap d-flex align-items-center">
           <div class="hero-mask opacity-4 bg-dark"></div>
-          <img/>
-          <div class="hero-bg hero-bg-scroll" style={{backgroundImage: `url(${bgr})`}}></div>
+          <img />
+          <div class="hero-bg hero-bg-scroll" style={{ backgroundImage: `url(${bgr})` }}></div>
           <div class="hero-content w-100">
             <div class="container">
               <div class="row g-0 min-vh-100">
@@ -32,7 +38,7 @@ export default function LoginPages() {
                   <div class="row g-0 my-auto">
                     <div class="col-11 col-sm-10 col-lg-9 mx-auto text-center">
                       <div class="logo mt-5 mb-3"> <Link to='/home' title="Oxyy"><img src=""
-                       alt="Oxyy" /></Link> </div>
+                        alt="Oxyy" /></Link> </div>
                       <h1 class="text-5 fw-400 text-white mb-5">We are glad to see you again!</h1>
                     </div>
                   </div>
@@ -48,21 +54,21 @@ export default function LoginPages() {
                           onSubmit={(event) => {
                             handleLogin(event)
                           }}
-                        method="post">
+                        >
                           <div class="mb-3">
                             <label class="form-label text-dark fw-600" for="username">Username</label>
                             <input autoComplete="off" autoFocus type="text" class="form-control rounded-0" id="username"
-                            onChange={(e) => setUsername(e.target.value)}
-                            required placeholder="Enter Your Username"
-                            value={username}
+                              onChange={(e) => setUsername(e.target.value)}
+                              required placeholder="Enter Your Username"
+                              value={username}
                             />
                           </div>
                           <div class="mb-3">
                             <label class="form-label text-dark fw-600" for="password">Password</label>
-                            <input type="password" class="form-control rounded-0" id="password" 
-                            onChange={(e) => setPassword(e.target.value)}
-                            required placeholder="Enter Password"
-                            value={password}
+                            <input type="password" class="form-control rounded-0" id="password"
+                              onChange={(e) => setPassword(e.target.value)}
+                              required placeholder="Enter Password"
+                              value={password}
                             />
                           </div>
                           <div class="row mt-4">
