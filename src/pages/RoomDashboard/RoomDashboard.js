@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { fetchItems } from '../../redux/roomSlice'
+import { fetchhotel } from '../../redux/roomSlice'
 import { fetchItemById } from '../../redux/hotelSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { Button, Col, Form, FormGroup, Input, Label, Row } from 'reactstrap'
@@ -9,6 +9,8 @@ import RoomTable from './RoomTable/RoomTable'
 import FooterDashboard from './FooterDashboard/FooterDashboard'
 import CollapseNavBar from './CollapseNavBar/CollapseNavBar'
 import BreakCrumbDashBoard from './BreadCrumbDashboard/BreadCrumbDashboard'
+import Logo from '../../component/Logo/Logo'
+import { Link } from 'react-router-dom'
 
 
 export default function RommDashboard() {
@@ -17,9 +19,7 @@ export default function RommDashboard() {
     const dispatch = useDispatch();
     const [hotelId, setHotelId] = useState(1)
 
-    const { items, status, errors, message, totalPage } = useSelector(state => state.hotel)
-
-    console.log(items)
+    const { items, hotel, status, errors, message, totalPage } = useSelector(state => state.hotel)
 
 
     useEffect(() => {
@@ -32,9 +32,6 @@ export default function RommDashboard() {
         setHotelId(event.target.value)
     }
 
-    // console.log(items)
-    // console.log(hotelId)
-
 
 
     return (
@@ -42,9 +39,9 @@ export default function RommDashboard() {
             <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark" id="sidenav-main">
                 <div class="sidenav-header">
                     <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-                    <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/material-dashboard/pages/dashboard " target="_blank">
-                        <span class="ms-1 font-weight-bold text-white">Dashboard</span>
-                    </a>
+                    <Link class="navbar-brand m-0" to="/" target="_blank">
+                        <span class="ms-1 font-weight-bold text-white">Home</span>
+                    </Link>
                 </div>
                 <hr class="horizontal light mt-0 mb-2" />
                 <CollapseNavBar />
@@ -65,7 +62,7 @@ export default function RommDashboard() {
                                     </div>
                                     <div class="text-end pt-1">
                                         <p class="text-sm mb-0 text-capitalize">Hotel</p>
-                                        <h4 class="mb-0">{items && items?.name}</h4>
+                                        <h4 class="mb-0">{hotel && hotel?.name}</h4>
                                     </div>
                                 </div>
                                 <hr class="dark horizontal my-0" />
@@ -95,7 +92,7 @@ export default function RommDashboard() {
                                     </div>
                                     <div class="text-end pt-1">
                                         <p class="text-sm mb-0 text-capitalize">Total Rooms</p>
-                                        <h4 class="mb-0">{items && items.no_rooms}</h4>
+                                        <h4 class="mb-0">{hotel && hotel?.no_rooms}</h4>
                                     </div>
                                 </div>
                                 <hr class="dark horizontal my-0" />
@@ -112,7 +109,7 @@ export default function RommDashboard() {
                                     </div>
                                     <div class="text-end pt-1">
                                         <p class="text-sm mb-0 text-capitalize">Total Reviews</p>
-                                        <h4 class="mb-0">{items && items?.reviews?.length}</h4>
+                                        <h4 class="mb-0">{hotel && hotel?.reviews?.length}</h4>
                                     </div>
                                 </div>
                                 <hr class="dark horizontal my-0" />
@@ -129,7 +126,7 @@ export default function RommDashboard() {
                                     </div>
                                     <div class="text-end pt-1">
                                         <p class="text-sm mb-0 text-capitalize">Total Vouchers</p>
-                                        <h4 class="mb-0">{items && items?.vouchers?.length}</h4>
+                                        <h4 class="mb-0">{hotel && hotel?.vouchers?.length}</h4>
                                     </div>
                                 </div>
                                 <hr class="dark horizontal my-0" />
@@ -141,7 +138,7 @@ export default function RommDashboard() {
                     </div>
                     <div class="row mt-4">
                     </div>
-                    <RoomTable hotelId={hotelId} hotelName={items?.name}/>
+                    <RoomTable hotelId={hotelId} hotelName={hotel?.name}/>
                     <FooterDashboard />
                 </div>
             </main>

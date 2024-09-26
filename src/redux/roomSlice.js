@@ -40,7 +40,7 @@ export const updateRoom = createAsyncThunk(
     "room/updateRoom",
     async (roomData, thunkAPI) => {
         try {
-            const response = await axiosInstance.put(`/room/updateRoom/${roomData.hotelId}`, roomData);
+            const response = await axiosInstance.put(`/room/updateRoom/${roomData.roomId}`, roomData);
             return response.data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response.data);
@@ -86,19 +86,39 @@ export const roomSlice = createSlice({
             .addCase(getAllRoomsByHotelId.fulfilled, (state, action) => {
                 state.items = action.payload.data.items;
                 state.totalPage = action.payload.data.totalPage;
-                state.status = "success";
+                state.status = action.payload.status
+                state.message = action.payload.message
+                console.log(action.payload.message)
             })
             .addCase(getAllRoomsByHotelId.rejected, (state, action) => {
-                state.errors = action.payload;
-                state.status = "failed";
+                state.errors = action.payload.message;
+                state.status = action.payload.status;
+            })
+            .addCase(createRoom.fulfilled, (state,action) => {
+                state.items = action.payload.data;
+                state.message = action.payload.message;
+                state.status = action.payload.status
+            })
+            .addCase(createRoom.rejected, (state,action) => {
+                state.errors = action.payload.message;
+                state.status = action.payload.status;
+            })
+            .addCase(updateRoom.fulfilled, (state, action) => {
+                state.items = action.payload.data;
+                state.message = action.payload.message;
+                state.status = action.payload.status
+            })
+            .addCase(updateRoom.rejected, (state,action) => {
+                state.errors = action.payload.message;
+                state.status = action.payload.status;
             })
             .addCase(getRoomById.fulfilled, (state, action) => {
                 state.items = action.payload.data;
                 state.status = "success";
             })
             .addCase(getRoomById.rejected, (state, action) => {
-                state.errors = action.payload;
-                state.status = "failed";
+                state.errors = action.payload.message;
+                state.status = action.payload.status;
             });
     },
 });

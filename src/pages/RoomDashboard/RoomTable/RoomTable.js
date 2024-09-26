@@ -9,6 +9,7 @@ import UpdateRoomForm from "../UpdateRoomForm/UpdateRoomForm";
 function RoomTable({ hotelId, hotelName }) {
     const dispatch = useDispatch()
     const [updateItem,setUpdatItem] = useState(null)
+    const { items, status, errors, message, totalPage } = useSelector(state => state.room);
 
     const [currentPage, setCurrentPage] = useState(0);
 
@@ -29,10 +30,7 @@ function RoomTable({ hotelId, hotelName }) {
         dispatch(getAllRoomsByHotelId({ page: currentPage, hotelId: hotelId }))
     }, [dispatch, hotelId, currentPage])
 
-
-    const { items, status, errors, message, totalPage } = useSelector(state => state.room);
     
-    console.log(items)
 
     return <>
         <div class="row mb-4" id='show-hotel'>

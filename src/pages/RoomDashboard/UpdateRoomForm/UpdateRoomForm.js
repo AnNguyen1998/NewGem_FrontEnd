@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { updateRoom } from "../../../redux/roomSlice";
 
 function UpdateRoomForm({ hotelId, updateItem }) {
-    const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
   const [newRoom, setNewRoom] = useState({
     roomNumber: '',
@@ -17,11 +17,12 @@ function UpdateRoomForm({ hotelId, updateItem }) {
   useEffect(() => {
     if (updateItem) {
       setNewRoom({
+        roomId: updateItem.roomId,
         hotelId: hotelId,
-        roomNumber: updateItem.roomNumber ,
-        price: updateItem.price ,
+        roomNumber: updateItem.roomNumber,
+        price: updateItem.price,
         type: updateItem.type,
-        guests: updateItem.guests ,
+        guests: updateItem.guests,
       });
     }
   }, [updateItem]);
