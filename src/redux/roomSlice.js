@@ -25,7 +25,7 @@ export const createRoom = createAsyncThunk(
 );
 
 export const changeRoomStatus = createAsyncThunk(
-    "room/createRoom",
+    "room/changeRoomStatus",
     async (hotelId, thunkAPI) => {
         try {
             const response = await axiosInstance.patch('/room/changeStatus/'+ hotelId);

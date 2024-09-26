@@ -1,15 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { fetchhotel } from '../../redux/roomSlice'
 import { fetchItemById } from '../../redux/hotelSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { Button, Col, Form, FormGroup, Input, Label, Row } from 'reactstrap'
-import AddRoomForm from './AddRoomForm/AddRoomForm'
-import UpdateRoomForm from './UpdateRoomForm/UpdateRoomForm'
 import RoomTable from './RoomTable/RoomTable'
 import FooterDashboard from './FooterDashboard/FooterDashboard'
 import CollapseNavBar from './CollapseNavBar/CollapseNavBar'
 import BreakCrumbDashBoard from './BreadCrumbDashboard/BreadCrumbDashboard'
-import Logo from '../../component/Logo/Logo'
 import { Link } from 'react-router-dom'
 
 
