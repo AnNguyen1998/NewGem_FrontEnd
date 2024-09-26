@@ -532,10 +532,10 @@ export default function HomePage() {
                                                                         <div class="knsl-cover-frame"> <a
                                                                             href="https://kinsley.bslthemes.com/services/gym/">
                                                                             <noscript><img decoding="async"
-                                                                                src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/service-6-950x1473.jpg"
+                                                                                src="https://lifehacker.com/imagery/articles/01HF2HBZ78M0GYDMFBQP0Z8ARR/hero-image.fill.size_1248x702.v1699834174.jpg"
                                                                                 alt="Gym" /></noscript><img class="lazyload"
                                                                                     decoding="async"
-                                                                                    src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3.jpg"
+                                                                                    src="https://lifehacker.com/imagery/articles/01HF2HBZ78M0GYDMFBQP0Z8ARR/hero-image.fill.size_1248x702.v1699834174.jpg"
                                                                                     data-src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3.jpg"
                                                                                     alt="Gym" /> </a>
                                                                             <div class="knsl-badge">
@@ -597,7 +597,7 @@ export default function HomePage() {
                                                                                 src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/service-1-950x1425.jpg"
                                                                                 alt="Lounge bar" /></noscript><img
                                                                                 class="lazyload" decoding="async"
-                                                                                src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3.jpg"
+                                                                                src="https://i.pinimg.com/originals/59/92/7e/59927ea818ecab0d8fdda23030007530.jpg"
                                                                                 data-src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/service-1-950x1425.jpg"
                                                                                 alt="Lounge bar" /> </a>
                                                                             <div class="knsl-badge">

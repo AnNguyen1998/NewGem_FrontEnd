@@ -7,14 +7,18 @@ import { register } from '../../redux/userSlice';
 
 export default function Register() {
   const [information, setInformation] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
     username: '',
-    password: ''
+    password: '',
   })
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const handleRegister = (event) => {
     event.preventDefault()
-    dispatch(register({ username: username, password }))
+    dispatch(register({ firstName: information.firstName, lastName: information.lastName, email: information.email, phone: information.phone, username: information.username, password: information.password }))
     navigate('/home')
   }
   return (
@@ -50,17 +54,43 @@ export default function Register() {
                             handleRegister(event)
                           }}
                         >
+                        <div class="mb-3">
+                          <label class="form-label text-dark fw-600" for="first-name">First Name</label>
+                          <input
+                            autoComplete='off' autoFocus
+                          type="text" class="form-control rounded-0" id="first-name" required placeholder="First Name"
+                          onChange={(event) => setInformation({ ...information, firstName: event.target.value })}
+                          />
+                        </div>
+                        <div class="mb-3">
+                          <label class="form-label text-dark fw-600" for="last-name">Last Name</label>
+                          <input type="text" class="form-control rounded-0" id="last-name" required placeholder="Last Name"
+                          onChange={(event) => setInformation({ ...information, lastName: event.target.value })}
+                          />
+                        </div>
+                        <div class="mb-3">
+                          <label class="form-label text-dark fw-600" for="email">Email</label>
+                          <input type="email" class="form-control rounded-0" id="email" required placeholder="Email"
+                          onChange={(event) => setInformation({ ...information, email: event.target.value })}
+                          />
+                        </div>
+                        <div class="mb-3">
+                          <label class="form-label text-dark fw-600" for="phone">Phone</label>
+                          <input type="text" class="form-control rounded-0" id="phone" required placeholder="Phone"
+                          onChange={(event) => setInformation({ ...information, phone: event.target.value })}
+                          />
+                        </div>
                           <div class="mb-3">
                             <label class="form-label text-dark fw-600" for="username">Username</label>
-                            <input autoComplete='off' autoFocus type="text" class="form-control rounded-0" id="username" required placeholder="Enter Your Username"
-                            onChange={(e) => setInformation({ ...information, username: e.target.value })}
+                            <input type="text" class="form-control rounded-0" id="username" required placeholder="Username"
+                            onChange={(event) => setInformation({ ...information, username: event.target.value })}
                             value={information.username}
                             />
                           </div>
                           <div class="mb-3">
                             <label class="form-label text-dark fw-600" for="password">Password</label>
-                            <input type="password" class="form-control rounded-0" id="password" required placeholder="Enter Password"
-                            onChange={(e) => setInformation({ ...information, password: e.target.value })}
+                            <input type="password" class="form-control rounded-0" id="password" required placeholder="Password"
+                            onChange={(event) => setInformation({ ...information, password: event.target.value })}
                             value={information.password}
                             />
                           </div>

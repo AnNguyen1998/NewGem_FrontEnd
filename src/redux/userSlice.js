@@ -6,19 +6,20 @@ import axiosInstance from '../utils/axiosInstance';
 // Thay đổi URL và cấu hình phù hợp với API của bạn
 const API_URL = "http://localhost:8080/user"
 
-export const register = createAsyncThunk('user/register', async ({ username, password }, thunkAPI) => {
+export const register = createAsyncThunk('user/register', async ({ firstName, lastName, email, phone, username, password
+}, thunkAPI) => {
     try {
-        console.log(`username: ${username}, password: ${password}`)
+        console.log(`firstName: ${firstName}, lastName: ${lastName}, email: ${email}, phone: ${phone}, username: ${username}, password: ${password}`)
         const response = await axios.post(`${API_URL}/addUser`, 
             {
-                "firstName": "colton",
-                "lastName": "ogden",
-                "email": "coltonoscopy@gmail.com",
-                "phone": "1949268459",
-                "dateOfBirth": "1990-08-15",
+                "firstName": firstName,
+                "lastName": lastName,
+                "email": email,
+                "phone": phone,
+                "dateOfBirth": "1970-01-01",
                 "gender": "MALE",
                 "username": username,
-                "password": password,
+                "password": password
               },
         {
             headers: {
@@ -29,7 +30,7 @@ export const register = createAsyncThunk('user/register', async ({ username, pas
         console.log(response.data)
         return response.data; // Trả về dữ liệu từ phản hồi
     } catch (error) {
-        console.log(`username: ${username}, password: ${password}`)
+        console.log(`firstName: ${firstName}, lastName: ${lastName}, email: ${email}, phone: ${phone}, username: ${username}, password: ${password}`)
         console.log(error)
         return thunkAPI.rejectWithValue(error.response.data); // Trả về lỗi nếu có
     }

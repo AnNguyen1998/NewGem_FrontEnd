@@ -3,14 +3,15 @@ import axios from 'axios'
 import axiosInstance from "../utils/axiosInstance";
 
 const initialState = {
-    items: [],
+    items: null,
+    hotel: null,
     totalPage: 0,
     status: "start",
     errors: null,
     message: null,
 }
 const url = "http://localhost:8080/hotel"
-
+console.log(axiosInstance)
 export const fetchItems = createAsyncThunk("hotel/fetchItems", async (page, thunkAPI) => {
     try {
         const response = await axios.get(url + "/allHotel", {
@@ -25,8 +26,16 @@ export const fetchItems = createAsyncThunk("hotel/fetchItems", async (page, thun
     }
 })
 
+export const fetchItemById = createAsyncThunk("hotel/fetchItemById", async (id, thunkAPI) => {
+    try {
+        const response = await axios.get(url + "/" + id)
+        return response.data;
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error.response.data)
+    }
+})
 
-export const studentSlice = createSlice({
+export const hotelSlice = createSlice({
     name: 'hotel',
     initialState,
     reducers: {
@@ -44,8 +53,14 @@ export const studentSlice = createSlice({
             state.status = action.payload.status
         })
         .addCase(fetchItems.rejected, (state, action)=>{
+            
+        })
+        .addCase(fetchItemById.fulfilled,(state, action)=>{
+            state.items = action.payload.items
+            state.hotel = action.payload.data
+            state.status = action.payload.status
         })
     }
 })
-export const { removeMessageError} = studentSlice.actions
-export default studentSlice.reducer 
+export const { removeMessageError} = hotelSlice.actions
+export default hotelSlice.reducer 
