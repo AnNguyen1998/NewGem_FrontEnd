@@ -23,7 +23,8 @@ function App() {
           <Route path='/dashboard' element={<Dashboard/>}></Route>
           <Route path='/room' element={<RommDashboard/>}></Route>
           <Route path='/bloglist' element={<PageBlogList/>}></Route>
-          <Route path='/readblog' element={<BlogDetailPage/>}></Route>
+          <Route path='/readblog/:id' element={<BlogDetailPage/>}></Route>
+          
         </Routes>
       </BrowserRouter>
     </div>
