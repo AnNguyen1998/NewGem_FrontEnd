@@ -265,7 +265,7 @@ export default function FooterPage() {
                                                                     data-id="f29bce8" data-element_type="widget"
                                                                     data-widget_type="text-editor.default">
                                                                     <div class="elementor-widget-container">
-                                                                        <p>© 2023 Kinsley. All Rights Reserved.</p>
+                                                                        <p>© All Rights Reserved.</p>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -277,8 +277,7 @@ export default function FooterPage() {
                                                                     data-id="8517c6f" data-element_type="widget"
                                                                     data-widget_type="text-editor.default">
                                                                     <div class="elementor-widget-container">
-                                                                        <p>Developed by: <a href="https://bslthemes.com/">bslthemes
-                                                                            Team</a></p>
+                                                                        <p>Developed by: <a href="https://bslthemes.com/">NEWGEM</a></p>
                                                                     </div>
                                                                 </div>
                                                             </div>

@@ -4,20 +4,26 @@ import "./css/material-dashboard.min.css"
 import "./css/nucleo-icons.css"
 import "./css/nucleo-svg.css"
 import "./scss/material-dashboard.scss"
-import { fetchItems } from '../../redux/hotelSlice'
+import { fetchItemById, fetchItems } from '../../redux/hotelSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import ReactPaginate from 'react-paginate'
+import { Link } from 'react-router-dom'
+import { Button, Col, Form, FormGroup, Input, Label, Row } from 'reactstrap'
 
-export default function Dashborad() {
+export default function Dashboard() {
   const [currentPage, setCurrentPage] = useState(0)
+  const [id1, setId] = useState(0)
   const dispatch = useDispatch()
   const handlePageClick = (event) => {
     setCurrentPage(event.selected)
   }
-  const { items, status, errors, message, totalPage } = useSelector(state => state.hotel)
+  const { items, status, errors, message, totalPage, hotelDetail } = useSelector(state => state.hotel)
   useEffect(() => {
     dispatch(fetchItems(currentPage))
   }, [currentPage])
+  const btnUpdateHandle = (id)=>{
+    setId(id)
+  }
   console.log(items)
   return (
     <div class="g-sidenav-show  bg-gray-200">
@@ -37,14 +43,6 @@ export default function Dashborad() {
                   <i class="material-icons opacity-10">dashboard</i>
                 </div>
                 <span class="nav-link-text ms-1">Dashboard</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-white " href="../pages/tables.html">
-                <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                  <i class="material-icons opacity-10">table_view</i>
-                </div>
-                <span class="nav-link-text ms-1">Add Hotel</span>
               </a>
             </li>
             <li class="nav-item">
@@ -235,8 +233,8 @@ export default function Dashborad() {
                     <i class="material-icons opacity-10">weekend</i>
                   </div>
                   <div class="text-end pt-1">
-                    <p class="text-sm mb-0 text-capitalize">Today's Money</p>
-                    <h4 class="mb-0">$53k</h4>
+                    <p class="text-sm mb-0 text-capitalize">Total Hotel</p>
+                    <h4 class="mb-0">{items && items.length}</h4>
                   </div>
                 </div>
                 <hr class="dark horizontal my-0" />
@@ -252,7 +250,7 @@ export default function Dashborad() {
                     <i class="material-icons opacity-10">person</i>
                   </div>
                   <div class="text-end pt-1">
-                    <p class="text-sm mb-0 text-capitalize">Today's Users</p>
+                    <p class="text-sm mb-0 text-capitalize">Total Users</p>
                     <h4 class="mb-0">2,300</h4>
                   </div>
                 </div>
@@ -269,7 +267,7 @@ export default function Dashborad() {
                     <i class="material-icons opacity-10">person</i>
                   </div>
                   <div class="text-end pt-1">
-                    <p class="text-sm mb-0 text-capitalize">New Clients</p>
+                    <p class="text-sm mb-0 text-capitalize">Total Blog</p>
                     <h4 class="mb-0">3,462</h4>
                   </div>
                 </div>
@@ -299,7 +297,7 @@ export default function Dashborad() {
           </div>
           <div class="row mt-4">
           </div>
-          <div class="row mb-4">
+          <div class="row mb-4" id='show-hotel'>
             <div class="col-lg-12 col-md-6 mb-md-0 mb-4">
               <div class="card">
                 <div class="card-header pb-0">
@@ -340,7 +338,7 @@ export default function Dashborad() {
                               <td>
                                 <div class="avatar-group mt-2">
                                   <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ryan Tompson">
-                                    <h6>{ }</h6>
+                                    <h6>{item.city}</h6>
                                   </a>
                                 </div>
                               </td>
@@ -360,35 +358,221 @@ export default function Dashborad() {
                                 <span class="text-xs font-weight-bold"> {item.rating} </span>
                               </td>
                               <td class="align-middle text-center text-sm" >
-                                <button style={{padding:'5px', borderRadius:'10px', marginRight:'5px', backgroundColor:'#d63031', border:'none'}}>Delete</button>
-                                <button style={{padding:'5px', borderRadius:'10px', marginRight:'5px', backgroundColor:'#fab1a0', border:'none'}}>Update</button>
+                                <Button color='danger' style={{ marginRight: '5px' }}>Delete</Button>
+                                <a href='#update'><Button color='warning' onClick={()=>btnUpdateHandle(index)}>Update</Button></a>
                               </td>
                             </tr>
                           ))
                         }
                       </tbody>
-                      <div style={{textAlign:'center', justifyContent:'center'}}>
-                      <ReactPaginate
-                        previousLabel={'<<'}
-                        nextLabel={'>>'}
-                        breakLabel={'...'}
-                        pageCount={Math.ceil(totalPage)}
-                        marginPagesDisplayed={1}
-                        pageRangeDisplayed={5}
-                        onPageChange={handlePageClick}
-                        containerClassName={'pagination'}
-                        pageClassName={'page-item'}
-                        pageLinkClassName={'page-link'}
-                        previousClassName={'page-item'}
-                        nextClassName={'page-item'}
-                        previousLinkClassName={'page-link'}
-                        nextLinkClassName={'page-link'}
-                        breakClassName={'page-item'}
-                        breakLinkClassName={'page-link'}
-                        activeClassName={'active'}
-                      />
+                      <div style={{ textAlign: 'center', justifyContent: 'center' }}>
+                        <ReactPaginate
+                          previousLabel={'<<'}
+                          nextLabel={'>>'}
+                          breakLabel={'...'}
+                          pageCount={Math.ceil(totalPage)}
+                          marginPagesDisplayed={1}
+                          pageRangeDisplayed={5}
+                          onPageChange={handlePageClick}
+                          containerClassName={'pagination'}
+                          pageClassName={'page-item'}
+                          pageLinkClassName={'page-link'}
+                          previousClassName={'page-item'}
+                          nextClassName={'page-item'}
+                          previousLinkClassName={'page-link'}
+                          nextLinkClassName={'page-link'}
+                          breakClassName={'page-item'}
+                          breakLinkClassName={'page-link'}
+                          activeClassName={'active'}
+                        />
                       </div>
                     </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-4">
+            <div class="col-lg-6 col-md-6 mb-md-0 mb-4">
+              <div class="card">
+                <div class="card-header pb-0">
+                  <div class="row">
+                    <div class="col-lg-6 col-7">
+                      <h3>Add Hotel</h3>
+                    </div>
+                    <div class="col-lg-6 col-5 my-auto text-end">
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body px-0 pb-2">
+                  <div class="table-responsive">
+                    <div class=" align-items-center mb-0" style={{ padding: '10px' }}>
+                      <Form>
+                        <FormGroup>
+                          <Label for="nameHotel">
+                            Name Hotel
+                          </Label>
+                          <Input
+                            id="nameHotel"
+                            name="name"
+                            placeholder="Please enter Hotel'name here !"
+                            type="text"
+                          />
+                        </FormGroup>
+                        <FormGroup>
+                          <Label for="locationHotel">
+                            Location Hotel
+                          </Label>
+                          <Input
+                            id="locationHotel"
+                            name="location"
+                            placeholder="Please enter location here !"
+                            type="text"
+                          />
+                        </FormGroup>
+                        <FormGroup>
+                          <Label for="exampleSelect">
+                            City
+                          </Label>
+                          <Input
+                            id="exampleSelect"
+                            name="select"
+                            type="select"
+                          >
+                            <option>
+                              HCM
+                            </option>
+                            <option>
+                              HANOI
+                            </option>
+                          </Input>
+                        </FormGroup>
+                        <FormGroup>
+                          <Label for="exampleFile">
+                            File
+                          </Label>
+                          <Input
+                            id="exampleFile"
+                            name="file"
+                            type="file"
+                          />
+                        </FormGroup>
+                        <Button>
+                          Submit
+                        </Button>
+                      </Form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 mb-md-0 mb-4">
+              <div class="card" id='update'>
+                <div class="card-header pb-0">
+                  <div class="row">
+                    <div class="col-lg-6 col-7">
+                      <h3>Update Hotel</h3>
+                    </div>
+                    <div class="col-lg-6 col-5 my-auto text-end">
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body px-0 pb-2">
+                  <div>
+                    <div class=" align-items-center mb-0" style={{ padding: '10px' }}>
+                      <form>
+                        <FormGroup>
+                          <Label for="nameHotel">
+                            Hotel's Name
+                          </Label>
+                          <Input
+                            id="nameHotel"
+                            name="name"
+                            placeholder="Please enter Hotel'name here !"
+                            type="text"
+                            value={items && items[id1].name}
+                          />
+                        </FormGroup>
+                        <FormGroup>
+                          <Label for="locationHotel">
+                            Location
+                          </Label>
+                          <Input
+                            id="locationHotel"
+                            name="location"
+                            placeholder="Please enter location here !"
+                            type="text"
+                            value={items && items[id1].location}
+                          />
+                        </FormGroup>
+                        <FormGroup>
+                          <Label for="exampleSelect">
+                            City
+                          </Label>
+                          <Input
+                            id="exampleSelect"
+                            name="select"
+                            type="select"
+                            value={items && items[id1].city}
+                          >
+                            <option>
+                              HCM
+                            </option>
+                            <option>
+                              HANOI
+                            </option>
+                          </Input>
+                        </FormGroup>
+                        <Row>
+                          <Col>
+                            <FormGroup>
+                              <Label for="roomHotel">
+                              No.Rooms
+                              </Label>
+                              <Input
+                                id="roomHotel"
+                                name="room"
+                                placeholder="Please enter no.Room here !"
+                                type="number"
+                                value={items && items[id1].no_rooms}
+                              />
+                            </FormGroup>
+                          </Col>
+                          <Col>
+                            <FormGroup>
+                              <Label for="priceHotel">
+                                Price
+                              </Label>
+                              <Row>
+                              <Col>
+                              <Input
+                                id="priceHotel"
+                                name="minprice"
+                                placeholder="Please enter min price here !"
+                                type="text"
+                                value={items && items[id1].min_price}
+                              />
+                              </Col>
+                              <Col>
+                              <Input
+                                id="priceHotel"
+                                name="maxprice"
+                                placeholder="Please enter max price here !"
+                                type="text"
+                                value={items && items[id1].max_price}
+                              />
+                              </Col>
+                              </Row>
+                            </FormGroup>
+                          </Col>
+                        </Row>
+                        <a href='#show-hotel'>
+                        <Button>
+                          Submit
+                        </Button>
+                        </a>
+                      </form>
+                    </div>
                   </div>
                 </div>
               </div>

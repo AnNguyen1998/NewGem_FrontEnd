@@ -1,8 +1,13 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { BsCartCheckFill } from 'react-icons/bs'
 import { Link } from 'react-router-dom'
 
 export default function HeaderPage() {
+    const [accessToken, setAccessToken] = useState(null)
+    
+    useEffect(() => {
+        setAccessToken(localStorage.getItem('accessToken'))
+    }, [])
   return (
     <div>
         <div class="knsl-top-bar fixed">
@@ -38,7 +43,7 @@ export default function HeaderPage() {
                                                         <nav class="top-menu-nav">
                                                             <ul id="menu-main-menu" class="top-menu-nav-inner">
                                                                 <li id="menu-item-1111"
-                                                                    class=" menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-32 current_page_item current-menu-ancestor current-menu-parent current_page_parent current_page_ancestor menu-item-has-children">
+                                                                    >
                                                                     <Link to="/home">Home</Link><i></i>
                                                                 </li>
                                                                 <li id="menu-item-781"
@@ -128,7 +133,8 @@ export default function HeaderPage() {
                                                 data-id="374bc3e" data-element_type="widget"
                                                 data-widget_type="kinsley-header-buttons.default">
                                                 <div class="elementor-widget-container"> <Link to="/login"
-                                                    class="knsl-btn">  <span> Login </span> </Link>
+                                                    class="knsl-btn">  <span> 
+                                                        {accessToken ? 'Logout' : 'Login'} </span> </Link>
 
                                                     <div class="knsl-minicart">
                                                         <div class="knsl-cart">
