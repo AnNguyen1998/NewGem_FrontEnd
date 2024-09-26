@@ -77,11 +77,49 @@ export const getRoomById = createAsyncThunk(
     }
 );
 
+export const getRoomsByType = createAsyncThunk(
+    "room/getRoomsByType",
+    async ({ type, page }, thunkAPI) => {
+        try {
+            const response = await axios.get(`${baseURL}/room/type`, {
+                params: {
+                    type: type,
+                    page: page,
+                    size: 6,
+                },
+            });
+            return response.data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data);
+        }
+    }
+);
+
 export const createBookroom = createAsyncThunk(
     "room/createBookroom",
     async (bookData, thunkAPI) => {
         try {
             const response = await axiosInstance.post(`${baseURL}/reservation/bookRoom`, bookData);
+            return response.data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data);
+        }
+    }
+);
+
+export const searchRooms = createAsyncThunk(
+    "room/getRoomsByHotelId",
+    async ({ hotelId, page, type, maxPrice }, thunkAPI) => {
+        try {
+            const response = await axios.get(`${baseURL}/room/search`, {
+                params: {
+                    hotel: hotelId,
+                    type: type,
+                    max: maxPrice,
+                    page: page,
+                    size: 6
+                },
+            });
             return response.data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response.data);
@@ -140,6 +178,26 @@ export const roomSlice = createSlice({
                 state.status = action.payload.status;
             })
             .addCase(createBookroom.rejected, (state, action) => {
+                state.errors = action.payload.message;
+                state.status = action.payload.status;
+            })
+            .addCase(getRoomsByType.fulfilled, (state, action) => {
+                state.items = action.payload.data.items;
+                state.totalPage = action.payload.data.totalPage;
+                state.status = action.payload.status
+                state.message = action.payload.message
+            })
+            .addCase(getRoomsByType.rejected, (state, action) => {
+                state.errors = action.payload.message;
+                state.status = action.payload.status;
+            })
+            .addCase(searchRooms.fulfilled, (state, action) => {
+                state.items = action.payload.data.items;
+                state.totalPage = action.payload.data.totalPage;
+                state.status = action.payload.status
+                state.message = action.payload.message
+            })
+            .addCase(searchRooms.rejected, (state, action) => {
                 state.errors = action.payload.message;
                 state.status = action.payload.status;
             })
