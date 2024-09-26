@@ -77,10 +77,28 @@ export const getRoomById = createAsyncThunk(
     }
 );
 
+export const createBookroom = createAsyncThunk(
+    "room/createBookroom",
+    async (bookData, thunkAPI) => {
+        try {
+            const response = await axiosInstance.post(`${baseURL}/reservation/bookRoom`, bookData);
+            return response.data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data);
+        }
+    }
+);
+
 export const roomSlice = createSlice({
     name: "room",
     initialState,
-    reducers: {},
+    reducers: {
+        removeMessageError:(state)=>{
+            state.message=null;
+            state.errors =null;
+            state.status=""
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(getAllRoomsByHotelId.fulfilled, (state, action) => {
@@ -119,8 +137,17 @@ export const roomSlice = createSlice({
             .addCase(getRoomById.rejected, (state, action) => {
                 state.errors = action.payload.message;
                 state.status = action.payload.status;
-            });
+            })
+            .addCase(createBookroom.fulfilled, (state, action) => {
+                state.items = action.payload.data;
+                state.status = action.payload.status;
+            })
+            .addCase(createBookroom.rejected, (state, action) => {
+                state.errors = action.payload.message;
+                state.status = action.payload.status;
+            })
     },
 });
 
 export default roomSlice.reducer;
+export const { removeMessageError} = roomSlice.actions

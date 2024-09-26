@@ -10,6 +10,9 @@ import BlogDashboard from './pages/BlogDashboard/BlogDashBoard';
 import PageBlogList from './pages/BloglistPage/PageBlogList';
 import BlogDetailPage from './pages/BlogDetailPage/BlogDetailPage';
 import RommDashboard from './pages/RoomDashboard/RoomDashboard';
+import RoomPageDetail from './pages/RoomDetailPage/RoomPageDetail';
+import ScrollButton from './component/ScrollButton/ScrollButton';
+import HotelDetailPage from './pages/HotelDetailPage/HotelDetailPage';
 
 function App() {
   return (
@@ -27,10 +30,14 @@ function App() {
           <Route path='/blogdashboard' element={<BlogDashboard/>}></Route>
           <Route path='/room' element={<RommDashboard/>}></Route>
           <Route path='/bloglist' element={<PageBlogList/>}></Route>
+          <Route path='/readblog' element={<BlogDetailPage/>}></Route>
+          <Route path='/roomdetail/:id' element={<RoomPageDetail/>}></Route>
+          <Route path='/hoteldetail/:id' element={<HotelDetailPage/>}></Route>
           <Route path='/readblog/:id' element={<BlogDetailPage/>}></Route>
           
         </Routes>
       </BrowserRouter>
+      <ScrollButton/>
     </div>
   );
 }

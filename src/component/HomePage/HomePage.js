@@ -848,7 +848,6 @@ export default function HomePage() {
                         </div>
                     </div>
                 </div>
-                <ScrollButton />
             </body >
         </div >
     )
