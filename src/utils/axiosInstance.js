@@ -28,7 +28,7 @@ axiosInstance.interceptors.request.use(
       config.headers['Content-Type'] = 'application/json';
     }
     return config;
-    
+
   },
   (error) => {
     return Promise.reject(error);
@@ -42,18 +42,18 @@ axiosInstance.interceptors.response.use(
   },
   async (error) => {
     const originalRequest = error.config;
-console.log(error)
+    console.log(error)
     // Nếu lỗi là 401 (Unauthorized) và chưa thử lại
     if (error.response && (error.response.status === 401) && !originalRequest._retry) {
       originalRequest._retry = true;
       try {
         // Gửi yêu cầu refresh token
-        console.log("test refresh: "+localStorage.getItem('refreshToken'))
-        const response = await axios.post(process.env.REACT_APP_API_URL+'/users/refresh-token', {
-        "refreshToken": localStorage.getItem('refreshToken'),
+        console.log("test refresh: " + localStorage.getItem('refreshToken'))
+        const response = await axios.post(process.env.REACT_APP_API_URL + '/auth/refreshtoken', {
+          "refreshToken": localStorage.getItem('refreshToken'),
         });
-        const { token } = response.data;
-        console.log("test: "+token)
+        const token = response.data.accessToken;
+
 
         // Lưu token mới vào localStorage
         localStorage.setItem('accessToken', token);
