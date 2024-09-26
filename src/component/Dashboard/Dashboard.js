@@ -38,28 +38,28 @@ export default function Dashboard() {
         <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link text-white active bg-gradient-primary" href="../pages/dashboard.html">
+              <Link class="nav-link text-white active bg-gradient-primary" to="/dashboard">
                 <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                   <i class="material-icons opacity-10">dashboard</i>
                 </div>
                 <span class="nav-link-text ms-1">Dashboard</span>
-              </a>
+              </Link>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-white " href="../pages/billing.html">
+              <Link class="nav-link text-white " to="/bill">
                 <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                   <i class="material-icons opacity-10">receipt_long</i>
                 </div>
                 <span class="nav-link-text ms-1">Bill</span>
-              </a>
+              </Link>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-white " href="../pages/virtual-reality.html">
+              <Link class="nav-link text-white " to="/room">
                 <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                   <i class="material-icons opacity-10">view_in_ar</i>
                 </div>
                 <span class="nav-link-text ms-1">Room</span>
-              </a>
+              </Link>
             </li>
             <li class="nav-item">
               <a class="nav-link text-white " href="../pages/rtl.html">
@@ -89,12 +89,12 @@ export default function Dashboard() {
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-white " href="../pages/sign-in.html">
+              <Link class="nav-link text-white " to="/login">
                 <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                   <i class="material-icons opacity-10">login</i>
                 </div>
                 <span class="nav-link-text ms-1">Sign In</span>
-              </a>
+              </Link>
             </li>
             <li class="nav-item">
               <a class="nav-link text-white " href="../pages/sign-up.html">
@@ -331,31 +331,31 @@ export default function Dashboard() {
                               <td>
                                 <div class="d-flex px-2 py-1">
                                   <div class="d-flex flex-column justify-content-center">
-                                    <h6 class="mb-0 text-sm">{item.name}</h6>
+                                    <h6 class="mb-0 text-sm">{item?.name}</h6>
                                   </div>
                                 </div>
                               </td>
                               <td>
                                 <div class="avatar-group mt-2">
                                   <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ryan Tompson">
-                                    <h6>{item.city}</h6>
+                                    <h6>{item?.city}</h6>
                                   </a>
                                 </div>
                               </td>
                               <td class="align-middle text-center text-sm">
-                                <span class="text-xs font-weight-bold"> {item.location} </span>
+                                <span class="text-xs font-weight-bold"> {item?.location} </span>
                               </td>
                               <td class="align-middle text-center text-sm">
-                                <span class="text-xs font-weight-bold"> {item.no_rooms} </span>
+                                <span class="text-xs font-weight-bold"> {item?.no_rooms} </span>
                               </td>
                               <td class="align-middle text-center text-sm">
-                                <span class="text-xs font-weight-bold"> {item.status} </span>
+                                <span class="text-xs font-weight-bold"> {item?.status} </span>
                               </td>
                               <td class="align-middle text-center text-sm">
-                                <span class="text-xs font-weight-bold"> {item.min_price}$ - {item.max_price}$ </span>
+                                <span class="text-xs font-weight-bold"> {item?.min_price}$ - {item?.max_price}$ </span>
                               </td>
                               <td class="align-middle text-center text-sm">
-                                <span class="text-xs font-weight-bold"> {item.rating} </span>
+                                <span class="text-xs font-weight-bold"> {item?.rating} </span>
                               </td>
                               <td class="align-middle text-center text-sm" >
                                 <Button color='danger' style={{ marginRight: '5px' }}>Delete</Button>
@@ -490,7 +490,7 @@ export default function Dashboard() {
                             name="name"
                             placeholder="Please enter Hotel'name here !"
                             type="text"
-                            value={items && items[id1].name}
+                            value={items && items[id1]?.name}
                           />
                         </FormGroup>
                         <FormGroup>
@@ -502,7 +502,7 @@ export default function Dashboard() {
                             name="location"
                             placeholder="Please enter location here !"
                             type="text"
-                            value={items && items[id1].location}
+                            value={items && items[id1]?.location}
                           />
                         </FormGroup>
                         <FormGroup>
@@ -513,7 +513,7 @@ export default function Dashboard() {
                             id="exampleSelect"
                             name="select"
                             type="select"
-                            value={items && items[id1].city}
+                            value={items && items[id1]?.city}
                           >
                             <option>
                               HCM
@@ -534,7 +534,7 @@ export default function Dashboard() {
                                 name="room"
                                 placeholder="Please enter no.Room here !"
                                 type="number"
-                                value={items && items[id1].no_rooms}
+                                value={items && items[id1]?.no_rooms}
                               />
                             </FormGroup>
                           </Col>
@@ -550,7 +550,7 @@ export default function Dashboard() {
                                 name="minprice"
                                 placeholder="Please enter min price here !"
                                 type="text"
-                                value={items && items[id1].min_price}
+                                value={items && items[id1]?.min_price}
                               />
                               </Col>
                               <Col>
@@ -559,7 +559,7 @@ export default function Dashboard() {
                                 name="maxprice"
                                 placeholder="Please enter max price here !"
                                 type="text"
-                                value={items && items[id1].max_price}
+                                value={items && items[id1]?.max_price}
                               />
                               </Col>
                               </Row>
