@@ -15,6 +15,7 @@ export default function LoginPages() {
     event.preventDefault()
     dispatch(signin({ username: username, password }))
     navigate('/home')
+    window.location.reload()
   }
   return (
     <div>

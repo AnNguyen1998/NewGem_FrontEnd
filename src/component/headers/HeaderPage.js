@@ -137,7 +137,15 @@ export default function HeaderPage() {
                                         data-id="374bc3e" data-element_type="widget"
                                         data-widget_type="kinsley-header-buttons.default">
                                         <div class="elementor-widget-container">
-                                            <Link to="/login"
+                                            <Link 
+                                                onClick={
+                                                    accessToken ? () => {
+                                                        localStorage.removeItem('accessToken')
+                                                        localStorage.removeItem('role')
+                                                        window.location.reload()
+                                                    } : () => { }
+                                                }
+                                                to={accessToken ? "/home" : "/login"}
                                                 class="knsl-btn">  <span>
                                                     {accessToken ? 'Logout' : 'Login'} </span> </Link>
                                             {role == "ROLE_ADMIN" && <Link to="/dashboard"

@@ -19,7 +19,9 @@ export default function Register() {
   const handleRegister = (event) => {
     event.preventDefault()
     dispatch(register({ firstName: information.firstName, lastName: information.lastName, email: information.email, phone: information.phone, username: information.username, password: information.password }))
-    navigate('/home')
+    // Pop up a notification
+    alert('Register successfully!')
+    navigate('/login')
   }
   return (
     <div>
@@ -93,6 +95,10 @@ export default function Register() {
                             onChange={(event) => setInformation({ ...information, password: event.target.value })}
                             value={information.password}
                             />
+                          </div>
+                          <div class="mb-3">
+                            <label class="form-label text-dark fw-600" for="confirm-password">Confirm Password</label>
+                            <input type="password" class="form-control rounded-0" id="confirm-password" required placeholder="Confirm Password" />
                           </div>
                           <div class="row mt-4">
                             <div class="col">
