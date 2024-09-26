@@ -4,21 +4,27 @@ import HotelBanner from "./HotelBanner"
 import HotelCard from "./HotelCard"
 import { useDispatch, useSelector } from "react-redux"
 import { useState, useEffect } from "react"
-import { getRoomsByType } from "../../redux/roomSlice"
+import { Input } from "reactstrap"
+import { searchHotel } from "../../redux/hotelSlice"
 
 function Rooms() {
     const dispatch = useDispatch()
     const [updateItem, setUpdatItem] = useState(null)
-    const { items, status, errors, message, totalPage } = useSelector(state => state.room);
+    const { items, status, errors, message, totalPage } = useSelector(state => state.hotel);
 
     const [activeFilter, setActiveFilter] = useState(null);
 
     const filters = [
         { label: 'All', value: null },
         { label: 'Ho Chi Minh City', value: 'HCM' },
-        { label: 'Ha Noi', value: 'HANOI' },
+        { label: 'Ha Noi', value: 'HANOI' }
     ];
 
+
+    console.log(activeFilter
+
+
+    )
     const handleFilterChange = (value) => {
         setActiveFilter(value);
     };
@@ -26,12 +32,12 @@ function Rooms() {
     const [currentPage, setCurrentPage] = useState(0);
 
     useEffect(() => {
-        dispatch(getRoomsByType({
-            type: activeFilter,
-            page: 0
+        dispatch(searchHotel({
+            city: activeFilter,
+            page: currentPage,
         }))
     }, [dispatch, currentPage, activeFilter])
-    
+
 
     return <div>
         <HeaderPage />
@@ -75,7 +81,7 @@ function Rooms() {
                                                     <div class="container">
                                                         <div className="knsl-filter knsl-mb-60">
                                                             {filters.map((filter) => (
-                                                                <a
+                                                                <div
                                                                     key={filter.value}
                                                                     href="#"
                                                                     data-filter={filter.value}
@@ -86,14 +92,14 @@ function Rooms() {
                                                                     }}
                                                                 >
                                                                     {filter.label}
-                                                                </a>
+                                                                </div>
                                                             ))}
-                                                        </div>
+                                                            </div>
                                                         <div class="knsl-masonry-grid knsl-3-col attr-details-amenity-false attr-details-category-false attr-details-attributes-false attr-details-view-false attr-details-bed-type-false attr-details-children-false"
                                                             style={{ position: "relative", marginBottom: "200px" }}>
                                                             <div class="knsl-grid-sizer"></div>
-                                                            {items && items?.map((room,index)=>{
-                                                                return <HotelCard room={room} key={index}/>
+                                                            {items && items?.map((hotel, index) => {
+                                                                return <HotelCard hotel={hotel} key={index} />
                                                             })}
                                                         </div>
                                                     </div>

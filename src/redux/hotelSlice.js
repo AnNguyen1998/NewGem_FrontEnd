@@ -74,7 +74,7 @@ export const fetchItemById = createAsyncThunk("hotel/fetchItemById", async (id, 
     }
 })
 
-export const fetchItemByCity = createAsyncThunk("hotel/fetchItemByCity", async ({city, max,min}, thunkAPI) => {
+export const searchHotel = createAsyncThunk("hotel/searchHotel", async ({city, max, min}, thunkAPI) => {
     try {
         const response = await axios.get(url + "/search",{
             params: {
@@ -88,6 +88,7 @@ export const fetchItemByCity = createAsyncThunk("hotel/fetchItemByCity", async (
         return thunkAPI.rejectWithValue(error.response.data)
     }
 })
+
 
 export const hotelSlice = createSlice({
     name: 'hotel',
@@ -133,6 +134,15 @@ export const hotelSlice = createSlice({
             state.errors = action.payload.message;
             state.status = action.payload.status;
             console.log(action)
+        })
+        .addCase(searchHotel.fulfilled,(state, action)=>{
+            state.items = action.payload.data.hotel
+            state.totalPage = action.payload.data.total_page
+            state.status = action.payload.status
+        })
+        .addCase(searchHotel.rejected, (state, action)=>{
+            state.errors = action.payload.message;
+            state.status = action.payload.status;
         })
     }
 })

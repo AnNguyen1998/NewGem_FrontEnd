@@ -11,6 +11,7 @@ import PageFooter from '../footerPage/PageFooter'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { fetchItemById } from '../../redux/hotelSlice'
+import RoomSection from '../../component/RoomSection/RoomSection'
 
 export default function HotelDetailPage() {
     const { id } = useParams();
@@ -207,6 +208,7 @@ export default function HotelDetailPage() {
                 </div>
                 <PageFooter />
             </body>
+            <RoomSection />
         </div>
     )
 }

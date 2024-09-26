@@ -109,13 +109,13 @@ export const createBookroom = createAsyncThunk(
 
 export const searchRooms = createAsyncThunk(
     "room/getRoomsByHotelId",
-    async ({ hotelId, page, type, maxPrice }, thunkAPI) => {
+    async ({ hotelId, page, type, max }, thunkAPI) => {
         try {
             const response = await axios.get(`${baseURL}/room/search`, {
                 params: {
                     hotel: hotelId,
                     type: type,
-                    max: maxPrice,
+                    max: max,
                     page: page,
                     size: 6
                 },
