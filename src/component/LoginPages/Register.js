@@ -1,9 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './LoginStyle.css'
 import bgr from "../../images/login-bg-3.jpg"
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux';
+import { register } from '../../redux/userSlice';
 
 export default function Register() {
+  const [information, setInformation] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    username: '',
+    password: '',
+  })
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const handleRegister = (event) => {
+    event.preventDefault()
+    dispatch(register({ firstName: information.firstName, lastName: information.lastName, email: information.email, phone: information.phone, username: information.username, password: information.password }))
+    navigate('/home')
+  }
   return (
     <div>
       <div id="main-wrapper" class="oxyy-login-register">
@@ -31,15 +48,51 @@ export default function Register() {
                   <div class="container my-auto py-4 shadow-lg bg-white">
                     <div class="row">
                       <div class="col-11 col-lg-10 mx-auto">
-                        <h3 class="text-9 fw-600 text-center my-3">Sign In</h3>
-                        <form id="loginForm" method="post">
+                        <h3 class="text-9 fw-600 text-center my-3">Sign up</h3>
+                        <form id="registerForm" method="post"
+                          onSubmit={(event) => {
+                            handleRegister(event)
+                          }}
+                        >
+                        <div class="mb-3">
+                          <label class="form-label text-dark fw-600" for="first-name">First Name</label>
+                          <input
+                            autoComplete='off' autoFocus
+                          type="text" class="form-control rounded-0" id="first-name" required placeholder="First Name"
+                          onChange={(event) => setInformation({ ...information, firstName: event.target.value })}
+                          />
+                        </div>
+                        <div class="mb-3">
+                          <label class="form-label text-dark fw-600" for="last-name">Last Name</label>
+                          <input type="text" class="form-control rounded-0" id="last-name" required placeholder="Last Name"
+                          onChange={(event) => setInformation({ ...information, lastName: event.target.value })}
+                          />
+                        </div>
+                        <div class="mb-3">
+                          <label class="form-label text-dark fw-600" for="email">Email</label>
+                          <input type="email" class="form-control rounded-0" id="email" required placeholder="Email"
+                          onChange={(event) => setInformation({ ...information, email: event.target.value })}
+                          />
+                        </div>
+                        <div class="mb-3">
+                          <label class="form-label text-dark fw-600" for="phone">Phone</label>
+                          <input type="text" class="form-control rounded-0" id="phone" required placeholder="Phone"
+                          onChange={(event) => setInformation({ ...information, phone: event.target.value })}
+                          />
+                        </div>
                           <div class="mb-3">
-                            <label class="form-label text-dark fw-600" for="emailAddress">Username or Email Address</label>
-                            <input type="email" class="form-control rounded-0" id="emailAddress" required placeholder="Enter Your Email" />
+                            <label class="form-label text-dark fw-600" for="username">Username</label>
+                            <input type="text" class="form-control rounded-0" id="username" required placeholder="Username"
+                            onChange={(event) => setInformation({ ...information, username: event.target.value })}
+                            value={information.username}
+                            />
                           </div>
                           <div class="mb-3">
-                            <label class="form-label text-dark fw-600" for="loginPassword">Password</label>
-                            <input type="password" class="form-control rounded-0" id="loginPassword" required placeholder="Enter Password" />
+                            <label class="form-label text-dark fw-600" for="password">Password</label>
+                            <input type="password" class="form-control rounded-0" id="password" required placeholder="Password"
+                            onChange={(event) => setInformation({ ...information, password: event.target.value })}
+                            value={information.password}
+                            />
                           </div>
                           <div class="row mt-4">
                             <div class="col">
