@@ -9,6 +9,9 @@ import PageBlogList from './pages/BloglistPage/PageBlogList';
 import BlogDetailPage from './pages/BlogDetailPage/BlogDetailPage';
 import Dashboard from './component/Dashboard/Dashboard';
 import RommDashboard from './pages/RoomDashboard/RoomDashboard';
+import RoomPageDetail from './pages/RoomDetailPage/RoomPageDetail';
+import ScrollButton from './component/ScrollButton/ScrollButton';
+import HotelDetailPage from './pages/HotelDetailPage/HotelDetailPage';
 
 function App() {
   return (
@@ -24,8 +27,11 @@ function App() {
           <Route path='/room' element={<RommDashboard/>}></Route>
           <Route path='/bloglist' element={<PageBlogList/>}></Route>
           <Route path='/readblog' element={<BlogDetailPage/>}></Route>
+          <Route path='/roomdetail/:id' element={<RoomPageDetail/>}></Route>
+          <Route path='/hoteldetail/:id' element={<HotelDetailPage/>}></Route>
         </Routes>
       </BrowserRouter>
+      <ScrollButton/>
     </div>
   );
 }

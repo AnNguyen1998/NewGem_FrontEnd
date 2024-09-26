@@ -16,10 +16,10 @@ function UpdateHotelForm({ hotelId, updateItem }) {
     useEffect(() => {
         if (updateItem) {
             setNewHotel({
-                name: updateItem[hotelId].name,
-                location: updateItem[hotelId].location,
-                city: updateItem[hotelId].city,
-                id: updateItem[hotelId].hotelId
+                name: updateItem[hotelId]?.name,
+                location: updateItem[hotelId]?.location,
+                city: updateItem[hotelId]?.city,
+                id: updateItem[hotelId]?.hotelId
             });
         }
     }, [hotelId]);
@@ -86,6 +86,7 @@ function UpdateHotelForm({ hotelId, updateItem }) {
                                 name="city"
                                 type="select"
                                 value={newHotel.city}
+                                onChange={handleChange}
                             >
                                 <option value="HCM">
                                     HCM
