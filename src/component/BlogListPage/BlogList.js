@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import '../../css/HomePage.css'
 import '../../css/HomePage1.css'
 import '../../css/HomePage2.css'
@@ -7,8 +7,26 @@ import '../../css/HomePage4.css'
 import '../../css/HomePage5.css'
 import '../../css/HomePage6.css'
 import ScrollButton from '../ScrollButton/ScrollButton'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchBlogs } from '../../redux/blogSlice'  
+import { Link } from 'react-router-dom'
 
 export default function BlogList() {
+    const [currentPage, setCurrentPage] = useState(0);
+    const dispatch = useDispatch();
+    const handlePageClick = (event) => {
+      setCurrentPage(event.selected);
+    };
+    const { items, BlogList, status, errors, message, totalPage } = useSelector(
+      (state) => state.blog
+    );
+    useEffect(() => {
+      dispatch(fetchBlogs(currentPage));
+    }, [currentPage]);
+
+
+
+    console.log(items);
     return (
         <div>
             <body class="page-template page-template-template-layout-builder page-template-template-layout-builder-php page page-id-713 theme-kinsley woocommerce-no-js elementor-default elementor-kit-5762 elementor-page elementor-page-713">
@@ -39,7 +57,7 @@ export default function BlogList() {
                                                                             <span>Our Blog </span>
                                                                         </h1>
                                                                         <p class="knsl-text knsl-mb-30">
-                                                                            <span>Consectetur adipisicing elit. Nihil, illum voluptate eveniet ex fugit ea delectus, sed voluptatem. Laborum accusantium libero commodi id officiis itaque esse adipisci, necessitatibus asperiores, illo odio. </span>
+                                                                            <span>With the expansion of our hotel system, it is important to alway keeping our interaction being broadly open and clear to all our beloved customer. Along with that in mind, making our own social blog sound like the best way to. So let's all dive in and see what you want explore about us, here at the Hotel NewGem</span>
                                                                         </p>
                                                                         <ul class="knsl-breadcrumbs">
                                                                             <li>
@@ -74,302 +92,66 @@ export default function BlogList() {
                                                         </noscript>
                                                         <img decoding="async" src='data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E' data-src="https://kinsley.bslthemes.com/wp-content/themes/kinsley/assets/img/palm.svg" class="lazyload knsl-deco-right" alt="palm" />
                                                         <div class="container">
+                                                            {/* Row of blogs */}
+                                                            
+
+                                                           
                                                             <div class="row  attr-categories-false attr-readmore-false">
-                                                                <div class="col-md-6 col-lg-4">
+                                                                {/* Blog #1   */}
+                                                                {items && items.map((item, index) => (
 
-                                                                    <div class="knsl-blog-card">
-                                                                        <div id="post-1181" class="post-1181 post type-post status-publish format-standard has-post-thumbnail hentry category-travel tag-guide tag-places tag-travel tag-trip">
-                                                                            <div class="knsl-cover-frame">
-                                                                                <a href="https://kinsley.bslthemes.com/blog/2021/12/21/the-ultimate-guide-to-traveling-when-you-have-no-money-2/">
-                                                                                    <noscript>
-                                                                                        <img decoding="async" src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/blog-2-1-950x608.jpg" alt="The Ultimate Guide to Traveling When You Have No Money" />
-                                                                                    </noscript>
-                                                                                    <img class="lazyload" decoding="async" src='data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E' data-src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/blog-2-1-950x608.jpg" alt="The Ultimate Guide to Traveling When You Have No Money" />
-                                                                                </a>
-                                                                                <div class="knsl-badge">Travel</div>
+                                                                <div class="col-md-6 col-lg-4" key={index}>
+                                                                <div class="knsl-blog-card">
+                                                                    <div id="post-1181" class="post-1181 post type-post status-publish format-standard has-post-thumbnail hentry category-travel tag-guide tag-places tag-travel tag-trip">
+                                                                        <div class="knsl-cover-frame">
+                                                                            <Link to={"/readblog/" + item.id}>
+                                                                                <noscript>
+                                                                                    <img decoding="async" src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3.jpg" alt="The Ultimate Guide to Traveling When You Have No Money" />
+                                                                                </noscript>
+                                                                                <img class="lazyload" decoding="async" src='https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3.jpg' data-src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/blog-2-1-950x608.jpg" alt="The Ultimate Guide to Traveling When You Have No Money" />
+                                                                            </Link>
+                                                                            <div class="knsl-badge">Travel</div>
+                                                                        </div>
+                                                                        <div class="knsl-description-frame">
+                                                                            <div class="knsl-room-features">
+                                                                                <div class="knsl-feature knsl-feature-author">
+                                                                                    <div class="knsl-icon-frame knsl-icon-author">
+                                                                                        <noscript>
+                                                                                            <img decoding="async" src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3.jpg" alt="Hana Evans" />
+                                                                                        </noscript>
+                                                                                        <img class="lazyload" decoding="async" src='data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E' data-src="https://secure.gravatar.com/avatar/bfe80a8cfe3f34bf01b6448655880640?s=96&#038;d=mm&#038;r=g" alt="Hana Evans" />
+                                                                                    </div>
+                                                                                    <span>D. P. Lam</span>
+                                                                                </div>
+                                                                                <div class="knsl-feature knsl-feature-date">
+                                                                                    <div class="knsl-icon-frame">
+                                                                                        <span class="img-svg img-svg-time"></span>
+                                                                                    </div>
+                                                                                    <span>{item.createdAt.slice(0,10)}</span>
+                                                                                </div>
                                                                             </div>
-                                                                            <div class="knsl-description-frame">
-                                                                                <div class="knsl-room-features">
-                                                                                    <div class="knsl-feature knsl-feature-author">
-                                                                                        <div class="knsl-icon-frame knsl-icon-author">
-                                                                                            <noscript>
-                                                                                                <img decoding="async" src="https://secure.gravatar.com/avatar/bfe80a8cfe3f34bf01b6448655880640?s=96&#038;d=mm&#038;r=g" alt="Hana Evans" />
-                                                                                            </noscript>
-                                                                                            <img class="lazyload" decoding="async" src='data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E' data-src="https://secure.gravatar.com/avatar/bfe80a8cfe3f34bf01b6448655880640?s=96&#038;d=mm&#038;r=g" alt="Hana Evans" />
-                                                                                        </div>
-                                                                                        <span>Hana Evans</span>
-                                                                                    </div>
-                                                                                    <div class="knsl-feature knsl-feature-date">
-                                                                                        <div class="knsl-icon-frame">
-                                                                                            <span class="img-svg img-svg-time"></span>
-                                                                                        </div>
-                                                                                        <span>December 21, 2021</span>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <a href="https://kinsley.bslthemes.com/blog/2021/12/21/the-ultimate-guide-to-traveling-when-you-have-no-money-2/" class="knsl-title">
-                                                                                    <h4 class="knsl-mb-20">The Ultimate Guide to Traveling When You Have No Money</h4>
-                                                                                </a>
-                                                                                <div class="knsl-text-light knsl-text-sm">
-                                                                                    <p>
-                                                                                        Image for cattle earth. May one Which life divide sea. Commodi soluta minima nemo,&#8230;
-                                                                                        <span class="knsl-el-more">
-                                                                                            <a href="https://kinsley.bslthemes.com/blog/2021/12/21/the-ultimate-guide-to-traveling-when-you-have-no-money-2/" class="knsl-btn">
-                                                                                                Read more<span class="screen-reader-text">Read more &nbsp;The Ultimate Guide to Traveling When You Have No Money</span>
-                                                                                            </a>
-                                                                                        </span>
-                                                                                    </p>
-                                                                                </div>
+                                                                            <Link to={"/readblog/" + item.id}>
+                                                                                <h4 class="knsl-mb-20">{item.title}</h4>
+                                                                            </Link>
+                                                                            <div class="knsl-text-light knsl-text-sm" style={{whiteSpace: "pre-line"}}>
+                                                                                <p >
+                                                                                    {item.content.slice(0,39)}&#8230;
+                                                                                    <span class="knsl-el-more">
+                                                                                        <a href="https://kinsley.bslthemes.com/blog/2021/12/21/the-ultimate-guide-to-traveling-when-you-have-no-money-2/" class="knsl-btn">
+                                                                                            Read more<span class="screen-reader-text">Read more &nbsp;The Ultimate Guide to Traveling When You Have No Money</span>
+                                                                                        </a>
+                                                                                    </span>
+                                                                                </p>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-
                                                                 </div>
-                                                                <div class="col-md-6 col-lg-4">
-
-                                                                    <div class="knsl-blog-card">
-                                                                        <div id="post-1182" class="post-1182 post type-post status-publish format-standard has-post-thumbnail hentry category-travel tag-resort tag-tour tag-travel">
-                                                                            <div class="knsl-cover-frame">
-                                                                                <a href="https://kinsley.bslthemes.com/blog/2021/12/21/the-best-travel-insurance-companies-for-seniors-2/">
-                                                                                    <noscript>
-                                                                                        <img decoding="async" src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/blog-3-950x634.jpg" alt="The Best Travel Insurance Companies for Seniors" />
-                                                                                    </noscript>
-                                                                                    <img class="lazyload" decoding="async" src='data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E' data-src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/blog-3-950x634.jpg" alt="The Best Travel Insurance Companies for Seniors" />
-                                                                                </a>
-                                                                                <div class="knsl-badge">Travel</div>
-                                                                            </div>
-                                                                            <div class="knsl-description-frame">
-                                                                                <div class="knsl-room-features">
-                                                                                    <div class="knsl-feature knsl-feature-author">
-                                                                                        <div class="knsl-icon-frame knsl-icon-author">
-                                                                                            <noscript>
-                                                                                                <img decoding="async" src="https://secure.gravatar.com/avatar/bfe80a8cfe3f34bf01b6448655880640?s=96&#038;d=mm&#038;r=g" alt="Hana Evans" />
-                                                                                            </noscript>
-                                                                                            <img class="lazyload" decoding="async" src='data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E' data-src="https://secure.gravatar.com/avatar/bfe80a8cfe3f34bf01b6448655880640?s=96&#038;d=mm&#038;r=g" alt="Hana Evans" />
-                                                                                        </div>
-                                                                                        <span>Hana Evans</span>
-                                                                                    </div>
-                                                                                    <div class="knsl-feature knsl-feature-date">
-                                                                                        <div class="knsl-icon-frame">
-                                                                                            <span class="img-svg img-svg-time"></span>
-                                                                                        </div>
-                                                                                        <span>December 21, 2021</span>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <a href="https://kinsley.bslthemes.com/blog/2021/12/21/the-best-travel-insurance-companies-for-seniors-2/" class="knsl-title">
-                                                                                    <h4 class="knsl-mb-20">The Best Travel Insurance Companies for Seniors</h4>
-                                                                                </a>
-                                                                                <div class="knsl-text-light knsl-text-sm">
-                                                                                    <p>
-                                                                                        Image for cattle earth. May one Which life divide sea. Commodi soluta minima nemo,&#8230;
-                                                                                        <span class="knsl-el-more">
-                                                                                            <a href="https://kinsley.bslthemes.com/blog/2021/12/21/the-best-travel-insurance-companies-for-seniors-2/" class="knsl-btn">
-                                                                                                Read more<span class="screen-reader-text">Read more &nbsp;The Best Travel Insurance Companies for Seniors</span>
-                                                                                            </a>
-                                                                                        </span>
-                                                                                    </p>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                </div>
-                                                                <div class="col-md-6 col-lg-4">
-
-                                                                    <div class="knsl-blog-card">
-                                                                        <div id="post-1179" class="post-1179 post type-post status-publish format-standard has-post-thumbnail hentry category-places tag-sea tag-tour tag-travel tag-trip">
-                                                                            <div class="knsl-cover-frame">
-                                                                                <a href="https://kinsley.bslthemes.com/blog/2021/12/21/18-easy-steps-for-planning-your-next-trip-2/">
-                                                                                    <noscript>
-                                                                                        <img decoding="async" src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/blog-1-950x713.jpg" alt="18 Easy Steps for Planning Your Next Trip" />
-                                                                                    </noscript>
-                                                                                    <img class="lazyload" decoding="async" src='data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E' data-src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/blog-1-950x713.jpg" alt="18 Easy Steps for Planning Your Next Trip" />
-                                                                                </a>
-                                                                                <div class="knsl-badge">Places</div>
-                                                                            </div>
-                                                                            <div class="knsl-description-frame">
-                                                                                <div class="knsl-room-features">
-                                                                                    <div class="knsl-feature knsl-feature-author">
-                                                                                        <div class="knsl-icon-frame knsl-icon-author">
-                                                                                            <noscript>
-                                                                                                <img decoding="async" src="https://secure.gravatar.com/avatar/bfe80a8cfe3f34bf01b6448655880640?s=96&#038;d=mm&#038;r=g" alt="Hana Evans" />
-                                                                                            </noscript>
-                                                                                            <img class="lazyload" decoding="async" src='data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E' data-src="https://secure.gravatar.com/avatar/bfe80a8cfe3f34bf01b6448655880640?s=96&#038;d=mm&#038;r=g" alt="Hana Evans" />
-                                                                                        </div>
-                                                                                        <span>Hana Evans</span>
-                                                                                    </div>
-                                                                                    <div class="knsl-feature knsl-feature-date">
-                                                                                        <div class="knsl-icon-frame">
-                                                                                            <span class="img-svg img-svg-time"></span>
-                                                                                        </div>
-                                                                                        <span>December 21, 2021</span>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <a href="https://kinsley.bslthemes.com/blog/2021/12/21/18-easy-steps-for-planning-your-next-trip-2/" class="knsl-title">
-                                                                                    <h4 class="knsl-mb-20">18 Easy Steps for Planning Your Next Trip</h4>
-                                                                                </a>
-                                                                                <div class="knsl-text-light knsl-text-sm">
-                                                                                    <p>
-                                                                                        Image for cattle earth. May one Which life divide sea. Commodi soluta minima nemo,&#8230;
-                                                                                        <span class="knsl-el-more">
-                                                                                            <a href="https://kinsley.bslthemes.com/blog/2021/12/21/18-easy-steps-for-planning-your-next-trip-2/" class="knsl-btn">
-                                                                                                Read more<span class="screen-reader-text">Read more &nbsp;18 Easy Steps for Planning Your Next Trip</span>
-                                                                                            </a>
-                                                                                        </span>
-                                                                                    </p>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                </div>
-                                                                <div class="col-md-6 col-lg-4">
-
-                                                                    <div class="knsl-blog-card knsl-scroll-animation">
-                                                                        <div id="post-270" class="post-270 post type-post status-publish format-standard has-post-thumbnail hentry category-travel tag-places tag-sea tag-travel">
-                                                                            <div class="knsl-cover-frame">
-                                                                                <a href="https://kinsley.bslthemes.com/blog/2021/10/20/the-best-travel-insurance-companies-for-seniors/">
-                                                                                    <noscript>
-                                                                                        <img decoding="async" src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/blog-3-950x634.jpg" alt="The Best Travel Insurance Companies for Seniors" />
-                                                                                    </noscript>
-                                                                                    <img class="lazyload" decoding="async" src='data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E' data-src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/blog-3-950x634.jpg" alt="The Best Travel Insurance Companies for Seniors" />
-                                                                                </a>
-                                                                                <div class="knsl-badge">Travel</div>
-                                                                            </div>
-                                                                            <div class="knsl-description-frame">
-                                                                                <div class="knsl-room-features">
-                                                                                    <div class="knsl-feature knsl-feature-author">
-                                                                                        <div class="knsl-icon-frame knsl-icon-author">
-                                                                                            <noscript>
-                                                                                                <img decoding="async" src="https://secure.gravatar.com/avatar/bfe80a8cfe3f34bf01b6448655880640?s=96&#038;d=mm&#038;r=g" alt="Hana Evans" />
-                                                                                            </noscript>
-                                                                                            <img class="lazyload" decoding="async" src='data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E' data-src="https://secure.gravatar.com/avatar/bfe80a8cfe3f34bf01b6448655880640?s=96&#038;d=mm&#038;r=g" alt="Hana Evans" />
-                                                                                        </div>
-                                                                                        <span>Hana Evans</span>
-                                                                                    </div>
-                                                                                    <div class="knsl-feature knsl-feature-date">
-                                                                                        <div class="knsl-icon-frame">
-                                                                                            <span class="img-svg img-svg-time"></span>
-                                                                                        </div>
-                                                                                        <span>October 20, 2021</span>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <a href="https://kinsley.bslthemes.com/blog/2021/10/20/the-best-travel-insurance-companies-for-seniors/" class="knsl-title">
-                                                                                    <h4 class="knsl-mb-20">The Best Travel Insurance Companies for Seniors</h4>
-                                                                                </a>
-                                                                                <div class="knsl-text-light knsl-text-sm">
-                                                                                    <p>
-                                                                                        Image for cattle earth. May one Which life divide sea. Commodi soluta minima nemo,&#8230;
-                                                                                        <span class="knsl-el-more">
-                                                                                            <a href="https://kinsley.bslthemes.com/blog/2021/10/20/the-best-travel-insurance-companies-for-seniors/" class="knsl-btn">
-                                                                                                Read more<span class="screen-reader-text">Read more &nbsp;The Best Travel Insurance Companies for Seniors</span>
-                                                                                            </a>
-                                                                                        </span>
-                                                                                    </p>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                </div>
-                                                                <div class="col-md-6 col-lg-4">
-
-                                                                    <div class="knsl-blog-card knsl-scroll-animation">
-                                                                        <div id="post-267" class="post-267 post type-post status-publish format-standard has-post-thumbnail hentry category-places tag-sea tag-travel tag-trip">
-                                                                            <div class="knsl-cover-frame">
-                                                                                <a href="https://kinsley.bslthemes.com/blog/2021/10/20/the-ultimate-guide-to-traveling-when-you-have-no-money/">
-                                                                                    <noscript>
-                                                                                        <img decoding="async" src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/blog-2-1-950x608.jpg" alt="The Ultimate Guide to Traveling When You Have No Money" />
-                                                                                    </noscript>
-                                                                                    <img class="lazyload" decoding="async" src='data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E' data-src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/blog-2-1-950x608.jpg" alt="The Ultimate Guide to Traveling When You Have No Money" />
-                                                                                </a>
-                                                                                <div class="knsl-badge">Places</div>
-                                                                            </div>
-                                                                            <div class="knsl-description-frame">
-                                                                                <div class="knsl-room-features">
-                                                                                    <div class="knsl-feature knsl-feature-author">
-                                                                                        <div class="knsl-icon-frame knsl-icon-author">
-                                                                                            <noscript>
-                                                                                                <img decoding="async" src="https://secure.gravatar.com/avatar/bfe80a8cfe3f34bf01b6448655880640?s=96&#038;d=mm&#038;r=g" alt="Hana Evans" />
-                                                                                            </noscript>
-                                                                                            <img class="lazyload" decoding="async" src='data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E' data-src="https://secure.gravatar.com/avatar/bfe80a8cfe3f34bf01b6448655880640?s=96&#038;d=mm&#038;r=g" alt="Hana Evans" />
-                                                                                        </div>
-                                                                                        <span>Hana Evans</span>
-                                                                                    </div>
-                                                                                    <div class="knsl-feature knsl-feature-date">
-                                                                                        <div class="knsl-icon-frame">
-                                                                                            <span class="img-svg img-svg-time"></span>
-                                                                                        </div>
-                                                                                        <span>October 20, 2021</span>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <a href="https://kinsley.bslthemes.com/blog/2021/10/20/the-ultimate-guide-to-traveling-when-you-have-no-money/" class="knsl-title">
-                                                                                    <h4 class="knsl-mb-20">The Ultimate Guide to Traveling When You Have No Money</h4>
-                                                                                </a>
-                                                                                <div class="knsl-text-light knsl-text-sm">
-                                                                                    <p>
-                                                                                        Image for cattle earth. May one Which life divide sea. Commodi soluta minima nemo,&#8230;
-                                                                                        <span class="knsl-el-more">
-                                                                                            <a href="https://kinsley.bslthemes.com/blog/2021/10/20/the-ultimate-guide-to-traveling-when-you-have-no-money/" class="knsl-btn">
-                                                                                                Read more<span class="screen-reader-text">Read more &nbsp;The Ultimate Guide to Traveling When You Have No Money</span>
-                                                                                            </a>
-                                                                                        </span>
-                                                                                    </p>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                </div>
-                                                                <div class="col-md-6 col-lg-4">
-
-                                                                    <div class="knsl-blog-card knsl-scroll-animation">
-                                                                        <div id="post-259" class="post-259 post type-post status-publish format-standard has-post-thumbnail hentry category-places tag-places tag-sea tag-travel">
-                                                                            <div class="knsl-cover-frame">
-                                                                                <a href="https://kinsley.bslthemes.com/blog/2021/10/20/18-easy-steps-for-planning-your-next-trip/">
-                                                                                    <noscript>
-                                                                                        <img decoding="async" src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/blog-1-950x713.jpg" alt="18 Easy Steps for Planning Your Next Trip" />
-                                                                                    </noscript>
-                                                                                    <img class="lazyload" decoding="async" src='data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E' data-src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/blog-1-950x713.jpg" alt="18 Easy Steps for Planning Your Next Trip" />
-                                                                                </a>
-                                                                                <div class="knsl-badge">Places</div>
-                                                                            </div>
-                                                                            <div class="knsl-description-frame">
-                                                                                <div class="knsl-room-features">
-                                                                                    <div class="knsl-feature knsl-feature-author">
-                                                                                        <div class="knsl-icon-frame knsl-icon-author">
-                                                                                            <noscript>
-                                                                                                <img decoding="async" src="https://secure.gravatar.com/avatar/bfe80a8cfe3f34bf01b6448655880640?s=96&#038;d=mm&#038;r=g" alt="Hana Evans" />
-                                                                                            </noscript>
-                                                                                            <img class="lazyload" decoding="async" src='data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E' data-src="https://secure.gravatar.com/avatar/bfe80a8cfe3f34bf01b6448655880640?s=96&#038;d=mm&#038;r=g" alt="Hana Evans" />
-                                                                                        </div>
-                                                                                        <span>Hana Evans</span>
-                                                                                    </div>
-                                                                                    <div class="knsl-feature knsl-feature-date">
-                                                                                        <div class="knsl-icon-frame">
-                                                                                            <span class="img-svg img-svg-time"></span>
-                                                                                        </div>
-                                                                                        <span>October 20, 2021</span>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <a href="https://kinsley.bslthemes.com/blog/2021/10/20/18-easy-steps-for-planning-your-next-trip/" class="knsl-title">
-                                                                                    <h4 class="knsl-mb-20">18 Easy Steps for Planning Your Next Trip</h4>
-                                                                                </a>
-                                                                                <div class="knsl-text-light knsl-text-sm">
-                                                                                    <p>
-                                                                                        Image for cattle earth. May one Which life divide sea. Commodi soluta minima nemo,&#8230;
-                                                                                        <span class="knsl-el-more">
-                                                                                            <a href="https://kinsley.bslthemes.com/blog/2021/10/20/18-easy-steps-for-planning-your-next-trip/" class="knsl-btn">
-                                                                                                Read more<span class="screen-reader-text">Read more &nbsp;18 Easy Steps for Planning Your Next Trip</span>
-                                                                                            </a>
-                                                                                        </span>
-                                                                                    </p>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                </div>
-
+                                                            </div>
+                                                            ))}
+                                                                
+                                                                {/* End of Blog #1 */}
+                                                           
+                                                                
                                                                 <div class="knsl-pagination"></div>
 
                                                             </div>
@@ -417,12 +199,12 @@ export default function BlogList() {
                                                                                 <div class="knsl-blog-card knsl-scroll-animation">
                                                                                     <div class="post-259 post type-post status-publish format-standard has-post-thumbnail hentry category-places tag-places tag-sea tag-travel">
                                                                                         <div class="knsl-cover-frame">
-                                                                                            <a href="https://kinsley.bslthemes.com/blog/2021/10/20/18-easy-steps-for-planning-your-next-trip/">
+                                                                                            {/* <a href="https://kinsley.bslthemes.com/blog/2021/10/20/18-easy-steps-for-planning-your-next-trip/">
                                                                                                 <noscript>
                                                                                                     <img decoding="async" src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/blog-1-950x713.jpg" alt="18 Easy Steps for Planning Your Next Trip" />
                                                                                                 </noscript>
                                                                                                 <img class="lazyload" decoding="async" src='data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E' data-src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/blog-1-950x713.jpg" alt="18 Easy Steps for Planning Your Next Trip" />
-                                                                                            </a>
+                                                                                            </a> */}
                                                                                             <div class="knsl-badge">Places</div>
                                                                                         </div>
                                                                                         <div class="knsl-description-frame">
@@ -443,16 +225,16 @@ export default function BlogList() {
                                                                                                     <span>October 20, 2021</span>
                                                                                                 </div>
                                                                                             </div>
-                                                                                            <a href="https://kinsley.bslthemes.com/blog/2021/10/20/18-easy-steps-for-planning-your-next-trip/" class="knsl-title">
+                                                                                            {/* <a href="https://kinsley.bslthemes.com/blog/2021/10/20/18-easy-steps-for-planning-your-next-trip/" class="knsl-title">
                                                                                                 <h4 class="knsl-mb-20">18 Easy Steps for Planning Your Next Trip</h4>
-                                                                                            </a>
+                                                                                            </a> */}
                                                                                             <div class="knsl-text-light knsl-text-sm">
                                                                                                 <p>
                                                                                                     Image for cattle earth. May one Which life divide sea. Commodi soluta minima nemo, earum et minus iste amet molestias &#8230;
                                                                                                     <span class="knsl-el-more">
-                                                                                                        <a href="https://kinsley.bslthemes.com/blog/2021/10/20/18-easy-steps-for-planning-your-next-trip/" class="knsl-btn">
+                                                                                                        {/* <a href="https://kinsley.bslthemes.com/blog/2021/10/20/18-easy-steps-for-planning-your-next-trip/" class="knsl-btn">
                                                                                                             Read more<span class="screen-reader-text">Read more &nbsp;18 Easy Steps for Planning Your Next Trip</span>
-                                                                                                        </a>
+                                                                                                        </a> */}
                                                                                                     </span>
                                                                                                 </p>
                                                                                             </div>
@@ -466,12 +248,12 @@ export default function BlogList() {
                                                                                 <div class="knsl-blog-card knsl-scroll-animation">
                                                                                     <div class="post-270 post type-post status-publish format-standard has-post-thumbnail hentry category-travel tag-places tag-sea tag-travel">
                                                                                         <div class="knsl-cover-frame">
-                                                                                            <a href="https://kinsley.bslthemes.com/blog/2021/10/20/the-best-travel-insurance-companies-for-seniors/">
+                                                                                            {/* <a href="https://kinsley.bslthemes.com/blog/2021/10/20/the-best-travel-insurance-companies-for-seniors/">
                                                                                                 <noscript>
                                                                                                     <img decoding="async" src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/blog-3-950x634.jpg" alt="The Best Travel Insurance Companies for Seniors" />
                                                                                                 </noscript>
                                                                                                 <img class="lazyload" decoding="async" src='data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E' data-src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/blog-3-950x634.jpg" alt="The Best Travel Insurance Companies for Seniors" />
-                                                                                            </a>
+                                                                                            </a> */}
                                                                                             <div class="knsl-badge">Travel</div>
                                                                                         </div>
                                                                                         <div class="knsl-description-frame">
@@ -492,16 +274,16 @@ export default function BlogList() {
                                                                                                     <span>October 20, 2021</span>
                                                                                                 </div>
                                                                                             </div>
-                                                                                            <a href="https://kinsley.bslthemes.com/blog/2021/10/20/the-best-travel-insurance-companies-for-seniors/" class="knsl-title">
+                                                                                            {/* <a href="https://kinsley.bslthemes.com/blog/2021/10/20/the-best-travel-insurance-companies-for-seniors/" class="knsl-title">
                                                                                                 <h4 class="knsl-mb-20">The Best Travel Insurance Companies for Seniors</h4>
-                                                                                            </a>
+                                                                                            </a> */}
                                                                                             <div class="knsl-text-light knsl-text-sm">
                                                                                                 <p>
                                                                                                     Image for cattle earth. May one Which life divide sea. Commodi soluta minima nemo, earum et minus iste amet molestias &#8230;
                                                                                                     <span class="knsl-el-more">
-                                                                                                        <a href="https://kinsley.bslthemes.com/blog/2021/10/20/the-best-travel-insurance-companies-for-seniors/" class="knsl-btn">
+                                                                                                        {/* <a href="https://kinsley.bslthemes.com/blog/2021/10/20/the-best-travel-insurance-companies-for-seniors/" class="knsl-btn">
                                                                                                             Read more<span class="screen-reader-text">Read more &nbsp;The Best Travel Insurance Companies for Seniors</span>
-                                                                                                        </a>
+                                                                                                        </a> */}
                                                                                                     </span>
                                                                                                 </p>
                                                                                             </div>
@@ -541,16 +323,16 @@ export default function BlogList() {
                                                                                                     <span>October 20, 2021</span>
                                                                                                 </div>
                                                                                             </div>
-                                                                                            <a href="https://kinsley.bslthemes.com/blog/2021/10/20/the-ultimate-guide-to-traveling-when-you-have-no-money/" class="knsl-title">
+                                                                                            {/* <a href="https://kinsley.bslthemes.com/blog/2021/10/20/the-ultimate-guide-to-traveling-when-you-have-no-money/" class="knsl-title">
                                                                                                 <h4 class="knsl-mb-20">The Ultimate Guide to Traveling When You Have No Money</h4>
-                                                                                            </a>
+                                                                                            </a> */}
                                                                                             <div class="knsl-text-light knsl-text-sm">
                                                                                                 <p>
                                                                                                     Image for cattle earth. May one Which life divide sea. Commodi soluta minima nemo, earum et minus iste amet molestias &#8230;
                                                                                                     <span class="knsl-el-more">
-                                                                                                        <a href="https://kinsley.bslthemes.com/blog/2021/10/20/the-ultimate-guide-to-traveling-when-you-have-no-money/" class="knsl-btn">
+                                                                                                        {/* <a href="https://kinsley.bslthemes.com/blog/2021/10/20/the-ultimate-guide-to-traveling-when-you-have-no-money/" class="knsl-btn">
                                                                                                             Read more<span class="screen-reader-text">Read more &nbsp;The Ultimate Guide to Traveling When You Have No Money</span>
-                                                                                                        </a>
+                                                                                                        </a> */}
                                                                                                     </span>
                                                                                                 </p>
                                                                                             </div>

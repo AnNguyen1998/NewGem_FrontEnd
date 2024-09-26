@@ -1,7 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ScrollButton from '../ScrollButton/ScrollButton'
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchBlogDetail } from '../../redux/blogSlice';
+import { useParams } from 'react-router-dom';
+
 
 export default function BlogDetail() {
+    const {id} = useParams();
+    const dispatch = useDispatch();
+
+    const { items, BlogList, status, errors, message, totalPage } = useSelector(
+        (state) => state.blog
+      );
+      useEffect(() => {
+        dispatch(fetchBlogDetail(id));
+    }, [dispatch, id]);
+    console.log(id)
+
+    console.log(items)
+
   return (
     <div>
         <div class="knsl-app">
@@ -20,7 +37,7 @@ export default function BlogDetail() {
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="knsl-center knsl-title-frame">
-                                    <h1 class="knsl-mb-20 knsl-h1-inner">The Ultimate Guide to Traveling When You Have No Money</h1>
+                                    <h1 class="knsl-mb-20 knsl-h1-inner">{items && items.title}</h1>
                                     <ul class="knsl-breadcrumbs">
                                         <li>
                                             <a href="https://kinsley.bslthemes.com" title="Kinsley - Hotel &amp; Resort WordPress Theme">Home</a>
@@ -42,16 +59,16 @@ export default function BlogDetail() {
                         <div class="row justify-content-center">
                             <div class="col-lg-8">
                                 <noscript>
-                                    <img src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/blog-2-1.jpg" alt="The Ultimate Guide to Traveling When You Have No Money" class="knsl-default-img knsl-mb-30"/>
+                                    <img src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3.jpg" alt="The Ultimate Guide to Traveling When You Have No Money" class="knsl-default-img knsl-mb-30"/>
                                 </noscript>
-                                <img src='data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E' data-src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/blog-2-1.jpg" alt="The Ultimate Guide to Traveling When You Have No Money" class="lazyload knsl-default-img knsl-mb-30"/>
+                                <img src='https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3.jpg' data-src="https://kinsley.bslthemes.com/wp-content/uploads/2021/10/blog-2-1.jpg" alt="The Ultimate Guide to Traveling When You Have No Money" class="lazyload knsl-default-img knsl-mb-30"/>
                                 <div class="knsl-room-features-lg knsl-mb-30">
                                     <div class="knsl-feature">
                                         <div class="knsl-icon-frame knsl-icon-author">
                                             <noscript>
-                                                <img src="https://secure.gravatar.com/avatar/bfe80a8cfe3f34bf01b6448655880640?s=96&#038;d=mm&#038;r=g" alt="author"/>
+                                                <img src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3.jpg" alt="author"/>
                                             </noscript>
-                                            <img class="lazyload" src='data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20210%20140%22%3E%3C/svg%3E' data-src="https://secure.gravatar.com/avatar/bfe80a8cfe3f34bf01b6448655880640?s=96&#038;d=mm&#038;r=g" alt="author"/>
+                                            <img class="lazyload" src='https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3.jpg' data-src="https://secure.gravatar.com/avatar/bfe80a8cfe3f34bf01b6448655880640?s=96&#038;d=mm&#038;r=g" alt="author"/>
                                         </div>
                                         <span>Hana Evans</span>
                                     </div>
@@ -59,44 +76,15 @@ export default function BlogDetail() {
                                         <div class="knsl-icon-frame">
                                             <span class="img-svg img-svg-time"></span>
                                         </div>
-                                        <span>December 21, 2021</span>
+                                        <span>{items && items.createdAt.substring(0, 10)}</span>
                                     </div>
                                 </div>
                                 <div class="knsl-blog-post knsl-mb-60">
                                     <div id="post-1181" class="post-1181 post type-post status-publish format-standard has-post-thumbnail hentry category-travel tag-guide tag-places tag-travel tag-trip">
                                         <div class="single-post-text">
-                                            <p>Image for cattle earth. May one Which life divide sea. Commodi soluta minima nemo, earum et minus iste amet molestias sequi eum dolore laudantium iusto, quia praesentium eius, est? Eligendi unde, ab cumque iure fugit, veritatis dolor fugiat ad ex! Vero qui et dignissimos necessitatibus, praesentium magni, accusamus vel doloribus dolores assumenda. Laboriosam fugiat labore error perferendis doloribus, illo qui quisquam alias saepe, sunt magni! Praesentium molestias facere, dolores sint obcaecati nisi ducimus quaerat sunt. Ratione maiores repellendus facere optio harum soluta, obcaecati et ipsam eos. Doloribus, fugiat.</p>
                                             <blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
-                                                <p>Image for cattle earth. May one Which life divide sea. Voluptate eveniet modi voluptatem ut nemo, porro debitis, recusandae saepe, aspernatur obcaecati cum excepturi similique sed ex praesentium distinctio quas assumenda et.</p>
+                                                <p>{items && items.content}</p>
                                             </blockquote>
-                                            <p>Image for cattle earth. May one Which life divide sea. Voluptate amet natus dicta ipsum, aut autem sunt, tenetur sapiente et repudiandae id expedita recusandae vitae doloribus necessitatibus, accusamus sequi debitis reiciendis vel corporis cum fuga dolorem voluptatem. Dolores maxime, architecto quia?</p>
-                                            <p>Image for cattle earth. May one Which life divide sea. Mollitia provident, distinctio ea!</p>
-                                            <figure class="wp-block-gallery columns-2 is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex">
-                                                <ul class="blocks-gallery-grid">
-                                                    <li class="blocks-gallery-item">
-                                                        <figure>
-                                                            <a href="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-4.jpg">
-                                                                <noscript>
-                                                                    <img decoding="async" width="1200" height="927" src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-4.jpg" alt="" data-id="175" class="wp-image-175" srcset="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-4.jpg 1200w, https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-4-300x232.jpg 300w, https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-4-1024x791.jpg 1024w, https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-4-768x593.jpg 768w, https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-4-950x734.jpg 950w, https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-4-800x618.jpg 800w" sizes="(max-width: 1200px) 100vw, 1200px"/>
-                                                                </noscript>
-                                                                <img decoding="async" width="1200" height="927" src='data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201200%20927%22%3E%3C/svg%3E' data-src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-4.jpg" alt="" data-id="175" class="lazyload wp-image-175" data-srcset="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-4.jpg 1200w, https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-4-300x232.jpg 300w, https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-4-1024x791.jpg 1024w, https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-4-768x593.jpg 768w, https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-4-950x734.jpg 950w, https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-4-800x618.jpg 800w" data-sizes="(max-width: 1200px) 100vw, 1200px"/>
-                                                            </a>
-                                                        </figure>
-                                                    </li>
-                                                    <li class="blocks-gallery-item">
-                                                        <figure>
-                                                            <a href="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3.jpg">
-                                                                <noscript>
-                                                                    <img decoding="async" width="1200" height="800" src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3.jpg" alt="" data-id="174" class="wp-image-174" srcset="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3.jpg 1200w, https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3-300x200.jpg 300w, https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3-1024x683.jpg 1024w, https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3-768x512.jpg 768w, https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3-950x633.jpg 950w, https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3-800x533.jpg 800w" sizes="(max-width: 1200px) 100vw, 1200px"/>
-                                                                </noscript>
-                                                                <img decoding="async" width="1200" height="800" src='data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201200%20800%22%3E%3C/svg%3E' data-src="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3.jpg" alt="" data-id="174" class="lazyload wp-image-174" data-srcset="https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3.jpg 1200w, https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3-300x200.jpg 300w, https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3-1024x683.jpg 1024w, https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3-768x512.jpg 768w, https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3-950x633.jpg 950w, https://kinsley.bslthemes.com/wp-content/uploads/2021/09/about-3-800x533.jpg 800w" data-sizes="(max-width: 1200px) 100vw, 1200px"/>
-                                                            </a>
-                                                        </figure>
-                                                    </li>
-                                                </ul>
-                                            </figure>
-                                            <p>Consectetur adipisicing elit. Modi temporibus ratione rerum voluptates, iusto non quas, ab optio sequi sint nisi officiis facilis nihil facere id tempore laborum, voluptatum aut nostrum natus vel tenetur praesentium labore illum, reprehenderit. Omnis sunt autem, odit vero. Facilis accusamus totam quidem, repudiandae. Modi saepe, expedita itaque laborum dolore accusantium?</p>
-                                            <p>Image for cattle earth. May one Which life divide sea. Omnis quisquam nam consectetur voluptate fuga facere ad quis magni laboriosam blanditiis!</p>
                                         </div>
                                         <div class="post-text-bottom">
                                             <span class="cat-links">
