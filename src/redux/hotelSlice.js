@@ -4,6 +4,7 @@ import axiosInstance from "../utils/axiosInstance";
 
 const initialState = {
     items: null,
+    hotel: null,
     totalPage: 0,
     status: "start",
     errors: null,
@@ -55,7 +56,7 @@ export const hotelSlice = createSlice({
             
         })
         .addCase(fetchItemById.fulfilled,(state, action)=>{
-            state.items = action.payload.data
+            state.hotel = action.payload.data
             state.status = action.payload.status
         })
     }
