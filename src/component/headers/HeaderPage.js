@@ -6,8 +6,6 @@ export default function HeaderPage() {
     const [accessToken, setAccessToken] = useState(null)
 
     const role = localStorage.getItem("role")
-    console.log(role == "ROLE_ADMIN")
-
 
     useEffect(() => {
         setAccessToken(localStorage.getItem('accessToken'))
@@ -48,64 +46,20 @@ export default function HeaderPage() {
                                                     <ul id="menu-main-menu" class="top-menu-nav-inner">
                                                         <li id="menu-item-1111"
                                                         >
-                                                            <Link to="/home">Home</Link><i></i>
+                                                            <Link to="/home">Home</Link>
                                                         </li>
                                                         <li id="menu-item-781"
                                                             class=" menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
-                                                            <a href="#">Hotel</a><i></i>
+                                                            <Link to="/hotels">Hotels</Link>
                                                         </li>
                                                         <li id="menu-item-1150"
                                                             class=" menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
-                                                            <a
-                                                                href="#">Rooms</a><i></i>
-                                                            <ul class="sub-menu">
-                                                                <li id="menu-item-1151"
-                                                                    class=" menu-item menu-item-type-post_type menu-item-object-page">
-                                                                    <a href="#">Rooms
-                                                                        List #1</a></li>
-                                                                <li id="menu-item-1368"
-                                                                    class=" menu-item menu-item-type-post_type menu-item-object-page">
-                                                                    <a
-                                                                        href="#">Rooms
-                                                                        List #2</a></li>
-                                                                <li id="menu-item-7046"
-                                                                    class=" menu-item menu-item-type-post_type menu-item-object-page">
-                                                                    <a href="#">Rooms
-                                                                        List #3</a></li>
-                                                                <li id="menu-item-7045"
-                                                                    class=" menu-item menu-item-type-post_type menu-item-object-page">
-                                                                    <a href="#">Rooms
-                                                                        List #4</a></li>
-                                                                <li id="menu-item-7044"
-                                                                    class=" menu-item menu-item-type-post_type menu-item-object-page">
-                                                                    <a href="#">Rooms
-                                                                        List #5</a></li>
-                                                                <li id="menu-item-1369"
-                                                                    class=" menu-item menu-item-type-post_type menu-item-object-mphb_room_type">
-                                                                    <a
-                                                                        href="#">Room
-                                                                        Details #1</a></li>
-                                                                <li id="menu-item-1589"
-                                                                    class=" menu-item menu-item-type-post_type menu-item-object-mphb_room_type">
-                                                                    <a
-                                                                        href="#">Room
-                                                                        Details #2</a></li>
-                                                                <li id="menu-item-1621"
-                                                                    class=" menu-item menu-item-type-post_type menu-item-object-page">
-                                                                    <a
-                                                                        href="#">Search
-                                                                        Availability</a></li>
-                                                                <li id="menu-item-2781"
-                                                                    class=" menu-item menu-item-type-post_type menu-item-object-page">
-                                                                    <a
-                                                                        href="#">Booking
-                                                                        Account</a></li>
-                                                            </ul>
+                                                            <Link
+                                                                to="/rooms">Rooms</Link>
                                                         </li>
-
                                                         <li id="menu-item-783"
                                                             class=" menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
-                                                            <a href="#">Blog</a><i></i>
+                                                            <a href="#">Blog</a>
                                                             <ul class="sub-menu">
                                                                 <li id="menu-item-1109"
                                                                     class=" menu-item menu-item-type-post_type menu-item-object-page">

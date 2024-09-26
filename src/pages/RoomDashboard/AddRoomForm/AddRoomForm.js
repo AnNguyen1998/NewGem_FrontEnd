@@ -7,6 +7,7 @@ import { createRoom } from "../../../redux/roomSlice";
 function AddRoomForm({ hotelId, hotelName }) {
     const dispatch = useDispatch()
 
+
     const [newRoom, setNewRoom] = useState({
         roomNumber: '',
         price: '',
@@ -18,6 +19,7 @@ function AddRoomForm({ hotelId, hotelName }) {
         const { name, value } = e.target;
         setNewRoom((prev) => ({ ...prev, hotelId: hotelId, [name]: value }));
     };
+
 
     const handleSubmit = (e) => {
         e.preventDefault();

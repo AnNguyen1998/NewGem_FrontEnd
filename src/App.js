@@ -9,6 +9,8 @@ import PageBlogList from './pages/BloglistPage/PageBlogList';
 import BlogDetailPage from './pages/BlogDetailPage/BlogDetailPage';
 import Dashboard from './component/Dashboard/Dashboard';
 import RommDashboard from './pages/RoomDashboard/RoomDashboard';
+import Rooms from './pages/Rooms/Rooms';
+import Hotels from './pages/Hotels/Hotels';
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
           <Route path='/forgetpassword' element={<ResetPassword/>}></Route>
           <Route path='/dashboard' element={<Dashboard/>}></Route>
           <Route path='/room' element={<RommDashboard/>}></Route>
+          <Route path='/rooms' element={<Rooms/>}></Route>
+          <Route path='/hotels' element={<Hotels/>}></Route>
           <Route path='/bloglist' element={<PageBlogList/>}></Route>
           <Route path='/readblog' element={<BlogDetailPage/>}></Route>
         </Routes>
