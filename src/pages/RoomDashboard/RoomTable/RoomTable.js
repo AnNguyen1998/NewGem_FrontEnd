@@ -31,16 +31,19 @@ function RoomTable({ hotelId, hotelName }) {
     }
 
     useEffect(() => {
+        dispatch(removeMessageError())
         dispatch(getAllRoomsByHotelId({ page: currentPage, hotelId: hotelId }))
     }, [dispatch, hotelId, currentPage])
 
 
 
     useEffect(()=>{
-        if (status !== 200){
-            showToast(errors || message ,ToastTypes.ERROR)
+        if (status == 200 || status == 201){
+            showToast(message,ToastTypes.SUCCESS)
+        } else if (status == null){
+        } else {
+            showToast(message || errors, ToastTypes.ERROR)
         }
-        dispatch(removeMessageError())
     },[status])
 
     return <>

@@ -1,13 +1,14 @@
 import { Input, Form, FormGroup, Label, Button, Row, Col } from "reactstrap";
-import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { createRoom } from "../../../redux/roomSlice";
-
+import { useState, useEffect, useContext } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { createRoom, removeMessageError } from "../../../redux/roomSlice";
+import { ToastContext, ToastTypes } from "../../../utils/ToastContext";
 
 function AddRoomForm({ hotelId, hotelName }) {
     const dispatch = useDispatch()
+    const { showToast } = useContext(ToastContext)
 
-
+    const { status, errors, message } = useSelector(state => state.room);
     const [newRoom, setNewRoom] = useState({
         roomNumber: '',
         price: '',
@@ -23,8 +24,9 @@ function AddRoomForm({ hotelId, hotelName }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        dispatch(removeMessageError())
         dispatch(createRoom(newRoom))
-        window.location.reload()
+        // window.location.reload()
     };
 
 

@@ -30,8 +30,14 @@ export default function RommDashboard() {
         dispatch(totalHotel("1"))
     },[])
 
-
-
+    useEffect(()=>{
+        if (status == 200 || status == 201){
+            showToast(message ,ToastTypes.SUCCESS)
+        } else if (status == null){
+        } else {
+            showToast(message || errors, ToastTypes.ERROR)
+        }
+    },[status])
 
 
     const noHotel = useMemo(()=>{
