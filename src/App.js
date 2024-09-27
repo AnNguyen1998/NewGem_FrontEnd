@@ -35,6 +35,7 @@ function App() {
             <Route path='/readblog/:id' element={<BlogDetailPage />}></Route>
             <Route path='/blogdashboard' element={<BlogDashboard />}></Route>
             <Route path='/room' element={<RommDashboard />}></Route>
+            <Route path='/room/:id' element={<RommDashboard />}></Route>
             <Route path='/rooms' element={<Rooms />}></Route>
             <Route path='/hotels' element={<Hotels />}></Route>
             <Route path='/bloglist' element={<PageBlogList />}></Route>

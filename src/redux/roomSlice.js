@@ -54,7 +54,7 @@ export const getAllRoomsByHotelId = createAsyncThunk(
         try {
             const response = await axios.get(`${baseURL}/room/allRoom/${hotelId}`, {
                 params: {
-                    page,
+                    page: page,
                     size: 5,
                 },
             });
@@ -144,12 +144,10 @@ export const roomSlice = createSlice({
                 state.totalPage = action.payload.data.totalPage;
                 state.status = action.payload.status
                 state.message = action.payload.message
-                console.log("fullfil", action)
             })
             .addCase(getAllRoomsByHotelId.rejected, (state, action) => {
                 state.errors = action.payload.message;
                 state.status = action.payload.status;
-                console.log("rejected", action.payload.status)
             })
             .addCase(createRoom.fulfilled, (state,action) => {
                 state.message = action.payload.message;
