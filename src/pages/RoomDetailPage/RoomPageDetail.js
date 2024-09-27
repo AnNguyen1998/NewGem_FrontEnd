@@ -294,7 +294,7 @@ export default function RoomPageDetail() {
                                                                                         </Col>
                                                                                         </Row>
                                                                                         <p class="mphb_sc_search-submit-button-wrapper">
-                                                                                        <input class="mphb-reserve-btn button" style={{textAlign:'center'}} value="BOOK NOW"/>
+                                                                                        <input type='submit' class="mphb-reserve-btn button" style={{textAlign:'center'}} value="BOOK NOW"/>
                                                                                         </p>
                                                                                     </form>
 

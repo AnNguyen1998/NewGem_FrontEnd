@@ -1,33 +1,59 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { fetchItemById } from '../../redux/hotelSlice';
+import React, { useEffect, useState, useContext, useLayoutEffect, useMemo } from 'react';
+import { fetchItemById, removeMessageError, totalHotel } from '../../redux/hotelSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { Input } from 'reactstrap';
 import RoomTable from './RoomTable/RoomTable';
 import FooterDashboard from './FooterDashboard/FooterDashboard';
 import CollapseNavBar from './CollapseNavBar/CollapseNavBar';
 import BreakCrumbDashBoard from './BreadCrumbDashboard/BreadCrumbDashboard';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { ToastContext, ToastTypes } from '../../utils/ToastContext';
 
 
 export default function RommDashboard() {
+    const { id } = useParams()
     const role = localStorage.getItem("role");
     const navigate = useNavigate();
     
     const { showToast } = useContext(ToastContext);
 
 
-    // if (role !== "ROLE_ADMIN") {
-    //     navigate("/");
-    // }
+    if (role !== "ROLE_ADMIN") {
+        navigate("/");
+    }
 
-    const [hotelId, setHotelId] = useState(1);
+    const [hotelId, setHotelId] = useState(id || 1);
     const dispatch = useDispatch();
-    const { hotel, status, errors, message } = useSelector(state => state.hotel);
+    const { hotel, status, errors, message, total } = useSelector(state => state.hotel);
+
+    useEffect(()=>{
+        dispatch(totalHotel("1"))
+    },[])
+
+    useEffect(()=>{
+        if (status == 200 || status == 201){
+            showToast(message ,ToastTypes.SUCCESS)
+        } else if (status == null){
+        } else {
+            showToast(message || errors, ToastTypes.ERROR)
+        }
+    },[status])
+
+
+    const noHotel = useMemo(()=>{
+        let arr = []
+        for (let i = 1; i <= total; i++){
+            arr.push(i)
+        }
+        return arr
+    },[total])
+
 
     useEffect(() => {
+        dispatch(removeMessageError())
         dispatch(fetchItemById(hotelId));
     }, [dispatch, hotelId]);
+
 
     const handleHotel = (event) => {
         setHotelId(event.target.value);
@@ -70,9 +96,11 @@ export default function RommDashboard() {
                                         type="select"
                                         onChange={handleHotel}
                                         style={{ textAlign: 'center' }}
+                                        value={hotelId}
                                     >
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
+                                        {noHotel && noHotel.map((item, index) =>{
+                                            return <option value={item} key={index}>{item}</option>
+                                        })}
                                     </Input>
                                 </div>
                             </div>

@@ -2,8 +2,10 @@ import RoomCard from "../../pages/Rooms/RoomCard"
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { searchRooms } from "../../redux/roomSlice";
+import { Input } from "reactstrap";
 
-function RoomSection(){
+
+function RoomSection({hotelId}){
     const dispatch = useDispatch();
     const [updateItem, setUpdateItem] = useState(null);
     const { items, status, errors, message, totalPage } = useSelector(state => state.room);
@@ -30,18 +32,17 @@ function RoomSection(){
 
     useEffect(() => {
         dispatch(searchRooms({
+            hotelId: hotelId,
             type: activeFilter,
             page: currentPage,
             max: priceRange.max,
         }));
     }, [dispatch, currentPage, activeFilter]);
 
-    
-
     return <>
-        {items && items?.map((room,index)=>(
-            <RoomCard room={room} />
-        ))}
+        {items && items?.map((room,index)=>{
+            return <RoomCard room={room} key={index}/>
+        })}
     </>
 }
 
