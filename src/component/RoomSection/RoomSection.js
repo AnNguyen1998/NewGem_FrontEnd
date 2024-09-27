@@ -10,6 +10,7 @@ function RoomSection(){
 
     const [activeFilter, setActiveFilter] = useState(null);
     const [priceRange, setPriceRange] = useState({ min: null, max: null });
+    const [currentPage, setCurrentPage] = useState(0);
 
     const filters = [
         { label: 'All Rooms', value: null },
@@ -35,7 +36,7 @@ function RoomSection(){
         }));
     }, [dispatch, currentPage, activeFilter]);
 
-    const [currentPage, setCurrentPage] = useState(0);
+    
 
     return <>
         {items && items?.map((room,index)=>(

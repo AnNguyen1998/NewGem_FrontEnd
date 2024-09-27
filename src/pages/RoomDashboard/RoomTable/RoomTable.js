@@ -5,11 +5,14 @@ import { useState, useEffect } from "react";
 import { changeRoomStatus, getAllRoomsByHotelId } from "../../../redux/roomSlice";
 import AddRoomForm from "../AddRoomForm/AddRoomForm";
 import UpdateRoomForm from "../UpdateRoomForm/UpdateRoomForm";
+import { useContext  } from "react";
+import { ToastContext, ToastTypes } from "../../../utils/ToastContext";
 
 function RoomTable({ hotelId, hotelName }) {
     const dispatch = useDispatch()
     const [updateItem,setUpdatItem] = useState(null)
     const { items, status, errors, message, totalPage } = useSelector(state => state.room);
+    const { showToast } = useContext(ToastContext)
 
     const [currentPage, setCurrentPage] = useState(0);
 
@@ -30,7 +33,11 @@ function RoomTable({ hotelId, hotelName }) {
         dispatch(getAllRoomsByHotelId({ page: currentPage, hotelId: hotelId }))
     }, [dispatch, hotelId, currentPage])
 
-    
+
+
+    if (status == 404){
+        showToast(errors || message ,ToastTypes.ERROR)
+    }
 
     return <>
         <div class="row mb-4" id='show-hotel'>

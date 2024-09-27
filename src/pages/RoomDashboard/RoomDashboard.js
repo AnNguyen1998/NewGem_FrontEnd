@@ -1,81 +1,78 @@
-import React, { useEffect, useState } from 'react'
-import { fetchItemById } from '../../redux/hotelSlice'
-import { useDispatch, useSelector } from 'react-redux'
-import { Button, Col, Form, FormGroup, Input, Label, Row } from 'reactstrap'
-import RoomTable from './RoomTable/RoomTable'
-import FooterDashboard from './FooterDashboard/FooterDashboard'
-import CollapseNavBar from './CollapseNavBar/CollapseNavBar'
-import BreakCrumbDashBoard from './BreadCrumbDashboard/BreadCrumbDashboard'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState, useContext } from 'react';
+import { fetchItemById } from '../../redux/hotelSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { Input } from 'reactstrap';
+import RoomTable from './RoomTable/RoomTable';
+import FooterDashboard from './FooterDashboard/FooterDashboard';
+import CollapseNavBar from './CollapseNavBar/CollapseNavBar';
+import BreakCrumbDashBoard from './BreadCrumbDashboard/BreadCrumbDashboard';
+import { Link, useNavigate } from 'react-router-dom';
+import { ToastContext, ToastTypes } from '../../utils/ToastContext';
 
 
 export default function RommDashboard() {
-    const [currentPage, setCurrentPage] = useState(0);
-    const [id1, setRoomId] = useState(null);
+    const role = localStorage.getItem("role");
+    const navigate = useNavigate();
+    
+    const { showToast } = useContext(ToastContext);
+
+
+    // if (role !== "ROLE_ADMIN") {
+    //     navigate("/");
+    // }
+
+    const [hotelId, setHotelId] = useState(1);
     const dispatch = useDispatch();
-    const [hotelId, setHotelId] = useState(1)
-
-    const { items, hotel, status, errors, message, totalPage } = useSelector(state => state.hotel)
-
+    const { hotel, status, errors, message } = useSelector(state => state.hotel);
 
     useEffect(() => {
-        dispatch(fetchItemById(hotelId))
-    }, [dispatch, hotelId])
-
-
+        dispatch(fetchItemById(hotelId));
+    }, [dispatch, hotelId]);
 
     const handleHotel = (event) => {
-        setHotelId(event.target.value)
-    }
-
-
+        setHotelId(event.target.value);
+    };
 
     return (
-        <div class="g-sidenav-show  bg-gray-200">
-            <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark" id="sidenav-main">
-                <div class="sidenav-header">
-                    <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-                    <Link class="navbar-brand m-0" to="/" target="_blank">
-                        <span class="ms-1 font-weight-bold text-white">Home</span>
+        <div className="g-sidenav-show bg-gray-200">
+            <aside className="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 bg-gradient-dark" id="sidenav-main">
+                <div className="sidenav-header">
+                    <Link className="navbar-brand m-0" to="/" target="_blank">
+                        <span className="ms-1 font-weight-bold text-white">Home</span>
                     </Link>
                 </div>
-                <hr class="horizontal light mt-0 mb-2" />
+                <hr className="horizontal light mt-0 mb-2" />
                 <CollapseNavBar />
-                <div class="sidenav-footer position-absolute w-100 bottom-0 ">
-                    <div class="mx-3">
-                    </div>
+                <div className="sidenav-footer position-absolute w-100 bottom-0">
+                    <div className="mx-3"></div>
                 </div>
             </aside>
-            <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+            <main className="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
                 <BreakCrumbDashBoard />
-                <div class="container-fluid py-4">
-                    <div class="row">
-                        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                            <div class="card">
-                                <div class="card-header p-3 pt-2">
-                                    <div class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
-                                        <i class="material-icons opacity-10">weekend</i>
+                <div className="container-fluid py-4">
+                    <div className="row">
+                        <div className="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                            <div className="card">
+                                <div className="card-header p-3 pt-2">
+                                    <div className="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
+                                        <i className="material-icons opacity-10">weekend</i>
                                     </div>
-                                    <div class="text-end pt-1">
-                                        <p class="text-sm mb-0 text-capitalize">Hotel</p>
-                                        <h4 class="mb-0">{hotel && hotel?.name}</h4>
+                                    <div className="text-end pt-1">
+                                        <p className="text-sm mb-0 text-capitalize">Hotel</p>
+                                        <h4 className="mb-0">{hotel?.name}</h4>
                                     </div>
                                 </div>
-                                <hr class="dark horizontal my-0" />
-                                <div class="card-footer p-3">
+                                <hr className="dark horizontal my-0" />
+                                <div className="card-footer p-3">
                                     <Input
                                         id="exampleSelect"
                                         name="select"
                                         type="select"
                                         onChange={handleHotel}
-                                        style={{ textAlign: 'center'}}
+                                        style={{ textAlign: 'center' }}
                                     >
-                                        <option value="1">
-                                            1
-                                        </option>
-                                        <option value="2">
-                                            2
-                                        </option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
                                     </Input>
                                 </div>
                             </div>
@@ -134,10 +131,10 @@ export default function RommDashboard() {
                     </div>
                     <div class="row mt-4">
                     </div>
-                    <RoomTable hotelId={hotelId} hotelName={hotel?.name}/>
+                    <RoomTable hotelId={hotelId} hotelName={hotel?.name} />
                     <FooterDashboard />
                 </div>
             </main>
         </div>
-    )
+    );
 }

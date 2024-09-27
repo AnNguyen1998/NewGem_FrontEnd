@@ -7,12 +7,21 @@ import "./scss/material-dashboard.scss"
 import { changeHotelStatus, fetchItemById, fetchItems } from '../../redux/hotelSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import ReactPaginate from 'react-paginate'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Button, Col, Form, FormGroup, Input, Label, Row } from 'reactstrap'
 import AddHotelForm from './AddHotelForm'
 import UpdateHotelForm from './UpdateHotelForm'
 
+
 export default function Dashboard() {
+  const role = localStorage.getItem("role")
+    const navigate = useNavigate()
+
+    if (role !== "ROLE_ADMIN"){
+        navigate("/")
+    }
+
+
   const [currentPage, setCurrentPage] = useState(0)
   const [id1, setId] = useState(0)
   const dispatch = useDispatch()

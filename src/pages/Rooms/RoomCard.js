@@ -55,7 +55,7 @@ const RoomCard = ({ room }) => {
                         </li>
                     </ul>
                     <p className="mphb-regular-price">
-                        <strong>Prices start at:</strong> <span className="mphb-price"><span className="mphb-currency">€ </span>{room.price} </span>
+                        <strong>Prices start at:</strong> <span className="mphb-price"><span className="mphb-currency">€</span>{room.price} </span>
                         <span className="mphb-price-period" title="Choose dates to see relevant prices">per night</span>
                     </p>
                     <div className="mphb-to-book-btn-wrapper">

@@ -201,6 +201,7 @@ export default function HotelDetailPage() {
                                             </div>
                                         </div>
                                     </section>
+                                    <RoomSection />
                                 </div>
                             </div>
                         </div>
@@ -208,7 +209,7 @@ export default function HotelDetailPage() {
                 </div>
                 <PageFooter />
             </body>
-            <RoomSection />
+            
         </div>
     )
 }
