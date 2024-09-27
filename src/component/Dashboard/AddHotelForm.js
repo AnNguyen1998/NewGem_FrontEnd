@@ -13,6 +13,8 @@ function AddHotelForm() {
         if (status !== 201){
             console.log(status + "aaa")
             showToast(errors || message ,ToastTypes.ERROR)
+        } else{
+            showToast(message, ToastTypes.SUCCESS)
         }
         dispatch(removeMessageError())
     },[status])

@@ -11,9 +11,11 @@ function UpdateHotelForm({ hotelId, updateItem }) {
     const {errors, status, message} = useSelector(state=>state.hotel)
     console.log("status: " + status)
     useEffect(()=>{
-        if (status !== 201){
+        if (status !== 200){
             console.log(status + "aaa")
             showToast(errors || message ,ToastTypes.ERROR)
+        }else{
+            showToast(message, ToastTypes.SUCCESS)
         }
         dispatch(removeMessageError())
     },[status])
