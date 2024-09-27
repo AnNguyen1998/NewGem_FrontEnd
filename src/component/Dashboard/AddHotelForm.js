@@ -1,11 +1,21 @@
 import { Input, Form, FormGroup, Label, Button, Row, Col } from "reactstrap";
-import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { createHotel } from "../../redux/hotelSlice";
-
+import { useState, useEffect, useContext } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { createHotel, removeMessageError } from "../../redux/hotelSlice";
+import { ToastContext, ToastTypes } from "../../utils/ToastContext";
 
 function AddHotelForm() {
     const dispatch = useDispatch()
+    const { showToast } = useContext(ToastContext)
+    const {errors, status, message} = useSelector(state=>state.hotel)
+    console.log("status: " + status)
+    useEffect(()=>{
+        if (status !== 201){
+            console.log(status + "aaa")
+            showToast(errors || message ,ToastTypes.ERROR)
+        }
+        dispatch(removeMessageError())
+    },[status])
 
     const [newHotel, setNewHotel] = useState({
         name: '',
@@ -21,7 +31,7 @@ function AddHotelForm() {
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(createHotel(newHotel))
-        window.location.reload()
+        //window.location.reload()
     };
 
 
