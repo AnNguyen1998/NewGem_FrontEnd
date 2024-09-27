@@ -52,16 +52,10 @@ export default function HomePage() {
                                                             <div class="container">
                                                                 <div class="knsl-main-title">
                                                                     <div class="knsl-white">
-                                                                        <h1 class="knsl-center knsl-main-title--h knsl-mb-10">
+                                                                        <h1 class="knsl-center knsl-main-title--h knsl-mb-10" style={{fontSize:"100px"}}>
                                                                             <span> Welcome to NewGem </span></h1>
-                                                                        <div class="knsl-main-title--d knsl-mb-30 knsl-center">
-                                                                            <span> Deleniti nostrum laboriosam praesentium quasi
-                                                                                quam voluptate. </span></div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="knsl-book-form knsl-book-form-2">
-                                                                    <div class="mphb_sc_search-wrapper ">
-                                                                        <Form />
+                                                                        <div class="knsl-main-title--d knsl-mb-30 knsl-center"  style={{fontSize:"30px"}}>
+                                                                            <span> All for you, we don't take anything  </span></div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="knsl-scroll-hint-frame">

@@ -4,6 +4,8 @@ import bgr from "../../images/login-bg-3.jpg"
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
 import { register } from '../../redux/userSlice';
+import logo from '../../images/NewGemLogo.png'
+import { Col, Row } from 'reactstrap';
 
 export default function Register() {
   const [information, setInformation] = useState({
@@ -37,11 +39,8 @@ export default function Register() {
                 <div class="col-md-6 d-flex flex-column">
                   <div class="row g-0 my-auto">
                     <div class="col-11 col-sm-10 col-lg-9 mx-auto text-center">
-                      <div class="logo mt-5 mb-3"> <Link to='/home' title="Oxyy"><img src="images/logo-lg-light.png" alt="Oxyy" /></Link> </div>
+                      <div class="logo mt-5 mb-3"> <Link to='/home' title="Oxyy"><img src={logo} alt="Oxyy" style={{width:'300px'}} /></Link> </div>
                       <h1 class="text-5 fw-400 text-white mb-5">We are glad to see you again!</h1>
-                      <p><img src="images/qr-code.jpg" class="shadow-lg" alt="qr code" /></p>
-                      <p class="text-white mb-0">Log In with QR Code</p>
-                      <p class="text-light text-2 mx-lg-5">Scan this with your camera or our mobile app to login instantly.</p>
                     </div>
                   </div>
                 </div>
@@ -56,6 +55,8 @@ export default function Register() {
                             handleRegister(event)
                           }}
                         >
+                          <Row>
+                            <Col>
                         <div class="mb-3">
                           <label class="form-label text-dark fw-600" for="first-name">First Name</label>
                           <input
@@ -64,24 +65,34 @@ export default function Register() {
                           onChange={(event) => setInformation({ ...information, firstName: event.target.value })}
                           />
                         </div>
+                        </Col>
+                        <Col>
                         <div class="mb-3">
                           <label class="form-label text-dark fw-600" for="last-name">Last Name</label>
                           <input type="text" class="form-control rounded-0" id="last-name" required placeholder="Last Name"
                           onChange={(event) => setInformation({ ...information, lastName: event.target.value })}
                           />
                         </div>
+                        </Col>
+                        </Row>
+                        <Row>
+                          <Col>
                         <div class="mb-3">
                           <label class="form-label text-dark fw-600" for="email">Email</label>
                           <input type="email" class="form-control rounded-0" id="email" required placeholder="Email"
                           onChange={(event) => setInformation({ ...information, email: event.target.value })}
                           />
                         </div>
+                        </Col>
+                        <Col>
                         <div class="mb-3">
                           <label class="form-label text-dark fw-600" for="phone">Phone</label>
                           <input type="text" class="form-control rounded-0" id="phone" required placeholder="Phone"
                           onChange={(event) => setInformation({ ...information, phone: event.target.value })}
                           />
                         </div>
+                        </Col>
+                        </Row>
                           <div class="mb-3">
                             <label class="form-label text-dark fw-600" for="username">Username</label>
                             <input type="text" class="form-control rounded-0" id="username" required placeholder="Username"
@@ -89,6 +100,8 @@ export default function Register() {
                             value={information.username}
                             />
                           </div>
+                          <Row>
+                            <Col>
                           <div class="mb-3">
                             <label class="form-label text-dark fw-600" for="password">Password</label>
                             <input type="password" class="form-control rounded-0" id="password" required placeholder="Password"
@@ -96,10 +109,14 @@ export default function Register() {
                             value={information.password}
                             />
                           </div>
+                          </Col>
+                          <Col>
                           <div class="mb-3">
                             <label class="form-label text-dark fw-600" for="confirm-password">Confirm Password</label>
                             <input type="password" class="form-control rounded-0" id="confirm-password" required placeholder="Confirm Password" />
                           </div>
+                          </Col>
+                          </Row>
                           <div class="row mt-4">
                             <div class="col">
                               <div class="form-check">
