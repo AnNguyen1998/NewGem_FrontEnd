@@ -11,6 +11,7 @@ import PageFooter from '../footerPage/PageFooter'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { fetchItemById } from '../../redux/hotelSlice'
+import RoomSection from '../../component/RoomSection/RoomSection'
 
 export default function HotelDetailPage() {
     const { id } = useParams();
@@ -21,7 +22,6 @@ export default function HotelDetailPage() {
         dispatch(fetchItemById(id))
     }, [id])
 
-    console.log(hotel)
     return (
         <div>
             <body class="mphb_room_type-template mphb_room_type-template-template-layout-builder mphb_room_type-template-template-layout-builder-php single single-mphb_room_type postid-17 theme-kinsley woocommerce-no-js elementor-default elementor-kit-5762 elementor-page elementor-page-17">
@@ -199,7 +199,9 @@ export default function HotelDetailPage() {
                                                 </div>
                                             </div>
                                         </div>
+                                        <RoomSection hotelId={id}/>
                                     </section>
+                                    <RoomSection />
                                 </div>
                             </div>
                         </div>

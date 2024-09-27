@@ -2,14 +2,17 @@ import { Button } from "reactstrap";
 import ReactPaginate from "react-paginate";
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
-import { changeRoomStatus, getAllRoomsByHotelId } from "../../../redux/roomSlice";
+import { changeRoomStatus, getAllRoomsByHotelId, removeMessageError } from "../../../redux/roomSlice";
 import AddRoomForm from "../AddRoomForm/AddRoomForm";
 import UpdateRoomForm from "../UpdateRoomForm/UpdateRoomForm";
+import { useContext  } from "react";
+import { ToastContext, ToastTypes } from "../../../utils/ToastContext";
 
 function RoomTable({ hotelId, hotelName }) {
     const dispatch = useDispatch()
     const [updateItem,setUpdatItem] = useState(null)
     const { items, status, errors, message, totalPage } = useSelector(state => state.room);
+    const { showToast } = useContext(ToastContext)
 
     const [currentPage, setCurrentPage] = useState(0);
 
@@ -22,6 +25,7 @@ function RoomTable({ hotelId, hotelName }) {
     };
 
     const handleDisable = (hotelId) => {
+        dispatch(removeMessageError())
         dispatch(changeRoomStatus(hotelId))
         window.location.reload()
     }
@@ -30,7 +34,14 @@ function RoomTable({ hotelId, hotelName }) {
         dispatch(getAllRoomsByHotelId({ page: currentPage, hotelId: hotelId }))
     }, [dispatch, hotelId, currentPage])
 
-    
+
+
+    useEffect(()=>{
+        if (status !== 200){
+            showToast(errors || message ,ToastTypes.ERROR)
+        }
+        dispatch(removeMessageError())
+    },[status])
 
     return <>
         <div class="row mb-4" id='show-hotel'>
@@ -50,7 +61,6 @@ function RoomTable({ hotelId, hotelName }) {
                             <table class="table align-items-center mb-0">
                                 <thead>
                                     <tr>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Room Id</th>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Room Number</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Room Type</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Price</th>
@@ -63,13 +73,6 @@ function RoomTable({ hotelId, hotelName }) {
                                     {
                                         items && items?.map((item, index) => (
                                             <tr key={index}>
-                                                <td>
-                                                    <div class="d-flex px-2 py-1">
-                                                        <div class="d-flex flex-column justify-content-center">
-                                                            <h6 class="mb-0 text-sm">{item.roomId}</h6>
-                                                        </div>
-                                                    </div>
-                                                </td>
                                                 <td>
                                                     <div class="avatar-group mt-2">
                                                         <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ryan Tompson">
