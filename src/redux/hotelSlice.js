@@ -5,6 +5,7 @@ import axiosInstance from "../utils/axiosInstance";
 const initialState = {
     items: null,
     hotel: null,
+    total: null,
     totalPage: 0,
     status: "start",
     errors: null,
@@ -89,6 +90,15 @@ export const searchHotel = createAsyncThunk("hotel/searchHotel", async ({city, m
     }
 })
 
+export const totalHotel = createAsyncThunk("hotel/totalHotel", async (arg,thunkAPI)=>{
+    try {
+        const response = await axios.get(url + "/totalHotel",{})
+        return response.data;
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error.response.data)
+    }
+})
+
 
 export const hotelSlice = createSlice({
     name: 'hotel',
@@ -123,6 +133,7 @@ export const hotelSlice = createSlice({
         .addCase(createHotel.rejected, (state,action) => {
             state.errors = action.payload.message;
             state.status = action.payload.status;
+            console.log(action.payload.status)
         })
         .addCase(updateHotel.fulfilled, (state, action) => {
             state.hotel = action.payload.data;
@@ -141,6 +152,14 @@ export const hotelSlice = createSlice({
             state.status = action.payload.status
         })
         .addCase(searchHotel.rejected, (state, action)=>{
+            state.errors = action.payload.message;
+            state.status = action.payload.status;
+        })
+        .addCase(totalHotel.fulfilled,(state, action)=>{
+            state.total = action.payload.data
+            state.status = action.payload.status
+        })
+        .addCase(totalHotel.rejected, (state, action)=>{
             state.errors = action.payload.message;
             state.status = action.payload.status;
         })

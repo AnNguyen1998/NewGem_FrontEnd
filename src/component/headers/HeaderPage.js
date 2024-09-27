@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { BsCartCheckFill } from 'react-icons/bs'
 import { Link,  useNavigate   } from 'react-router-dom'
+import logo from '../../images/NewGemLogo.png'
 
 export default function HeaderPage() {
     const [accessToken, setAccessToken] = useState(null)
@@ -24,11 +25,10 @@ export default function HeaderPage() {
                                     <div class="elementor-element elementor-element-6fc63e6 knsl-logo-frame elementor-widget elementor-widget-image"
                                         data-id="6fc63e6" data-element_type="widget" data-widget_type="image.default">
                                         <div class="elementor-widget-container">
-                                            <Link to="/home"> <img fetchpriority="high" decoding="async" width="399"
-                                                height="132"
-                                                src="https://kinsley.bslthemes.com/wp-content/uploads/2021/11/logo.png"
+                                            <Link to="/home"> <img fetchpriority="high" decoding="async" width="500"
+                                                height="200"
+                                                src={logo}
                                                 class="attachment-full size-full wp-image-282" alt=""
-                                                srcset="https://kinsley.bslthemes.com/wp-content/uploads/2021/11/logo.png 399w, https://kinsley.bslthemes.com/wp-content/uploads/2021/11/logo-300x99.png 300w"
                                                 sizes="(max-width: 399px) 100vw, 399px" /> </Link>
                                         </div>
                                     </div>

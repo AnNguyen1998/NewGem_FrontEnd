@@ -54,7 +54,7 @@ export const getAllRoomsByHotelId = createAsyncThunk(
         try {
             const response = await axios.get(`${baseURL}/room/allRoom/${hotelId}`, {
                 params: {
-                    page,
+                    page: page,
                     size: 5,
                 },
             });
