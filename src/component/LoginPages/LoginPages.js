@@ -4,6 +4,7 @@ import bgr from "../../images/login-bg-3.jpg"
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { removeMessageError, signin } from '../../redux/authSlice'
+import logo from '../../images/NewGemLogo.png'
 
 export default function LoginPages() {
   const [username, setUsername] = useState('')
@@ -37,8 +38,8 @@ export default function LoginPages() {
                 <div class="col-md-6 d-flex flex-column">
                   <div class="row g-0 my-auto">
                     <div class="col-11 col-sm-10 col-lg-9 mx-auto text-center">
-                      <div class="logo mt-5 mb-3"> <Link to='/home' title="Oxyy"><img src=""
-                        alt="Oxyy" /></Link> </div>
+                      <div class="logo mt-5 mb-3"> <Link to='/home' title="Oxyy"><img src={logo}
+                        alt="Oxyy" style={{width:'300px'}} /></Link> </div>
                       <h1 class="text-5 fw-400 text-white mb-5">We are glad to see you again!</h1>
                     </div>
                   </div>
