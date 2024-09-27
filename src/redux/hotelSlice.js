@@ -133,6 +133,7 @@ export const hotelSlice = createSlice({
         .addCase(createHotel.rejected, (state,action) => {
             state.errors = action.payload.message;
             state.status = action.payload.status;
+            console.log(action.payload.status)
         })
         .addCase(updateHotel.fulfilled, (state, action) => {
             state.hotel = action.payload.data;
