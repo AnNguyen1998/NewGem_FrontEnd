@@ -19,6 +19,7 @@ import { ToastContainer } from 'react-toastify';
 import { ToastProvider } from './utils/ToastContext';
 import UserProfile from './component/UserProfile/UserProfile';
 import BillDashboard from './pages/BillDashboard/BillDashboard';
+import DashboardUser from './component/DashboardUser/DashBoardUser';
 
 function App() {
   return (
@@ -48,6 +49,8 @@ function App() {
             <Route path='/userprofile/:id' element={<UserProfile />}></Route>
             <Route path='/bill' element={<BillDashboard />}></Route>
             <Route path='/bill/:id' element={<BillDashboard />}></Route>
+            <Route path='/userdashboard' element={<DashboardUser />}></Route>
+            
           </Routes>
         </BrowserRouter>
         <ScrollButton />

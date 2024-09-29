@@ -39,6 +39,20 @@ export const userProfile = createAsyncThunk('auth/userProfile', async (id, thunk
   }
 })
 
+export const fetchUser = createAsyncThunk('auth/fetchUser', async (page, thunkAPI) => {
+  try {
+      const response = await axiosInstance.get("http://localhost:8080/user/getAllUser", {
+          params: {
+              page: page,
+              size: 5
+          }
+      })
+      return response.data;
+  } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data)
+  }
+})
+
 export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   // Xóa token hoặc thực hiện các thao tác logout khác
   try {
@@ -63,7 +77,8 @@ const authSlice = createSlice({
     refreshToken: null,
     status: 'idle',
     error: null,
-    user: null
+    user: null,
+    users: null
   },
   reducers: {
     setUserId(state, action) {
@@ -124,6 +139,13 @@ const authSlice = createSlice({
       })
       .addCase(userProfile.rejected, (state, action)=>{
         state.user = action.payload.data
+        state.error = action.payload.message
+      })
+      .addCase(fetchUser.fulfilled, (state, action)=>{
+        state.users = action.payload.data.items
+      })
+      .addCase(fetchUser.rejected, (state, action)=>{
+        state.users = action.payload.data
         state.error = action.payload.message
       })
       ;
