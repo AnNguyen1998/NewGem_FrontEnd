@@ -1,20 +1,21 @@
 import React, { useEffect, useState, useContext } from 'react'
-import "./css/material-dashboard.css"
-import "./css/material-dashboard.min.css"
-import "./css/nucleo-icons.css"
-import "./css/nucleo-svg.css"
-import "./scss/material-dashboard.scss"
+import "../Dashboard/css/material-dashboard.css"
+import "../Dashboard/css/material-dashboard.min.css"
+import "../Dashboard/css/nucleo-icons.css"
+import "../Dashboard/css/nucleo-svg.css"
+import "../Dashboard/scss/material-dashboard.scss"
 import { changeHotelStatus, fetchItemById, fetchItems, removeMessageError } from '../../redux/hotelSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import ReactPaginate from 'react-paginate'
 import { Link, useNavigate } from 'react-router-dom'
 import { Button, Col, Form, FormGroup, Input, Label, Row } from 'reactstrap'
-import AddHotelForm from './AddHotelForm'
-import UpdateHotelForm from './UpdateHotelForm'
 import { ToastContext, ToastTypes } from '../../utils/ToastContext'
+import { fetchUser } from '../../redux/authSlice'
 
 
-export default function Dashboard() {
+export default function DashboardUser() {
+  const dispatch = useDispatch()
+  const [currentPage, setCurrentPage] = useState(0)
   const role = localStorage.getItem("role")
   const navigate = useNavigate()
   const { showToast } = useContext(ToastContext)
@@ -22,36 +23,19 @@ export default function Dashboard() {
   if (role !== "ROLE_ADMIN") {
     navigate("/")
   }
-
-  const [currentPage, setCurrentPage] = useState(0)
-  const dispatch = useDispatch()
   const handlePageClick = (event) => {
     setCurrentPage(event.selected)
   }
-  const { items, status, errors, message, totalPage, hotelDetail } = useSelector(state => state.hotel)
+  const { users, status, errors, message, totalPage} = useSelector(state => state.auth)
   useEffect(() => {
-    dispatch(fetchItems(currentPage))
+    dispatch(fetchUser(currentPage))
   }, [currentPage])
-  
-
+  console.log(users)
   const handleDisable = (idD) => {
     dispatch(changeHotelStatus(idD))
     console.log(idD)
     window.location.reload();
   }
-
-
-  useEffect(() => {
-    if (status == 200 || status == 201) {
-      if (message != "Get all hotels successfully")
-        showToast(message, ToastTypes.SUCCESS)
-    } else if (status == null) {
-    } else {
-      showToast(message || errors, ToastTypes.ERROR)
-    }
-  }, [status])
-
-
   return (
     <div class="g-sidenav-show  bg-gray-200">
       <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark" id="sidenav-main">
@@ -66,7 +50,7 @@ export default function Dashboard() {
         <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <Link class="nav-link text-white active bg-gradient-primary" to="/dashboard">
+              <Link class="nav-link text-white" to="/dashboard">
                 <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                   <i class="material-icons opacity-10">dashboard</i>
                 </div>
@@ -98,12 +82,12 @@ export default function Dashboard() {
               </a>
             </li>
             <li class="nav-item">
-              <Link class="nav-link text-white " to="/userdashboard">
+              <a class="nav-link text-white active bg-gradient-primary">
                 <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                   <i class="material-icons opacity-10">person</i>
                 </div>
                 <span class="nav-link-text ms-1">List Users</span>
-              </Link>
+              </a>
             </li>
             <li class="nav-item mt-3">
               <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Account pages</h6>
@@ -262,7 +246,7 @@ export default function Dashboard() {
                   </div>
                   <div class="text-end pt-1">
                     <p class="text-sm mb-0 text-capitalize">Total Hotel</p>
-                    <h4 class="mb-0">{items && items.length}</h4>
+                    <h4 class="mb-0">{users && users.length}</h4>
                   </div>
                 </div>
                 <hr class="dark horizontal my-0" />
@@ -279,7 +263,7 @@ export default function Dashboard() {
                   </div>
                   <div class="text-end pt-1">
                     <p class="text-sm mb-0 text-capitalize">Total Users</p>
-                    <h4 class="mb-0">2,300</h4>
+                    <h4 class="mb-0">{users && users.length}</h4>
                   </div>
                 </div>
                 <hr class="dark horizontal my-0" />
@@ -334,7 +318,7 @@ export default function Dashboard() {
                       <h6>Hotel</h6>
                     </div>
                     <div class="col-lg-6 col-5 my-auto text-end">
-                      <AddHotelForm />
+                      {/* <AddHotelForm /> */}
                     </div>
                   </div>
                 </div>
@@ -343,54 +327,54 @@ export default function Dashboard() {
                     <table class="table align-items-center mb-0">
                       <thead>
                         <tr>
-                          <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Hotel's Name</th>
-                          <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">City</th>
-                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Address</th>
-                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No.Room</th>
-                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
-                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Min Price - Max Price</th>
-                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Rating</th>
+                          <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
+                          <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Username</th>
+                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
+                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date Of Birth</th>
+                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">FirstName</th>
+                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">LastName</th>
+                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Phone</th>
                           <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Actions</th>
                         </tr>
                       </thead>
                       <tbody>
                         {
-                          items && items.map((item, index) => (
+                          users && users.map((item, index) => (
                             <tr key={index}>
                               <td>
                                 <div class="d-flex px-2 py-1">
                                   <div class="d-flex flex-column justify-content-center">
-                                    <Link to={`/room/${item.hotelId}`}>
-                                      <h6 class="mb-0 text-sm">{item?.name}</h6>
-                                    </Link>
+                                    
+                                      <h6 class="mb-0 text-sm">{index + 1}</h6>
+                                  
                                   </div>
                                 </div>
                               </td>
                               <td>
                                 <div class="avatar-group mt-2">
                                   <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ryan Tompson">
-                                    <h6>{item?.city}</h6>
+                                    <h6>{item?.username}</h6>
                                   </a>
                                 </div>
                               </td>
                               <td class="align-middle text-center text-sm">
-                                <span class="text-xs font-weight-bold"> {item?.location} </span>
+                                <span class="text-xs font-weight-bold"> {item?.email} </span>
                               </td>
                               <td class="align-middle text-center text-sm">
-                                <span class="text-xs font-weight-bold"> {item?.no_rooms} </span>
+                                <span class="text-xs font-weight-bold"> {item?.dateOfBirth} </span>
                               </td>
                               <td class="align-middle text-center text-sm">
-                                <span class="text-xs font-weight-bold"> {item?.status} </span>
+                                <span class="text-xs font-weight-bold"> {item?.firstName} </span>
                               </td>
                               <td class="align-middle text-center text-sm">
-                                <span class="text-xs font-weight-bold"> {item?.min_price}$ - {item?.max_price}$ </span>
+                                <span class="text-xs font-weight-bold"> {item?.lastName} </span>
                               </td>
                               <td class="align-middle text-center text-sm">
-                                <span class="text-xs font-weight-bold"> {item?.rating} </span>
+                                <span class="text-xs font-weight-bold"> {item?.phone} </span>
                               </td>
                               <td class="align-middle text-center text-sm" >
                                 <Button color='danger' style={{ marginRight: '5px' }} onClick={() => handleDisable(item?.hotelId)}>Disable</Button>
-                                <UpdateHotelForm hotelId={item?.hotelId} hotel={item} />
+                                {/* <UpdateHotelForm hotelId={item?.hotelId} hotel={item} /> */}
                               </td>
                             </tr>
                           ))
