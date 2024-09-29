@@ -23,9 +23,7 @@ export default function Dashboard() {
     navigate("/")
   }
 
-
   const [currentPage, setCurrentPage] = useState(0)
-  const [id1, setId] = useState(0)
   const dispatch = useDispatch()
   const handlePageClick = (event) => {
     setCurrentPage(event.selected)
@@ -34,9 +32,7 @@ export default function Dashboard() {
   useEffect(() => {
     dispatch(fetchItems(currentPage))
   }, [currentPage])
-  const btnUpdateHandle = (id) => {
-    setId(id)
-  }
+  
 
   const handleDisable = (idD) => {
     dispatch(changeHotelStatus(idD))
@@ -44,7 +40,6 @@ export default function Dashboard() {
     window.location.reload();
   }
 
-  console.log(status)
 
   useEffect(() => {
     if (status == 200 || status == 201) {
