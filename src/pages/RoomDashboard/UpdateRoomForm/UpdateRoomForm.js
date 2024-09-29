@@ -39,7 +39,6 @@ function UpdateRoomForm({ hotelId, updateItem }) {
     e.preventDefault();
     dispatch(removeMessageError());
     await dispatch(updateRoom(newRoom));
-    
   };
 
   function handleCancel(){

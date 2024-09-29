@@ -1,28 +1,19 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import { Input, FormGroup, Label, Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { removeMessageError, updateHotel } from "../../redux/hotelSlice";
 
-function UpdateHotelForm({ hotelId, updateItem }) {
+function UpdateHotelForm({ hotelId, hotel }) {
     const dispatch = useDispatch();
 
     const [newHotel, setNewHotel] = useState({
-        name: '',
-        location: '',
-        city: 'HCM',
+        name: hotel.name,
+        location: hotel.location,
+        city: hotel.city,
+        id: hotelId,
     });
 
     const [isOpen, setIsOpen] = useState(false);
-
-    useEffect(() => {
-        if (updateItem) {
-            setNewHotel({
-                name: updateItem[hotelId]?.name || '',
-                location: updateItem[hotelId]?.location || '',
-                city: updateItem[hotelId]?.city || 'HCM',
-            });
-        }
-    }, [hotelId, updateItem]);
 
     const toggleModal = () => setIsOpen(!isOpen);
 
@@ -31,15 +22,16 @@ function UpdateHotelForm({ hotelId, updateItem }) {
         setNewHotel((prev) => ({ ...prev, [name]: value }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        dispatch(updateHotel(newHotel));
+        dispatch(removeMessageError(``))
+        await dispatch(updateHotel({ hotelId, ...newHotel }))
     };
 
-    function handleCancel(){
-        toggleModal()
+    const handleCancel = () => {
+        toggleModal();
         window.location.reload()
-    }
+    };
 
     return (
         <>
@@ -73,19 +65,6 @@ function UpdateHotelForm({ hotelId, updateItem }) {
                                 onChange={handleChange}
                                 required
                             />
-                        </FormGroup>
-                        <FormGroup>
-                            <Label for="exampleSelect">City</Label>
-                            <Input
-                                id="exampleSelect"
-                                name="city"
-                                type="select"
-                                value={newHotel.city}
-                                onChange={handleChange}
-                            >
-                                <option value="HCM">HCM</option>
-                                <option value="HANOI">HANOI</option>
-                            </Input>
                         </FormGroup>
                         <ModalFooter>
                             <Button type="submit" color="primary">Submit</Button>

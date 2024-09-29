@@ -4,7 +4,7 @@ import "./css/material-dashboard.min.css"
 import "./css/nucleo-icons.css"
 import "./css/nucleo-svg.css"
 import "./scss/material-dashboard.scss"
-import { changeHotelStatus, fetchItemById, fetchItems } from '../../redux/hotelSlice'
+import { changeHotelStatus, fetchItemById, fetchItems, removeMessageError } from '../../redux/hotelSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import ReactPaginate from 'react-paginate'
 import { Link, useNavigate } from 'react-router-dom'
@@ -43,6 +43,8 @@ export default function Dashboard() {
     console.log(idD)
     window.location.reload();
   }
+
+  console.log(status)
 
   useEffect(() => {
     if (status == 200 || status == 201) {
@@ -393,7 +395,7 @@ export default function Dashboard() {
                               </td>
                               <td class="align-middle text-center text-sm" >
                                 <Button color='danger' style={{ marginRight: '5px' }} onClick={() => handleDisable(item?.hotelId)}>Disable</Button>
-                                <UpdateHotelForm hotelId={item?.hotelId} updateItem={item} />
+                                <UpdateHotelForm hotelId={item?.hotelId} hotel={item} />
                               </td>
                             </tr>
                           ))

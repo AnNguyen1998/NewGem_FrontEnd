@@ -15,13 +15,6 @@ function AddHotelForm() {
         city: 'HCM'
     });
 
-    useEffect(() => {
-        if (status !== 201) {
-            showToast(errors || message, ToastTypes.ERROR);
-        }
-        dispatch(removeMessageError());
-    }, [status]);
-
     const toggleModal = () => setIsOpen(!isOpen);
 
     const handleChange = (e) => {
@@ -29,9 +22,10 @@ function AddHotelForm() {
         setNewHotel((prev) => ({ ...prev, [name]: value }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        dispatch(createHotel(newHotel));
+        dispatch(removeMessageError())
+        await dispatch(createHotel(newHotel));
     };
 
     function handleCancel(){
