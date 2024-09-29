@@ -10,7 +10,7 @@ import { ToastContext, ToastTypes } from "../../../utils/ToastContext";
 
 function RoomTable({ hotelId, hotelName }) {
     const dispatch = useDispatch()
-    const [updateItem,setUpdatItem] = useState(null)
+    const [updateItem, setUpdatItem] = useState(null)
     const { items, status, errors, message, totalPage } = useSelector(state => state.room);
     const { showToast } = useContext(ToastContext)
 
@@ -37,25 +37,27 @@ function RoomTable({ hotelId, hotelName }) {
 
 
 
-    useEffect(()=>{
-        if (status == 200 || status == 201){
-            showToast(message,ToastTypes.SUCCESS)
-        } else if (status == null){
+    useEffect(() => {
+        if (status == 200 || status == 201) {
+            if (message != "Get all rooms successfully")
+                showToast(message, ToastTypes.SUCCESS)
+        } else if (status == null) {
         } else {
             showToast(message || errors, ToastTypes.ERROR)
         }
-    },[status])
+    }, [status])
 
     return <>
         <div class="row mb-4" id='show-hotel'>
             <div class="col-lg-12 col-md-6 mb-md-0 mb-4">
                 <div class="card">
                     <div class="card-header pb-0">
-                        <div class="row">
-                            <div class="col-lg-6 col-7">
+                        <div className="row align-items-center">
+                            <div className="col-lg-6 col-7">
                                 <h6>Rooms</h6>
                             </div>
-                            <div class="col-lg-6 col-5 my-auto text-end">
+                            <div className="col-lg-6 col-5 text-end">
+                                <AddRoomForm hotelId={hotelId} hotelName={hotelName} />
                             </div>
                         </div>
                     </div>
@@ -100,9 +102,9 @@ function RoomTable({ hotelId, hotelName }) {
                                                     </div>
                                                 </td>
                                                 <td class="align-middle text-center text-sm" >
-                                                    {item.status == "ACTIVE" && <Button color='danger' style={{ marginRight: '5px' }} onClick={()=>handleDisable(item.roomId)}>Disable</Button>}
-                                                    {item.status == "INACTIVE" && <Button color='danger' style={{ marginRight: '5px' }} onClick={()=>handleDisable(item.roomId)}>Activate</Button>}
-                                                    <a href='#update'><Button color='warning' onClick={() => btnUpdateHandle(index)}>Update</Button></a>
+                                                    {item.status == "ACTIVE" && <Button color='danger' style={{ marginRight: '5px' }} onClick={() => handleDisable(item.roomId)}>Disable</Button>}
+                                                    {item.status == "INACTIVE" && <Button color='danger' style={{ marginRight: '5px' }} onClick={() => handleDisable(item.roomId)}>Activate</Button>}
+                                                    <UpdateRoomForm updateItem={item} hotelId={hotelId} />
                                                 </td>
                                             </tr>
                                         ))
@@ -137,10 +139,6 @@ function RoomTable({ hotelId, hotelName }) {
         </div>
         <div class="row mb-4">
             <div class="col-lg-6 col-md-6 mb-md-0 mb-4">
-                <AddRoomForm hotelId={hotelId} hotelName={hotelName}/>
-            </div>
-            <div class="col-lg-6 col-md-6 mb-md-0 mb-4">
-                <UpdateRoomForm updateItem={updateItem} hotelId={hotelId} />
             </div>
         </div>
     </>

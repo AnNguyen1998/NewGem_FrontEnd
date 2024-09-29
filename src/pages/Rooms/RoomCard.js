@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const RoomCard = ({ room }) => {
-    console.log(room)
 
     return (
         <div className="knsl-masonry-grid-item knsl-masonry-grid-item-33 luxe">

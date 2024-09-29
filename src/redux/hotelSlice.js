@@ -75,13 +75,14 @@ export const fetchItemById = createAsyncThunk("hotel/fetchItemById", async (id, 
     }
 })
 
-export const searchHotel = createAsyncThunk("hotel/searchHotel", async ({city, max, min}, thunkAPI) => {
+export const searchHotel = createAsyncThunk("hotel/searchHotel", async ({city, max, min, status}, thunkAPI) => {
     try {
         const response = await axios.get(url + "/search",{
             params: {
                 city: city,
                 max: max,
-                min: min
+                min: min,
+                status: status
             }
         })
         return response.data;

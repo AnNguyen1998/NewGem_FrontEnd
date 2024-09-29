@@ -50,7 +50,7 @@ export default function LoginPages() {
                     <div class="row">
                       <div class="col-11 col-lg-10 mx-auto">
                         <h3 class="text-9 fw-600 text-center my-3">Sign In</h3>
-                        <p class="text-center mb-4">New to Oxyy? <Link to="/register"><u>Create an Account</u></Link></p>
+                        <p class="text-center mb-4">New to NewGem? <Link to="/register"><u>Create an Account</u></Link></p>
                         <form id="loginForm"
                           onSubmit={(event) => {
                             handleLogin(event)
