@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { fetchItemById, removeMessageError, totalHotel } from '../../redux/hotelSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { Input } from 'reactstrap';
+import { Button, Input } from 'reactstrap';
 import RoomTable from './RoomTable/RoomTable';
 import FooterDashboard from './FooterDashboard/FooterDashboard';
 import CollapseNavBar from './CollapseNavBar/CollapseNavBar';
@@ -56,6 +56,7 @@ export default function RommDashboard() {
                                         <p className="text-sm mb-0 text-capitalize">Hotel</p>
                                         <h4 className="mb-0">{hotel?.name}</h4>
                                     </div>
+                                    <hr class="dark horizontal my-0" />
                                 </div>
                                 <hr className="dark horizontal my-0" />
                             </div>

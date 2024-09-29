@@ -10,8 +10,7 @@ import ReactPaginate from "react-paginate";
 
 function Rooms() {
     const dispatch = useDispatch();
-    const [updateItem, setUpdateItem] = useState(null);
-    const { items, status, errors, message, totalPage } = useSelector(state => state.room);
+    const { items, totalPage } = useSelector(state => state.room);
 
     const [activeFilter, setActiveFilter] = useState(null);
     const [priceRange, setPriceRange] = useState({ min: null, max: null });

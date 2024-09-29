@@ -39,7 +39,7 @@ function BillTable({ hotel, hotelId }) {
                     <div className="card-header pb-0">
                         <div className="row align-items-center">
                             <div className="col-lg-6 col-7">
-                                <h6>Bills</h6>
+                                <h6>Invoices</h6>
                             </div>
                             <div className="col-lg-6 col-5 text-end">
                                 <CreateBillForm hotel={hotel} hotelId={hotelId} />

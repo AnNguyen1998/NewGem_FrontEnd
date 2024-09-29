@@ -45,6 +45,7 @@ function App() {
             <Route path='/hoteldetail/:id' element={<HotelDetailPage />}></Route>
             <Route path='/readblog/:id' element={<BlogDetailPage />}></Route>
             <Route path='/bill' element={<BillDashboard />}></Route>
+            <Route path='/bill/:id' element={<BillDashboard />}></Route>
           </Routes>
         </BrowserRouter>
         <ScrollButton />

@@ -7,6 +7,7 @@ import AddRoomForm from "../AddRoomForm/AddRoomForm";
 import UpdateRoomForm from "../UpdateRoomForm/UpdateRoomForm";
 import { useContext } from "react";
 import { ToastContext, ToastTypes } from "../../../utils/ToastContext";
+import { Link } from "react-router-dom";
 
 function RoomTable({ hotelId, hotelName }) {
     const dispatch = useDispatch()
@@ -57,7 +58,10 @@ function RoomTable({ hotelId, hotelName }) {
                                 <h6>Rooms</h6>
                             </div>
                             <div className="col-lg-6 col-5 text-end">
-                                <AddRoomForm hotelId={hotelId} hotelName={hotelName} />
+                                <Link to={`/bill/${hotelId}`}>
+                                    <Button className="mx-2">Get invoice</Button>
+                                </Link>
+                                <AddRoomForm hotelId={hotelId} hotelName={hotelName} className="mx-2" />
                             </div>
                         </div>
                     </div>
