@@ -6,6 +6,7 @@ const initialState = {
     items: null,
     room: null,
     totalPage: 0,
+    reservation: null,
     status: "start",
     errors: null,
     message: null,
@@ -178,7 +179,7 @@ export const roomSlice = createSlice({
             })
             .addCase(createBookroom.fulfilled, (state, action) => {
                 state.message = action.payload.message;
-                state.items = action.payload.data;
+                state.reservation = action.payload.data;
                 state.status = action.payload.status;
             })
             .addCase(createBookroom.rejected, (state, action) => {

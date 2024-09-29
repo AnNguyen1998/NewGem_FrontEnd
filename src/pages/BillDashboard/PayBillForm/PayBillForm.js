@@ -82,7 +82,7 @@ function PayBillForm({ hotel, bill }) {
           </form>
         </ModalBody>
         <ModalFooter>
-          <Button type="submit" onClick={handleSubmit}>Submit</Button>
+          {!bill.paid &&<Button type="submit" onClick={handleSubmit}>Submit</Button>}
           <Button color="secondary" onClick={toggle}>
             Cancel
           </Button>

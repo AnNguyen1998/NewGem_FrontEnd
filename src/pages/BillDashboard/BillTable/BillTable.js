@@ -22,15 +22,17 @@ function BillTable({ hotel, hotelId }) {
         dispatch(getAllBillByHotel({ page: currentPage, hotelId: hotelId }));
     }, [dispatch, hotelId, currentPage]);
 
+    console.log(message)
+
     useEffect(() => {
         if (status === 200 || status === 201) {
-            if (message !== "Get all bills of hotel New Gem successfully") {
+            if (message != null && !message.startsWith("Get all bills of hotel")) {
                 showToast(message, ToastTypes.SUCCESS);
             }
         } else if (status !== null) {
             showToast(message || errors, ToastTypes.ERROR);
         }
-    }, [status]);
+    }, [status, message, errors]);
 
     return (
         <div className="row mb-4" id='show-hotel'>
@@ -67,7 +69,7 @@ function BillTable({ hotel, hotelId }) {
                                             <td className="align-middle text-center text-sm">{item.voucherId || "N/O"}</td>
                                             <td className="align-middle text-center text-sm">{item.totalFee}</td>
                                             <td className="align-middle text-center text-sm">{item.newFee || 0}</td>
-                                            <td className="align-middle text-center text-sm">
+                                            <td className="align-middle text-center text-sm" style={{display:"flex"}}>
                                                 {!item.paid && <PayBillForm hotel={hotel} bill={item} />}
                                                 <Invoice bill={item} hotel={hotel}/>
                                             </td>

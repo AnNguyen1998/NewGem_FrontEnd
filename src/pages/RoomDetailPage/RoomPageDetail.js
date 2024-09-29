@@ -27,7 +27,7 @@ export default function RoomPageDetail() {
         adults:'',
         children:'',
     });
-    const { items, room, hotel, status, errors, message, totalPage } = useSelector(state => state.room)
+    const { items, room, status, errors, message, totalPage } = useSelector(state => state.room)
 
     useEffect(() => {
         dispatch(getRoomById(id))
@@ -54,6 +54,8 @@ export default function RoomPageDetail() {
             }
         }
     },[status])
+
+    console.log(items)
 
 
     return (
