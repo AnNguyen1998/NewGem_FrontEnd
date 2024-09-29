@@ -6,7 +6,7 @@ import axiosInstance from '../utils/axiosInstance';
 // Thay đổi URL và cấu hình phù hợp với API của bạn
 const API_URL = "http://localhost:8080/user"
 
-export const register = createAsyncThunk('user/register', async ({ firstName, lastName, email, phone, username, password
+export const register = createAsyncThunk('user/register', async ({ firstName, lastName, email, phone, username, password, dateOfBirth, gender
 }, thunkAPI) => {
     try {
         console.log(`firstName: ${firstName}, lastName: ${lastName}, email: ${email}, phone: ${phone}, username: ${username}, password: ${password}`)
@@ -16,8 +16,8 @@ export const register = createAsyncThunk('user/register', async ({ firstName, la
                 "lastName": lastName,
                 "email": email,
                 "phone": phone,
-                "dateOfBirth": "1970-01-01",
-                "gender": "MALE",
+                "dateOfBirth": dateOfBirth,
+                "gender": gender,
                 "username": username,
                 "password": password
               },

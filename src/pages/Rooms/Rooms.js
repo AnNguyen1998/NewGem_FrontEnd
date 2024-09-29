@@ -45,6 +45,8 @@ function Rooms() {
         }));
     }, [dispatch, currentPage, activeFilter]);
 
+    console.log(items)
+
     return (
         <div>
             <HeaderPage />

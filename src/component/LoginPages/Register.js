@@ -13,14 +13,19 @@ export default function Register() {
     lastName: '',
     email: '',
     phone: '',
+    dateOfBirth: '',
+    gender: '',
     username: '',
     password: '',
   })
+
+
+
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const handleRegister = (event) => {
     event.preventDefault()
-    dispatch(register({ firstName: information.firstName, lastName: information.lastName, email: information.email, phone: information.phone, username: information.username, password: information.password }))
+    dispatch(register(information))
     // Pop up a notification
     alert('Register successfully!')
     navigate('/login')
@@ -30,8 +35,8 @@ export default function Register() {
       <div id="main-wrapper" class="oxyy-login-register">
         <div class="hero-wrap d-flex align-items-center">
           <div class="hero-mask opacity-4 bg-dark"></div>
-          <img/>
-          <div class="hero-bg hero-bg-scroll" style={{backgroundImage: `url(${bgr})`}}></div>
+          <img />
+          <div class="hero-bg hero-bg-scroll" style={{ backgroundImage: `url(${bgr})` }}></div>
           <div class="hero-content w-100">
             <div class="container">
               <div class="row g-0 min-vh-100">
@@ -39,12 +44,11 @@ export default function Register() {
                 <div class="col-md-6 d-flex flex-column">
                   <div class="row g-0 my-auto">
                     <div class="col-11 col-sm-10 col-lg-9 mx-auto text-center">
-                      <div class="logo mt-5 mb-3"> <Link to='/home' title="Oxyy"><img src={logo} alt="Oxyy" style={{width:'300px'}} /></Link> </div>
+                      <div class="logo mt-5 mb-3"> <Link to='/home' title="Oxyy"><img src={logo} alt="Oxyy" style={{ width: '300px' }} /></Link> </div>
                       <h1 class="text-5 fw-400 text-white mb-5">We are glad to see you again!</h1>
                     </div>
                   </div>
                 </div>
-
                 <div class="col-md-6 d-flex align-items-center py-5">
                   <div class="container my-auto py-4 shadow-lg bg-white">
                     <div class="row">
@@ -57,65 +61,88 @@ export default function Register() {
                         >
                           <Row>
                             <Col>
-                        <div class="mb-3">
-                          <label class="form-label text-dark fw-600" for="first-name">First Name</label>
-                          <input
-                            autoComplete='off' autoFocus
-                          type="text" class="form-control rounded-0" id="first-name" required placeholder="First Name"
-                          onChange={(event) => setInformation({ ...information, firstName: event.target.value })}
-                          />
-                        </div>
-                        </Col>
-                        <Col>
-                        <div class="mb-3">
-                          <label class="form-label text-dark fw-600" for="last-name">Last Name</label>
-                          <input type="text" class="form-control rounded-0" id="last-name" required placeholder="Last Name"
-                          onChange={(event) => setInformation({ ...information, lastName: event.target.value })}
-                          />
-                        </div>
-                        </Col>
-                        </Row>
-                        <Row>
-                          <Col>
-                        <div class="mb-3">
-                          <label class="form-label text-dark fw-600" for="email">Email</label>
-                          <input type="email" class="form-control rounded-0" id="email" required placeholder="Email"
-                          onChange={(event) => setInformation({ ...information, email: event.target.value })}
-                          />
-                        </div>
-                        </Col>
-                        <Col>
-                        <div class="mb-3">
-                          <label class="form-label text-dark fw-600" for="phone">Phone</label>
-                          <input type="text" class="form-control rounded-0" id="phone" required placeholder="Phone"
-                          onChange={(event) => setInformation({ ...information, phone: event.target.value })}
-                          />
-                        </div>
-                        </Col>
-                        </Row>
-                          <div class="mb-3">
-                            <label class="form-label text-dark fw-600" for="username">Username</label>
-                            <input type="text" class="form-control rounded-0" id="username" required placeholder="Username"
-                            onChange={(event) => setInformation({ ...information, username: event.target.value })}
-                            value={information.username}
-                            />
-                          </div>
+                              <div class="mb-3">
+                                <label class="form-label text-dark fw-600" for="first-name">First Name</label>
+                                <input
+                                  autoComplete='off' autoFocus
+                                  type="text" class="form-control rounded-0" id="first-name" required placeholder="First Name"
+                                  onChange={(event) => setInformation({ ...information, firstName: event.target.value })}
+                                />
+                              </div>
+                            </Col>
+                            <Col>
+                              <div class="mb-3">
+                                <label class="form-label text-dark fw-600" for="last-name">Last Name</label>
+                                <input type="text" class="form-control rounded-0" id="last-name" required placeholder="Last Name"
+                                  onChange={(event) => setInformation({ ...information, lastName: event.target.value })}
+                                />
+                              </div>
+                            </Col>
+                          </Row>
                           <Row>
                             <Col>
-                          <div class="mb-3">
-                            <label class="form-label text-dark fw-600" for="password">Password</label>
-                            <input type="password" class="form-control rounded-0" id="password" required placeholder="Password"
-                            onChange={(event) => setInformation({ ...information, password: event.target.value })}
-                            value={information.password}
-                            />
-                          </div>
-                          </Col>
-                          <Col>
-                          <div class="mb-3">
-                            <label class="form-label text-dark fw-600" for="confirm-password">Confirm Password</label>
-                            <input type="password" class="form-control rounded-0" id="confirm-password" required placeholder="Confirm Password" />
-                          </div>
-                          </Col>
+                              <div class="mb-3">
+                                <label class="form-label text-dark fw-600" for="email">Email</label>
+                                <input type="email" class="form-control rounded-0" id="email" required placeholder="Email"
+                                  onChange={(event) => setInformation({ ...information, email: event.target.value })}
+                                />
+                              </div>
+                            </Col>
+                            <Col>
+                              <div class="mb-3">
+                                <label class="form-label text-dark fw-600" for="phone">Phone</label>
+                                <input type="text" class="form-control rounded-0" id="phone" required placeholder="Phone"
+                                  onChange={(event) => setInformation({ ...information, phone: event.target.value })}
+                                />
+                              </div>
+                            </Col>
+                          </Row>
+                          <Row>
+                            <Col>
+                              <div className="mb-3">
+                                <label className="form-label text-dark fw-600" htmlFor="gender">Gender</label>
+                                <select
+                                  className="form-control rounded-0"
+                                  id="gender"
+                                  required
+                                  onChange={(event) => setInformation({ ...information, gender: event.target.value })}
+                                  value={information.gender}
+                                >
+                                  <option value="" disabled>Select Gender</option>
+                                  <option value="MALE">Male</option>
+                                  <option value="FEMALE">Female</option>
+                                  <option value="OTHER">Other</option>
+                                </select>
+                              </div>
+                            </Col>
+                            <Col>
+                              <div class="mb-3">
+                                <label class="form-label text-dark fw-600" for="dataOfBirth">Date of birth</label>
+                                <input type="date" class="form-control rounded-0" id="dataOfBirth" required placeholder="Confirm Password"
+                                  onChange={(event) => setInformation({ ...information, dateOfBirth: event.target.value })}
+                                  value={information.dateOfBirth} />
+                              </div>
+                            </Col>
+                          </Row>
+                          <Row>
+                            <Col>
+                              <div class="mb-3">
+                                <label class="form-label text-dark fw-600" for="username">Username</label>
+                                <input type="text" class="form-control rounded-0" id="username" required placeholder="Username"
+                                  onChange={(event) => setInformation({ ...information, username: event.target.value })}
+                                  value={information.username}
+                                />
+                              </div>
+                            </Col>
+                            <Col>
+                              <div class="mb-3">
+                                <label class="form-label text-dark fw-600" for="password">Password</label>
+                                <input type="password" class="form-control rounded-0" id="password" required placeholder="Password"
+                                  onChange={(event) => setInformation({ ...information, password: event.target.value })}
+                                  value={information.password}
+                                />
+                              </div>
+                            </Col>
                           </Row>
                           <div class="row mt-4">
                             <div class="col">

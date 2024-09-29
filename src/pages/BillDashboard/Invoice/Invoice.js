@@ -122,7 +122,7 @@ const InvoiceModal = ({ bill, hotel }) => {
           </article>
         </ModalBody>
         <ModalFooter>
-          <PayBillForm hotel={hotel} bill={bill} />
+          {!bill.paid && <PayBillForm hotel={hotel} bill={bill} />}
           <Button color="secondary" onClick={toggle}>
             Cancel
           </Button>

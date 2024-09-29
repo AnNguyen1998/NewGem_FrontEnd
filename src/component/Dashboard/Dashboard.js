@@ -40,6 +40,15 @@ export default function Dashboard() {
     window.location.reload();
   }
 
+  const convertCity = (city) =>{
+    switch(city){
+      case("HCM"):
+        return "HCM City"
+      case("HANOI"):
+        return "Ha Noi"
+    }
+  }
+
 
   useEffect(() => {
     if (status == 200 || status == 201) {
@@ -369,7 +378,7 @@ export default function Dashboard() {
                               <td>
                                 <div class="avatar-group mt-2">
                                   <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ryan Tompson">
-                                    <h6>{item?.city}</h6>
+                                    <h6>{convertCity(item?.city)}</h6>
                                   </a>
                                 </div>
                               </td>

@@ -26,7 +26,7 @@ function CreateBillForm({ hotel, hotelId }) {
     dispatch(removeMessageError());
     await dispatch(createBill(newBill));
     toggle();
-    // window.location.reload()
+    window.location.reload()
     setNewBill({
       hotelId: hotel?.hotelId,
       email: '',

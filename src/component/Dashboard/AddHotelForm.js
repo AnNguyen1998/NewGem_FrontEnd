@@ -26,12 +26,18 @@ function AddHotelForm() {
         e.preventDefault();
         dispatch(removeMessageError())
         await dispatch(createHotel(newHotel));
+        setNewHotel({
+            name: '',
+            location: '',
+            city: 'HCM'
+        })
     };
 
-    function handleCancel(){
+    function handleCancel() {
         toggleModal()
         window.location.reload()
     }
+
 
     return (
         <>
@@ -75,8 +81,8 @@ function AddHotelForm() {
                                 value={newHotel.city}
                                 onChange={handleChange}
                             >
-                                <option value="HCM">HCM</option>
-                                <option value="HANOI">HANOI</option>
+                                <option value="HCM">Ho Chi Minh City</option>
+                                <option value="HANOI">Ha Noi</option>
                             </Input>
                         </FormGroup>
                         <ModalFooter>
