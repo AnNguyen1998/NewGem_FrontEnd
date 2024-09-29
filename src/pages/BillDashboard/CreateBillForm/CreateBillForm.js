@@ -13,6 +13,7 @@ function CreateBillForm({ hotel, hotelId }) {
     voucherId: null,
   });
 
+
   const toggle = () => setModal(!modal);
 
   const handleChange = (e) => {
@@ -65,6 +66,7 @@ return (
               required
             >
               <option value="" disabled>Select a voucher</option>
+              <option value={null}>--</option> 
               {hotel?.vouchers && hotel?.vouchers.map((voucher) => (
                 <option key={voucher.voucherId} value={voucher.voucherId}>
                   {voucher.discount}
