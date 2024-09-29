@@ -17,6 +17,7 @@ import ScrollButton from './component/ScrollButton/ScrollButton';
 import HotelDetailPage from './pages/HotelDetailPage/HotelDetailPage';
 import { ToastContainer } from 'react-toastify';
 import { ToastProvider } from './utils/ToastContext';
+import UserProfile from './component/UserProfile/UserProfile';
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
             <Route path='/roomdetail/:id' element={<RoomPageDetail />}></Route>
             <Route path='/hoteldetail/:id' element={<HotelDetailPage />}></Route>
             <Route path='/readblog/:id' element={<BlogDetailPage />}></Route>
+            <Route path='/userprofile/:id' element={<UserProfile />}></Route>
           </Routes>
         </BrowserRouter>
         <ScrollButton />

@@ -1,15 +1,24 @@
 import React, { useEffect, useState } from 'react'
 import { BsCartCheckFill } from 'react-icons/bs'
-import { Link,  useNavigate   } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import logo from '../../images/NewGemLogo.png'
+import { useSelector } from 'react-redux'
+import { DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from 'reactstrap'
+import './HeaderPage.css'
 
 export default function HeaderPage() {
     const [accessToken, setAccessToken] = useState(null)
-
+    const [userN, setUserN] = useState(null);
+    const { username } = useSelector(state => state.auth)
     const role = localStorage.getItem("role")
-
+    const userId = localStorage.getItem('userId')
     useEffect(() => {
         setAccessToken(localStorage.getItem('accessToken'))
+        if (username) {
+            setUserN(username)
+        } else if (localStorage.getItem('username')) {
+            setUserN(localStorage.getItem('username'))
+        }
     }, [])
     return (
         <div>
@@ -91,7 +100,35 @@ export default function HeaderPage() {
                                         data-id="374bc3e" data-element_type="widget"
                                         data-widget_type="kinsley-header-buttons.default">
                                         <div class="elementor-widget-container">
-                                            <Link 
+                                        {role == "ROLE_ADMIN" && <Link style={{ marginRight: '10px' }} to="/dashboard"
+                                                class="knsl-btn">  <span>
+                                                    Dashboard </span> </Link>}
+                                            <UncontrolledDropdown direction="down" className='uncontrol-drop me-2'>
+                                                <DropdownToggle className='uncontrol-drop1'>
+                                                    <Link
+                                                        to={accessToken ? "/home" : "/login"}
+                                                        class="knsl-btn">  <span>
+                                                            {accessToken ? userN : 'Login'} </span> </Link>
+                                                </DropdownToggle>
+                                                <DropdownMenu className='dropd-menu'>
+                                                    <DropdownItem header>
+                                                        <Link to={"/userprofile/" + userId}>
+                                                        Profile
+                                                        </Link>
+                                                    </DropdownItem>
+                                                    <DropdownItem header>
+                                                        <Link
+                                                            onClick={
+                                                                accessToken ? () => {
+                                                                    localStorage.removeItem('accessToken')
+                                                                    localStorage.removeItem('role')
+                                                                    window.location.reload()
+                                                                } : () => { }
+                                                            }>Log Out</Link>
+                                                    </DropdownItem>
+                                                </DropdownMenu>
+                                            </UncontrolledDropdown>
+                                            {/* <Link
                                                 onClick={
                                                     accessToken ? () => {
                                                         localStorage.removeItem('accessToken')
@@ -101,10 +138,7 @@ export default function HeaderPage() {
                                                 }
                                                 to={accessToken ? "/home" : "/login"}
                                                 class="knsl-btn">  <span>
-                                                    {accessToken ? 'Logout' : 'Login'} </span> </Link>
-                                            {role == "ROLE_ADMIN" && <Link to="/dashboard"
-                                                class="knsl-btn">  <span>
-                                                    Dashboard </span> </Link>}
+                                                    {accessToken ? userN.slice(0,5) : 'Login'} </span> </Link> */}
                                             <div class="knsl-minicart">
                                                 <div class="knsl-cart">
                                                     <div class="knsl-cart-number"> <span class="cart-count">0</span></div>
