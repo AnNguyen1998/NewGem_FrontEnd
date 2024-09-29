@@ -4,6 +4,7 @@ import axiosInstance from "../utils/axiosInstance";
 
 const initialState = {
     items: null,
+    room: null,
     totalPage: 0,
     status: "start",
     errors: null,
@@ -39,14 +40,14 @@ export const changeRoomStatus = createAsyncThunk(
 export const updateRoom = createAsyncThunk(
     "room/updateRoom",
     async (roomData, thunkAPI) => {
-        try {
-            const response = await axiosInstance.put(`/room/updateRoom/${roomData.roomId}`, roomData);
-            return response.data;
-        } catch (error) {
-            return thunkAPI.rejectWithValue(error.response.data);
-        }
+      try {
+        const response = await axiosInstance.put(`/room/updateRoom/${roomData.roomId}`, roomData);
+        return response.data; 
+      } catch (error) {
+        return thunkAPI.rejectWithValue(error.response.data); 
+      }
     }
-);
+  );
 
 export const getAllRoomsByHotelId = createAsyncThunk(
     "room/getAllRoomsByHotelId",
@@ -109,7 +110,7 @@ export const createBookroom = createAsyncThunk(
 
 export const searchRooms = createAsyncThunk(
     "room/getRoomsByHotelId",
-    async ({ hotelId, page, type, max }, thunkAPI) => {
+    async ({ hotelId, page, type, max, status }, thunkAPI) => {
         try {
             const response = await axios.get(`${baseURL}/room/search`, {
                 params: {
@@ -117,6 +118,7 @@ export const searchRooms = createAsyncThunk(
                     type: type,
                     max: max,
                     page: page,
+                    status: status,
                     size: 6
                 },
             });
@@ -143,13 +145,13 @@ export const roomSlice = createSlice({
                 state.items = action.payload.data.items;
                 state.totalPage = action.payload.data.totalPage;
                 state.status = action.payload.status
-                state.message = action.payload.message
             })
             .addCase(getAllRoomsByHotelId.rejected, (state, action) => {
                 state.errors = action.payload.message;
                 state.status = action.payload.status;
             })
             .addCase(createRoom.fulfilled, (state,action) => {
+                console.log(action.payload.status)
                 state.message = action.payload.message;
                 state.status = action.payload.status
             })
@@ -159,26 +161,29 @@ export const roomSlice = createSlice({
             })
             .addCase(updateRoom.fulfilled, (state, action) => {
                 state.message = action.payload.message;
-                state.status = action.payload.status
-            })
-            .addCase(updateRoom.rejected, (state,action) => {
+                state.status = action.payload.status;
+              })
+              .addCase(updateRoom.rejected, (state, action) => {
                 state.errors = action.payload.message;
                 state.status = action.payload.status;
             })
             .addCase(getRoomById.fulfilled, (state, action) => {
-                state.items = action.payload.data;
-                state.status = "success";
+                state.room = action.payload.data;
+                state.status = action.payload.status;
             })
             .addCase(getRoomById.rejected, (state, action) => {
+                state.message = action.payload.message;
                 state.errors = action.payload.message;
                 state.status = action.payload.status;
             })
             .addCase(createBookroom.fulfilled, (state, action) => {
+                state.message = action.payload.message;
                 state.items = action.payload.data;
                 state.status = action.payload.status;
             })
             .addCase(createBookroom.rejected, (state, action) => {
-                state.errors = action.payload.message;
+                state.message = action.payload.message;
+                state.errors = action.payload.data;
                 state.status = action.payload.status;
             })
             .addCase(getRoomsByType.fulfilled, (state, action) => {

@@ -4,8 +4,8 @@ import HotelBanner from "./HotelBanner"
 import HotelCard from "./HotelCard"
 import { useDispatch, useSelector } from "react-redux"
 import { useState, useEffect } from "react"
-import { Input } from "reactstrap"
 import { searchHotel } from "../../redux/hotelSlice"
+import ReactPaginate from "react-paginate"
 
 function Rooms() {
     const dispatch = useDispatch()
@@ -20,11 +20,6 @@ function Rooms() {
         { label: 'Ha Noi', value: 'HANOI' }
     ];
 
-
-    console.log(activeFilter
-
-
-    )
     const handleFilterChange = (value) => {
         setActiveFilter(value);
     };
@@ -35,8 +30,13 @@ function Rooms() {
         dispatch(searchHotel({
             city: activeFilter,
             page: currentPage,
+            status: "ACTIVE"
         }))
     }, [dispatch, currentPage, activeFilter])
+
+    const handlePageClick = (event) => {
+        setCurrentPage(event.selected);
+    };
 
 
     return <div>
@@ -94,7 +94,7 @@ function Rooms() {
                                                                     {filter.label}
                                                                 </div>
                                                             ))}
-                                                            </div>
+                                                        </div>
                                                         <div class="knsl-masonry-grid knsl-3-col attr-details-amenity-false attr-details-category-false attr-details-attributes-false attr-details-view-false attr-details-bed-type-false attr-details-children-false"
                                                             style={{ position: "relative", marginBottom: "200px" }}>
                                                             <div class="knsl-grid-sizer"></div>
@@ -114,6 +114,27 @@ function Rooms() {
                 </div>
             </div>
         </body>
+        <div style={{ textAlign: 'center', justifyContent: 'center' }}>
+            <ReactPaginate
+                previousLabel={'<<'}
+                nextLabel={'>>'}
+                breakLabel={'...'}
+                pageCount={Math.ceil(totalPage)}
+                marginPagesDisplayed={1}
+                pageRangeDisplayed={5}
+                onPageChange={handlePageClick}
+                containerClassName={'pagination'}
+                pageClassName={'page-item'}
+                pageLinkClassName={'page-link'}
+                previousClassName={'page-item'}
+                nextClassName={'page-item'}
+                previousLinkClassName={'page-link'}
+                nextLinkClassName={'page-link'}
+                breakClassName={'page-item'}
+                breakLinkClassName={'page-link'}
+                activeClassName={'active'}
+            />
+        </div>
         <FooterPage />
     </div>
 }

@@ -1,31 +1,40 @@
-import React, { useEffect, useState } from 'react';
-import { fetchItemById, removeMessageError, totalHotel } from '../../redux/hotelSlice';
-import { useDispatch, useSelector } from 'react-redux';
-import { Button, Input } from 'reactstrap';
-import RoomTable from './RoomTable/RoomTable';
-import FooterDashboard from './FooterDashboard/FooterDashboard';
-import CollapseNavBar from './CollapseNavBar/CollapseNavBar';
-import BreakCrumbDashBoard from './BreadCrumbDashboard/BreadCrumbDashboard';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import React from 'react'
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { fetchItemById, removeMessageError } from '../../redux/hotelSlice';
+import BreakCrumbDashBoard from '../RoomDashboard/BreadCrumbDashboard/BreadCrumbDashboard';
+import FooterDashboard from '../RoomDashboard/FooterDashboard/FooterDashboard';
+import { useEffect, useMemo, useState } from 'react';
+import { Input } from 'reactstrap';
+import { totalHotel } from '../../redux/hotelSlice';
+import BillCollapseNavBar from './BillCollapseNavBar/BillCollapseNavBar';
+import BillTable from './BillTable/BillTable';
 
 
-export default function RommDashboard() {
+
+function BillDashboard() {
     const { id } = useParams()
     const role = localStorage.getItem("role");
     const navigate = useNavigate();
-    const [hotelId, setHotelId] = useState(id || 1);
 
     if (role !== "ROLE_ADMIN") {
         navigate("/");
     }
 
+    const [hotelId, setHotelId] = useState(id || 1);
     const dispatch = useDispatch();
     const { hotel } = useSelector(state => state.hotel);
 
+
+    useEffect(()=>{
+        dispatch(totalHotel("1"))
+    },[])
+
     useEffect(() => {
-        dispatch(removeMessageError());
+        dispatch(removeMessageError())
         dispatch(fetchItemById(hotelId));
-    }, []);
+    }, [dispatch, hotelId]);
 
 
     return (
@@ -37,7 +46,7 @@ export default function RommDashboard() {
                     </Link>
                 </div>
                 <hr className="horizontal light mt-0 mb-2" />
-                <CollapseNavBar />
+                <BillCollapseNavBar />
                 <div className="sidenav-footer position-absolute w-100 bottom-0">
                     <div className="mx-3"></div>
                 </div>
@@ -56,7 +65,6 @@ export default function RommDashboard() {
                                         <p className="text-sm mb-0 text-capitalize">Hotel</p>
                                         <h4 className="mb-0">{hotel?.name}</h4>
                                     </div>
-                                    <hr class="dark horizontal my-0" />
                                 </div>
                                 <hr className="dark horizontal my-0" />
                             </div>
@@ -114,11 +122,13 @@ export default function RommDashboard() {
                         </div>
                     </div>
                     <div class="row mt-4">
+                        <BillTable hotel={hotel} hotelId={hotelId}/>
                     </div>
-                    <RoomTable hotelId={hotelId} hotelName={hotel?.name} />
                     <FooterDashboard />
                 </div>
             </main>
         </div>
     );
 }
+
+export default BillDashboard

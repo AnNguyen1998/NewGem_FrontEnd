@@ -6,11 +6,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { searchRooms } from "../../redux/roomSlice";
 import { Input } from "reactstrap";
+import ReactPaginate from "react-paginate";
 
 function Rooms() {
     const dispatch = useDispatch();
-    const [updateItem, setUpdateItem] = useState(null);
-    const { items, status, errors, message, totalPage } = useSelector(state => state.room);
+    const { items, totalPage } = useSelector(state => state.room);
 
     const [activeFilter, setActiveFilter] = useState(null);
     const [priceRange, setPriceRange] = useState({ min: null, max: null });
@@ -32,12 +32,16 @@ function Rooms() {
     };
 
     const [currentPage, setCurrentPage] = useState(0);
+    const handlePageClick = (event) => {
+        setCurrentPage(event.selected);
+    };
 
     useEffect(() => {
         dispatch(searchRooms({
             type: activeFilter,
             page: currentPage,
             max: priceRange.max,
+            status: "ACTIVE",
         }));
     }, [dispatch, currentPage, activeFilter]);
 
@@ -108,7 +112,7 @@ function Rooms() {
                                                                         type="number"
                                                                         placeholder="Max Price"
                                                                         onChange={handlePriceChange}
-                                                                        style={{border: "2px solid #000", marginLeft: "10px"}}
+                                                                        style={{ border: "2px solid #000", marginLeft: "10px" }}
                                                                     />
                                                                 </div>
                                                             </div>
@@ -131,6 +135,27 @@ function Rooms() {
                     </div>
                 </div>
             </body>
+            <div style={{ textAlign: 'center', justifyContent: 'center' }}>
+                <ReactPaginate
+                    previousLabel={'<<'}
+                    nextLabel={'>>'}
+                    breakLabel={'...'}
+                    pageCount={Math.ceil(totalPage)}
+                    marginPagesDisplayed={1}
+                    pageRangeDisplayed={5}
+                    onPageChange={handlePageClick}
+                    containerClassName={'pagination'}
+                    pageClassName={'page-item'}
+                    pageLinkClassName={'page-link'}
+                    previousClassName={'page-item'}
+                    nextClassName={'page-item'}
+                    previousLinkClassName={'page-link'}
+                    nextLinkClassName={'page-link'}
+                    breakClassName={'page-item'}
+                    breakLinkClassName={'page-link'}
+                    activeClassName={'active'}
+                />
+            </div>
             <FooterPage />
         </div>
     );
