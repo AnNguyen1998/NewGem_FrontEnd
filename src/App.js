@@ -18,6 +18,7 @@ import HotelDetailPage from './pages/HotelDetailPage/HotelDetailPage';
 import { ToastContainer } from 'react-toastify';
 import { ToastProvider } from './utils/ToastContext';
 import UserProfile from './component/UserProfile/UserProfile';
+import BillDashboard from './pages/BillDashboard/BillDashboard';
 
 function App() {
   return (
@@ -45,6 +46,8 @@ function App() {
             <Route path='/hoteldetail/:id' element={<HotelDetailPage />}></Route>
             <Route path='/readblog/:id' element={<BlogDetailPage />}></Route>
             <Route path='/userprofile/:id' element={<UserProfile />}></Route>
+            <Route path='/bill' element={<BillDashboard />}></Route>
+            <Route path='/bill/:id' element={<BillDashboard />}></Route>
           </Routes>
         </BrowserRouter>
         <ScrollButton />

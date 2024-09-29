@@ -1,62 +1,53 @@
-import { Input, Form, FormGroup, Label, Button, Row, Col } from "reactstrap";
+import { Input, FormGroup, Label, Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { useState, useEffect, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createHotel, removeMessageError } from "../../redux/hotelSlice";
 import { ToastContext, ToastTypes } from "../../utils/ToastContext";
 
 function AddHotelForm() {
-    const dispatch = useDispatch()
-    const { showToast } = useContext(ToastContext)
-    const {errors, status, message} = useSelector(state=>state.hotel)
-    console.log("status: " + status)
-    useEffect(()=>{
-        if (status !== 201){
-            console.log(status + "aaa")
-            showToast(errors || message ,ToastTypes.ERROR)
-        }
-        dispatch(removeMessageError())
-    },[status])
-
+    const dispatch = useDispatch();
+    const { showToast } = useContext(ToastContext);
+    const { errors, status, message } = useSelector(state => state.hotel);
+    const [isOpen, setIsOpen] = useState(false);
     const [newHotel, setNewHotel] = useState({
         name: '',
         location: '',
         city: 'HCM'
     });
-    console.log(newHotel)
+
+    const toggleModal = () => setIsOpen(!isOpen);
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setNewHotel((prev) => ({ ...prev, [name]: value }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        dispatch(createHotel(newHotel))
-        //window.location.reload()
+        dispatch(removeMessageError())
+        await dispatch(createHotel(newHotel));
     };
 
+    function handleCancel(){
+        toggleModal()
+        window.location.reload()
+    }
 
-    return <div class="card">
-        <div class="card-header pb-0">
-            <div class="row">
-                <div class="col-lg-6 col-7">
-                    <h3>Add Hotel</h3>
-                </div>
-                <div class="col-lg-6 col-5 my-auto text-end">
-                </div>
-            </div>
-        </div>
-        <div class="card-body px-0 pb-2">
-            <div class="table-responsive">
-                <div class=" align-items-center mb-0" style={{ padding: '10px' }}>
+    return (
+        <>
+            <Button color="primary" onClick={toggleModal}>
+                Add Hotel
+            </Button>
+            <Modal isOpen={isOpen} toggle={toggleModal}>
+                <ModalHeader toggle={toggleModal}>Add Hotel</ModalHeader>
+                <ModalBody>
                     <form onSubmit={handleSubmit}>
                         <FormGroup>
-                            <Label for="nameHotel">
-                                Name Hotel
-                            </Label>
+                            <Label for="nameHotel">Hotel's Name</Label>
                             <Input
                                 id="nameHotel"
                                 name="name"
-                                placeholder="Please enter Hotel'name here !"
+                                placeholder="Please enter hotel's name here!"
                                 type="text"
                                 value={newHotel.name}
                                 onChange={handleChange}
@@ -64,13 +55,11 @@ function AddHotelForm() {
                             />
                         </FormGroup>
                         <FormGroup>
-                            <Label for="locationHotel">
-                                Location Hotel
-                            </Label>
+                            <Label for="locationHotel">Location</Label>
                             <Input
                                 id="locationHotel"
                                 name="location"
-                                placeholder="Please enter location here !"
+                                placeholder="Please enter location here!"
                                 type="text"
                                 value={newHotel.location}
                                 onChange={handleChange}
@@ -90,14 +79,15 @@ function AddHotelForm() {
                                 <option value="HANOI">HANOI</option>
                             </Input>
                         </FormGroup>
-                        <Button>
-                            Submit
-                        </Button>
+                        <ModalFooter>
+                            <Button type="submit" color="primary">Submit</Button>
+                            <Button color="secondary" onClick={handleCancel}>Cancel</Button>
+                        </ModalFooter>
                     </form>
-                </div>
-            </div>
-        </div>
-    </div>
+                </ModalBody>
+            </Modal>
+        </>
+    );
 }
 
 export default AddHotelForm;

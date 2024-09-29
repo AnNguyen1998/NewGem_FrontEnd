@@ -168,7 +168,7 @@ export default function HotelDetailPage() {
                                                                                         <strong>Prices start at:</strong>
                                                                                         <span class="mphb-price">
                                                                                             <span class="mphb-currency">&euro;</span>
-                                                                                            {hotel && hotel?.max_price}
+                                                                                            {hotel && hotel?.min_price}
                                                                                         </span>
                                                                                         <span class="mphb-price-period" title="Choose dates to see relevant prices">per night</span>
                                                                                     </p>
@@ -201,7 +201,6 @@ export default function HotelDetailPage() {
                                         </div>
                                         <RoomSection hotelId={id}/>
                                     </section>
-                                    <RoomSection />
                                 </div>
                             </div>
                         </div>

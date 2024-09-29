@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import '../../css/HomePage.css'
 import '../../css/HomePage1.css'
 import '../../css/HomePage2.css'
@@ -12,10 +12,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { createBookroom, getRoomById, removeMessageError } from '../../redux/roomSlice'
 import { Col, Row } from 'reactstrap'
+import { ToastContext, ToastTypes } from '../../utils/ToastContext'
 
 export default function RoomPageDetail() {
     const { id } = useParams();
     const dispatch = useDispatch();
+    const { showToast } = useContext(ToastContext)
     const [newBookroom, setNewBookroom] = useState({
         checkIn: '',
         checkOut: '',
@@ -25,28 +27,35 @@ export default function RoomPageDetail() {
         adults:'',
         children:'',
     });
-    const { items, hotel, status, errors, message, totalPage } = useSelector(state => state.room)
+    const { items, room, hotel, status, errors, message, totalPage } = useSelector(state => state.room)
+
     useEffect(() => {
         dispatch(getRoomById(id))
     }, [id])
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setNewBookroom((prev) => ({ ...prev,roomId: items.roomId, hotelId: items.hotelId,userId: localStorage.getItem("userId")*1, [name]: value }));
+        setNewBookroom((prev) => ({ ...prev,roomId: room.roomId, hotelId: room.hotelId,userId: localStorage.getItem("userId")*1, [name]: value }));
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        dispatch(removeMessageError())
         dispatch(createBookroom(newBookroom))
     };
+
+
     useEffect(()=>{
-        if(status===201){
-            window.alert("Book room successfully")
-            dispatch(removeMessageError())
+        if (message != "Search successfully"){
+            if (status == 200 || status == 201){
+                showToast(message,ToastTypes.SUCCESS)
+            } else if (status == null){
+            } else {
+                showToast(message || errors, ToastTypes.ERROR)
+            }
         }
     },[status])
 
-    console.log(items)
-    console.log(newBookroom)
+
     return (
         <div>
             <body class="mphb_room_type-template mphb_room_type-template-template-layout-builder mphb_room_type-template-template-layout-builder-php single single-mphb_room_type postid-17 theme-kinsley woocommerce-no-js elementor-default elementor-kit-5762 elementor-page elementor-page-17">
@@ -69,7 +78,7 @@ export default function RoomPageDetail() {
                                                                         <div class="col-lg-12">
                                                                             <div class="knsl-center knsl-title-frame">
                                                                                 <h1 class="knsl-title--h knsl-mb-20 knsl-h1-inner">
-                                                                                    <span>{items && items?.type} </span>
+                                                                                    <span>{room && room?.type} </span>
                                                                                 </h1>
                                                                                 <ul class="knsl-breadcrumbs">
                                                                                     <li>
@@ -79,7 +88,7 @@ export default function RoomPageDetail() {
                                                                                         <a href="https://kinsley.bslthemes.com/accommodations/">Rooms</a>
                                                                                     </li>
                                                                                     <li class="tst-active">
-                                                                                        <a>{items && items?.hotelName}</a>
+                                                                                        <a>{room && room?.hotelName}</a>
                                                                                     </li>
                                                                                 </ul>
                                                                             </div>
@@ -135,7 +144,7 @@ export default function RoomPageDetail() {
                                                                         <div class="elementor-widget-container">
                                                                             <section class="knsl-mb-60">
                                                                                 <h3 class="knsl-mb-40">
-                                                                                    <span>{items && items?.hotelName} is waiting for you! </span>
+                                                                                    <span>{room && room?.hotelName} is waiting for you! </span>
                                                                                 </h3>
                                                                             </section>
                                                                         </div>
@@ -159,7 +168,7 @@ export default function RoomPageDetail() {
                                                                                 <ul class="mphb-single-room-type-attributes">
                                                                                     <li class="mphb-room-type-adults-capacity">
                                                                                         <span class="mphb-attribute-title mphb-adults-title">Adults:</span>
-                                                                                        <span class="mphb-attribute-value">{items && items?.guests} </span>
+                                                                                        <span class="mphb-attribute-value">{room && room?.guests} </span>
                                                                                     </li>
                                                                                     <li class="mphb-room-type-size">
                                                                                         <span class="mphb-attribute-title mphb-size-title">Size:</span>
@@ -193,7 +202,7 @@ export default function RoomPageDetail() {
                                                                                         <strong>Prices start at:</strong>
                                                                                         <span class="mphb-price">
                                                                                             <span class="mphb-currency">&euro;</span>
-                                                                                            {items && items?.price}
+                                                                                            {room && room?.price}
                                                                                         </span>
                                                                                         <span class="mphb-price-period" title="Choose dates to see relevant prices">per night</span>
                                                                                     </p>
@@ -244,32 +253,6 @@ export default function RoomPageDetail() {
                                                                                                 <option value="2">2</option>
                                                                                                 <option value="3">3</option>
                                                                                                 <option value="4">4</option>
-                                                                                                <option value="5">5</option>
-                                                                                                <option value="6">6</option>
-                                                                                                <option value="7">7</option>
-                                                                                                <option value="8">8</option>
-                                                                                                <option value="9">9</option>
-                                                                                                <option value="10">10</option>
-                                                                                                <option value="11">11</option>
-                                                                                                <option value="12">12</option>
-                                                                                                <option value="13">13</option>
-                                                                                                <option value="14">14</option>
-                                                                                                <option value="15">15</option>
-                                                                                                <option value="16">16</option>
-                                                                                                <option value="17">17</option>
-                                                                                                <option value="18">18</option>
-                                                                                                <option value="19">19</option>
-                                                                                                <option value="20">20</option>
-                                                                                                <option value="21">21</option>
-                                                                                                <option value="22">22</option>
-                                                                                                <option value="23">23</option>
-                                                                                                <option value="24">24</option>
-                                                                                                <option value="25">25</option>
-                                                                                                <option value="26">26</option>
-                                                                                                <option value="27">27</option>
-                                                                                                <option value="28">28</option>
-                                                                                                <option value="29">29</option>
-                                                                                                <option value="30">30</option>
                                                                                             </select>
                                                                                         </p>
                                                                                         </Col>
@@ -285,10 +268,6 @@ export default function RoomPageDetail() {
                                                                                                 <option value="4">4</option>
                                                                                                 <option value="5">5</option>
                                                                                                 <option value="6">6</option>
-                                                                                                <option value="7">7</option>
-                                                                                                <option value="8">8</option>
-                                                                                                <option value="9">9</option>
-                                                                                                <option value="10">10</option>
                                                                                             </select>
                                                                                         </p>
                                                                                         </Col>

@@ -1,29 +1,29 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import "./css/material-dashboard.css"
 import "./css/material-dashboard.min.css"
 import "./css/nucleo-icons.css"
 import "./css/nucleo-svg.css"
 import "./scss/material-dashboard.scss"
-import { changeHotelStatus, fetchItemById, fetchItems } from '../../redux/hotelSlice'
+import { changeHotelStatus, fetchItemById, fetchItems, removeMessageError } from '../../redux/hotelSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import ReactPaginate from 'react-paginate'
 import { Link, useNavigate } from 'react-router-dom'
 import { Button, Col, Form, FormGroup, Input, Label, Row } from 'reactstrap'
 import AddHotelForm from './AddHotelForm'
 import UpdateHotelForm from './UpdateHotelForm'
+import { ToastContext, ToastTypes } from '../../utils/ToastContext'
 
 
 export default function Dashboard() {
   const role = localStorage.getItem("role")
-    const navigate = useNavigate()
+  const navigate = useNavigate()
+  const { showToast } = useContext(ToastContext)
 
-    if (role !== "ROLE_ADMIN"){
-        navigate("/")
-    }
-
+  if (role !== "ROLE_ADMIN") {
+    navigate("/")
+  }
 
   const [currentPage, setCurrentPage] = useState(0)
-  const [id1, setId] = useState(0)
   const dispatch = useDispatch()
   const handlePageClick = (event) => {
     setCurrentPage(event.selected)
@@ -32,15 +32,26 @@ export default function Dashboard() {
   useEffect(() => {
     dispatch(fetchItems(currentPage))
   }, [currentPage])
-  const btnUpdateHandle = (id)=>{
-    setId(id)
-  }
-  const handleDisable = (idD)=>{
+  
+
+  const handleDisable = (idD) => {
     dispatch(changeHotelStatus(idD))
     console.log(idD)
     window.location.reload();
   }
-  console.log(items)
+
+
+  useEffect(() => {
+    if (status == 200 || status == 201) {
+      if (message != "Get all hotels successfully")
+        showToast(message, ToastTypes.SUCCESS)
+    } else if (status == null) {
+    } else {
+      showToast(message || errors, ToastTypes.ERROR)
+    }
+  }, [status])
+
+
   return (
     <div class="g-sidenav-show  bg-gray-200">
       <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark" id="sidenav-main">
@@ -323,6 +334,7 @@ export default function Dashboard() {
                       <h6>Hotel</h6>
                     </div>
                     <div class="col-lg-6 col-5 my-auto text-end">
+                      <AddHotelForm />
                     </div>
                   </div>
                 </div>
@@ -349,7 +361,7 @@ export default function Dashboard() {
                                 <div class="d-flex px-2 py-1">
                                   <div class="d-flex flex-column justify-content-center">
                                     <Link to={`/room/${item.hotelId}`}>
-                                    <h6 class="mb-0 text-sm">{item?.name}</h6>
+                                      <h6 class="mb-0 text-sm">{item?.name}</h6>
                                     </Link>
                                   </div>
                                 </div>
@@ -377,8 +389,8 @@ export default function Dashboard() {
                                 <span class="text-xs font-weight-bold"> {item?.rating} </span>
                               </td>
                               <td class="align-middle text-center text-sm" >
-                                <Button color='danger' style={{ marginRight: '5px' }} onClick={()=>handleDisable(item?.hotelId)}>Delete</Button>
-                                <a href='#update'><Button color='warning' onClick={()=>btnUpdateHandle(index)}>Update</Button></a>
+                                <Button color='danger' style={{ marginRight: '5px' }} onClick={() => handleDisable(item?.hotelId)}>Disable</Button>
+                                <UpdateHotelForm hotelId={item?.hotelId} hotel={item} />
                               </td>
                             </tr>
                           ))
@@ -408,18 +420,6 @@ export default function Dashboard() {
                     </table>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-          <div class="row mb-4">
-            <div class="col-lg-6 col-md-6 mb-md-0 mb-4">
-              <div class="card">
-                <AddHotelForm/>
-              </div>
-            </div>
-            <div class="col-lg-6 col-md-6 mb-md-0 mb-4">
-              <div class="card" id='update'>
-                <UpdateHotelForm hotelId={id1} updateItem={items}/>
               </div>
             </div>
           </div>

@@ -15,7 +15,7 @@ export const ToastProvider = ({ children }) => {
     if (Object.values(ToastTypes).includes(type)) {
       toast[type](message, {
         position: "top-right",
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,

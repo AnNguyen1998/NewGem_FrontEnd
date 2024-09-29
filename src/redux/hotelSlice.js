@@ -75,13 +75,14 @@ export const fetchItemById = createAsyncThunk("hotel/fetchItemById", async (id, 
     }
 })
 
-export const searchHotel = createAsyncThunk("hotel/searchHotel", async ({city, max, min}, thunkAPI) => {
+export const searchHotel = createAsyncThunk("hotel/searchHotel", async ({city, max, min, status}, thunkAPI) => {
     try {
         const response = await axios.get(url + "/search",{
             params: {
                 city: city,
                 max: max,
-                min: min
+                min: min,
+                status: status
             }
         })
         return response.data;
@@ -118,7 +119,8 @@ export const hotelSlice = createSlice({
             state.status = action.payload.status
         })
         .addCase(fetchItems.rejected, (state, action)=>{
-            
+            state.errors = action.payload.message;
+            state.status = action.payload.status;
         })
         .addCase(fetchItemById.fulfilled,(state, action)=>{
             state.items = action.payload.items
@@ -133,18 +135,15 @@ export const hotelSlice = createSlice({
         .addCase(createHotel.rejected, (state,action) => {
             state.errors = action.payload.message;
             state.status = action.payload.status;
-            console.log(action.payload.status)
         })
         .addCase(updateHotel.fulfilled, (state, action) => {
             state.hotel = action.payload.data;
             state.message = action.payload.message;
             state.status = action.payload.status
-            console.log(action)
         })
         .addCase(updateHotel.rejected, (state,action) => {
             state.errors = action.payload.message;
             state.status = action.payload.status;
-            console.log(action)
         })
         .addCase(searchHotel.fulfilled,(state, action)=>{
             state.items = action.payload.data.hotel
