@@ -1,0 +1,17 @@
+.uncontrol-drop{
+    background-color: transparent !important;
+    border: none !important;
+    border-radius: 150px !important;
+    transform: translateY(4px) !important;
+    position: relative !important;
+}
+.uncontrol-drop1{
+    background-color: transparent !important;
+    border: none !important;
+    border-radius: 150px !important;
+    transform: translateY(4px);
+}
+.dropd-menu{
+    position: absolute !important;
+    top: 30px !important;
+}
